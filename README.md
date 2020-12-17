@@ -7,10 +7,6 @@ WinLocal Dokumentation
 
 to deploy to Gitlab Pages:
 
-`git chekcout gh-pages`
-
-get changes and then:
-
 `python3 -m mkdocs gh-deploy`
 
 
