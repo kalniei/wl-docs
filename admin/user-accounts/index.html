@@ -34,9 +34,6 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">Introduction</a>
-                            </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Functionalities <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -194,7 +191,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../.." class="nav-link">
+                                <a rel="prev" class="nav-link disabled">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -257,7 +254,7 @@
 
 <h6 id="user-accounts">User Accounts<a class="headerlink" href="#user-accounts" title="Permanent link">#</a></h6>
 <p>Admin View only.
-Here admin's can manage your accounts.</p>
+Here admin's can manage accounts.</p>
 <h2 id="find-account">Find Account<a class="headerlink" href="#find-account" title="Permanent link">#</a></h2>
 <p>The Search filters, that are filtering the Accounts Table</p>
 <ol>
@@ -266,23 +263,82 @@ Here admin's can manage your accounts.</p>
 <li>Last Name</li>
 <li>Company Name</li>
 <li>Company Keyword</li>
-<li>Status - dropdown, allowed values: <strong>All</strong>, <strong>Active</strong>, <strong>Inactibe</strong></li>
+<li>Status - dropdown, allowed values: <strong>All</strong>, <strong>Active</strong>, <strong>Inactive</strong></li>
 </ol>
 <p>Button Search will trigger request to Api: </p>
 <pre><code>v1/admin/users
 </code></pre>
-<p>with optional additional filters params: <code>filters[]=</code></p>
-<pre><code>email: string, - operand &quot;l&quot;
-firstName: string,  - operand &quot;l&quot;
-lastName: string,  - operand &quot;l&quot;
-companyName: string,  - operand &quot;l&quot;
-companyKeyword: string,  - operand &quot;l&quot;
-status: string, - operand &quot;eq&quot;
+<p>with optional filters params: <code>filters[]=</code></p>
+<pre><code>email: string; - operand &quot;l&quot;
+firstName: string;  - operand &quot;l&quot;
+lastName: string;  - operand &quot;l&quot;
+companyName: string;  - operand &quot;l&quot;
+companyKeyword: string;  - operand &quot;l&quot;
+status: string; - operand &quot;eq&quot;
 </code></pre>
+<p>Example of created link: </p>
+<pre><code>v1/admin/users?filters[]=email,l,test@lim.bz,&amp;filters[]=firstName,l,testFirst,&amp;filters[]=lastName,l,testLast,&amp;filters[]=companyName,l,testInc,&amp;filters[]=companyKeyword,l,banana,&amp;filters[]=status,eq,active
+</code></pre>
+<hr />
 <h2 id="accounts-table">Accounts Table<a class="headerlink" href="#accounts-table" title="Permanent link">#</a></h2>
-<p>lorem</p>
+<p>Paginated list of all users, created under current Admin user.</p>
+<p>By default pagination is set to <strong>10</strong> records.
+All columns are sortable.
+No columns has filters inside the table.</p>
+<p>We use this route for getting accounts:</p>
+<pre><code>GET v1/admin/users
+</code></pre>
+<p>Optional parameter for pagination:</p>
+<pre><code>  page: number;
+  itemsPerPage: number; - 5 | 10 | 15
+  showAllRecords: boolean;
+  sortBy: string;
+  sortDesc: boolean;
+</code></pre>
+<p>Example of created link: </p>
+<pre><code>v1/admin/users?page=1&amp;itemsPerPage=10&amp;showAllRecords=0&amp;sortBy=lastName&amp;sortDesc=1
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  data: [
+    {
+      companyKeyword: &quot;test&quot;
+      companyName: &quot;Test Inc&quot;
+      email: &quot;test@lim.bz&quot;
+      fbBusinessPage: 1111
+      instagramId: 1111
+      firstName: &quot;Test&quot;
+      id: 1
+      lastName: &quot;Test&quot;
+      status: &quot;active&quot;
+    }
+    ...
+  ],
+  state: {
+    fields: []
+    filterBy: null
+    filterValue: null
+    filters: []
+    itemsCount: 10
+    itemsPerPage: 10
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: &quot;lastName&quot;
+    sortDesc: true
+    totalItems: 463
+    totalPages: 47
+  }
+}
+</code></pre>
 <h3 id="impersonate-user">Impersonate User<a class="headerlink" href="#impersonate-user" title="Permanent link">#</a></h3>
-<p>lorem</p>
+<p>Option to log in into users account.</p>
+<pre><code>GET v1/users/${id}/?permissions=1
+</code></pre>
+<p>After successful response we do all actions like login user.</p>
+<p>see: <a href="../../account/login/">user login</a> for more details</p>
+<p>Note - in store we keep <code>parentUserId" ${adminId}</code> and  in Local Storage - <code>impersonate: ${adminEmail}</code>.</p>
+<p>It allowes us to go back to admin.</p>
 <h3 id="edit-account">Edit Account<a class="headerlink" href="#edit-account" title="Permanent link">#</a></h3>
 <p>lorem</p>
 <h3 id="qr-codes">QR Codes<a class="headerlink" href="#qr-codes" title="Permanent link">#</a></h3>
