@@ -1,0 +1,3 @@
+# Default Franchise
+
+lorem
