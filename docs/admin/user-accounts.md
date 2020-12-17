@@ -1,7 +1,7 @@
 ###### User Accounts
 
 Admin View only.
-Here admin's can manage accounts.
+Here admin can manage accounts.
 
 ## Find Account
 
