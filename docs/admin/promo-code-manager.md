@@ -1,4 +1,4 @@
-# Promo Code Manager
+###### Promo Code Manager
 
 Admin View only.
 Here admin's can manage subscription coupons.

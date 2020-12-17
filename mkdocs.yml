@@ -45,7 +45,9 @@ nav:
 theme:
   name: mkdocs
   nav_style: dark
-  navigation_depth: 4
+  navigation_depth: 3
   collapse_navigation: true
   prev_next_buttons_location: none
   sticky_navigation: true
+extra_css:
+  - css/extra.css

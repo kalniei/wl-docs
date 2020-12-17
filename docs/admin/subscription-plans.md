@@ -1,4 +1,4 @@
-# Subscriptions Plans
+###### Subscriptions Plans
 
 Admin View only.
 Here admin's can manage subscription plans.
