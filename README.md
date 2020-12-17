@@ -1,2 +1,0 @@
-# wl-docs
-WinLocal Dokumentation

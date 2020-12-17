@@ -1,3 +1,0 @@
-# Winners Manager
-
-lorem

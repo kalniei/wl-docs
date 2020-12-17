@@ -1,3 +1,0 @@
-# Supportlocal Franchise
-
-lorem

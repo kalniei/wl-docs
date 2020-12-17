@@ -1,3 +1,0 @@
-# Confirmation Link
-
-lorem
