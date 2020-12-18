@@ -10,3 +10,6 @@ Request JSON body:
     "plan": "my-plan-slug"
 }
 ```
+
+
+Since now route POST /v1/stripe/subscribe allows to pass "code" parameter to use it, paymentMethodId is not required then.

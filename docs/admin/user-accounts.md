@@ -17,7 +17,7 @@ The Search filters, that are filtering the Accounts Table
 Button Search will trigger request to Api: 
 
 ```
-v1/admin/users
+GET /v1/admin/users
 ```
 with optional filters params: `filters[]=`
 
@@ -33,7 +33,7 @@ status: string; - operand "eq"
 Example of created link: 
 
 ```
-v1/admin/users?filters[]=email,l,test@lim.bz,&filters[]=firstName,l,testFirst,&filters[]=lastName,l,testLast,&filters[]=companyName,l,testInc,&filters[]=companyKeyword,l,banana,&filters[]=status,eq,active
+GET /v1/admin/users?filters[]=email,l,test@lim.bz,&filters[]=firstName,l,testFirst,&filters[]=lastName,l,testLast,&filters[]=companyName,l,testInc,&filters[]=companyKeyword,l,banana,&filters[]=status,eq,active
 ```
 ***
 
@@ -53,7 +53,7 @@ No columns has filters inside the table.
 We use this route for getting accounts:
 
 ```
-GET v1/admin/users
+GET /v1/admin/users
 ```
 
 Optional parameter for pagination:
@@ -69,7 +69,7 @@ Optional parameter for pagination:
 Example of created link: 
 
 ```
-v1/admin/users?page=1&itemsPerPage=10&showAllRecords=0&sortBy=lastName&sortDesc=1
+GET /v1/admin/users?page=1&itemsPerPage=10&showAllRecords=0&sortBy=lastName&sortDesc=1
 ```
 
 Expected output:
@@ -113,7 +113,7 @@ Expected output:
 Option to log in into users account.
 
 ```
-GET v1/users/${id}/?permissions=1
+GET /v1/users/${id}/?permissions=1
 ```
 
 After successful response we do all actions like login user.
@@ -131,7 +131,7 @@ On Edit Account the modal with accountn profile info is being opened.
 Api for getting full User Object: 
 
 ```
-GET v1/users/${id}
+GET /v1/users/${id}
 ```
 
 Expected output:
@@ -238,7 +238,7 @@ Admin can also change password of its users. The current password is not require
 The route for Admins change of password:
 
 ```
-POST v1/admin/users/${id}/changePassword
+POST /v1/admin/users/${id}/changePassword
 ```
 
 As parameter we send: 
@@ -262,7 +262,7 @@ Here we are asking Api to give us all users campaign with types **find** and **l
 (SMS campaign and Push Your Limits)
 
 ```
-v1/admin/users/${id}/campaigns?filters[]=type,in,find,leaderboard&page=1&itemsPerPage=3&showAllRecords=0
+GET /v1/admin/users/${id}/campaigns?filters[]=type,in,find,leaderboard&page=1&itemsPerPage=3&showAllRecords=0
 ```
 
 Expected output:
@@ -337,7 +337,7 @@ Click "Delete Account" icon will trigger conformation modal.
 Once you confirm your action the delete request is being sent:
 
 ```
-DELETE v1/admin/users/${id}
+DELETE /v1/admin/users/${id}
 ```
 
 Expected output: 

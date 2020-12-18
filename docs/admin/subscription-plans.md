@@ -13,7 +13,7 @@ Request for creating new plan:
 
 
 ```
-POST v1/plan
+POST /v1/plan
 ```
 
 Request JSON body:
@@ -205,10 +205,13 @@ JSON response with all avaliable permissions:
 
 Plans table is a simple table without backend pagination and filtration options.
 
+We refresh Plan table every 20 seconds.
+
+
 To get list of all available plans:
 
 ```
-GET v1/plan
+GET /v1/plan
 ```
 
 **Please note:** This endpoint will manage the results of the response. Users granted SUPER ADMIN role will get a full list of all available plans while users assigned to a Franchise will get a list of all assigned plans to their Franchise only, and other users will get a list of default plans only.
@@ -216,7 +219,7 @@ GET v1/plan
 To get single Plan details:
 
 ```
-GET v1/plan/{idSlug}
+GET /v1/plan/{idSlug}
 ```
 
 **Please note:**
