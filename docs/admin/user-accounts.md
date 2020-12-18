@@ -116,18 +116,231 @@ After successful response we do all actions like login user.
 
 see: [user login](../account/login.md) for more details
 
-Note - in store we keep `parentUserId" ${adminId}` and  in Local Storage - `impersonate: ${adminEmail}`.
+Note - in Store we keep `parentUserId" ${adminId}` and  in Local Storage - `impersonate: ${adminEmail}`.
 
-It allowes us to go back to admin.
+It allowes us to go back to admin (same actions as impersonate - just use id in Store)
 
 ### Edit Account
 
-lorem
+On Edit Account the modal with accountn profile info is being opened.
+
+Api for getting full User Object: 
+
+```
+GET v1/users/${id}
+```
+
+Expected output:
+
+```
+{
+  activeCampaigns: 0
+  address: "NA"
+  address1: null
+  avatarUrl: null
+  businessTypes: [{
+    id: 8,
+    name: "Retail Stores & Clubs"
+  }]
+  city: "Stamford"
+  companyLogoUrl: "https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/48/logo/7747763fbdc3f595adb3cfe5fd4d5ffcd093d3b8.png"
+  companyName: "Bab"
+  defaultAdCategory: "regular"
+  domains: [{
+      id: 55,
+      domain: "30.d.lnx.bz",
+      shorteners: [
+        "https:\/\/30.d.lnx.bz\/rffef",
+        "https:\/\/30.d.lnx.bz\/defmem-48",
+        "https:\/\/30.d.lnx.bz\/cd9"
+      ]
+    }],
+  email: "as@lim.bz"
+  enabledFbPageAccess: false
+  enabledInstagramAccess: false
+  fbBusinessPage: null
+  findCampaignId: 3257
+  firstLogin: false
+  firstName: "Half"
+  franchise: null
+  id: 48
+  instagramId: null
+  lastName: "Café"
+  leaderboardCampaignId: null
+  logoAspectRatio: "companyLogo"
+  logoBgColor: "#ffffff"
+  parent: null
+  phone: "(111) 111-1111"
+  plan: {
+    tag: "paid",
+    slug: "default-paid",
+    startsAt: "2020-11-04T13:18:43+0000",
+    endsAt: "2020-12-04T13:18:43+0000"
+  }
+  roles: ["ROLE_USER"]
+  socialMedias: {
+    twitter: null,
+    facebook: null,
+    linkedin: null,
+    instagram: null
+  }
+  state: "CT"
+  tcAccepted: true
+  website: null
+  zip: "06901"
+}
+```
+
+Here we have three Admin ONLY settings:
+
+1. *"Use this email address for ad campaign testing"*
+
+    If switch is set to **true** - the property of User object `testingEmail` is set to the same valie as field `email`.
+
+    If switch is set to **false** - the new input becomes visible "Email address for ad testing" and property of User object is `testingEmail`.
+
+2. *"Enable Access to Facebook Followers"*
+
+    Default - **false**.
+
+    If switch is set to **true** - this specific user will have "Facebook Followers" option for targeting contacts in Campaign Builder.
+
+    Property od User Object: `enabledFbPageAccess`.
+
+    Please note: **Admin is responsible for concios setting this flag ONLY when specific user has `fbBusinessPage` id set.**
+
+3. *"Enable Access to Instagram Followers"*
+
+    Default - **false**.
+
+    If switch is set to **true** - this specific user will have "Instagram Followers" option for targeting contacts in Campaign Builder.
+
+    Property od User Object: `enabledInstagramAccess`.
+  
+    Please note: **Admin is responsible for concios setting this flag ONLY when specific user has `instagramId` set.**
+
+
+Those, and all aditional fields will be send in the object by Api:
+
+```
+PUT /v1/users/${id}
+```
+
+Expected output: full User object
+
+#### Change Password
+Admin can also change password of its users. The current password is not required.
+
+The route for Admins change of password:
+
+```
+POST v1/admin/users/${id}/changePassword
+```
+
+As parameter we send: 
+```
+newPassword: "12345678"
+```
+
+Expected output:
+
+```
+{
+  password_changed: [true]
+}
+```
 
 ### QR Codes
 
-lorem
+Click on icon "QR codes" triggers open the modal "QR CODES FOR CAMPAIGNS"
+
+Here we are asking Api to give us all users campaign with types **find** and **leaderboard**
+(SMS campaign and Push Your Limits)
+
+```
+v1/admin/users/${id}/campaigns?filters[]=type,in,find,leaderboard&page=1&itemsPerPage=3&showAllRecords=0
+```
+
+Expected output:
+
+```
+{
+  data: [
+    {
+      adBuilder: []
+      contactListIds: []
+      created_at: "2020-11-03T13:15:09+0000"
+      customLink: null
+      emailTemplate: []
+      endDate: null
+      footerText: null
+      gameUrl: "https://2E.d.lnx.bz/thyhyh"
+      geoCity: null
+      geoLat: null
+      geoLong: null
+      geoRadius: null
+      geoState: null
+      geoZip: null
+      id: 3255
+      isProcessingContacts: false
+      keyword: "thyhyh"
+      logoUrl: null
+      managerAvatar: null
+      maxCostPerDay: 0
+      name: "SMS Campaign"
+      peopleTargetingQty: null
+      prizeTypes: []
+      selectedGames: []
+      startDate: "2020-11-03T13:15:02+0000"
+      status: "active"
+      targetAllContacts: false
+      targetingType: "none"
+      totalContacts: 0
+      type: "find"
+      updated_at: "2020-11-03T13:15:13+0000"
+      useDefaultPrizes: true
+    }
+  ]
+  state: {
+    fields: []
+    filterBy: null
+    filterValue: null
+    filters: [
+      "type,in,find,leaderboard"
+    ]
+    itemsCount: 2
+    itemsPerPage: 3
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: null
+    sortDesc: false
+    totalItems: 2
+    totalPages: 1
+  }
+}
+```
+
+From Campaign Object in this View we only use **name**, **type** and **gameUrl**
+
+We use component "QrCodeGenerator" for creating QR code for campaign **gameUrl**
+
 
 ### Delete Account
 
-lorem
+Click "Delete Account" icon will trigger conformation modal.
+
+Once you confirm your action the delete request is being sent:
+
+```
+DELETE v1/admin/users/${id}
+```
+
+Expected output: 
+
+```
+{
+  data: null
+  messages: ["User Test Test (test@lifeinmobile.com) has been successfully deleted."]
+}
+```
