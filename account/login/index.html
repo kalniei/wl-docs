@@ -227,7 +227,83 @@
                     <div class="col-md-9" role="main">
 
 <h6 id="login">login<a class="headerlink" href="#login" title="Permanent link">#</a></h6>
-<p>lorem</p></div>
+<p>Detailed info about User assigned Plan and permissions (by adding extra query param) you can get on standard Get user Details endpoint:</p>
+<pre><code>GET /v1/users/{id}?permissions=1
+
+Example JSON output:
+{
+    &quot;id&quot;: 3,
+    &quot;email&quot;: &quot;rolibezfasoli@lim.bz&quot;,
+    &quot;phone&quot;: &quot;(111) 111-1111&quot;,
+    &quot;roles&quot;: [
+        &quot;ROLE_USER&quot;
+    ],
+    &quot;firstName&quot;: &quot;Roli&quot;,
+    &quot;lastName&quot;: &quot;Bezfasoli&quot;,
+    &quot;companyName&quot;: null,
+    &quot;website&quot;: null,
+    &quot;address&quot;: null,
+    &quot;address1&quot;: null,
+    &quot;city&quot;: null,
+    &quot;state&quot;: null,
+    &quot;zip&quot;: null,
+    &quot;avatarUrl&quot;: null,
+    &quot;companyLogoUrl&quot;: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/3/logo/3c6ff1b8ad55c495605f08f996c62b11a60c7a06.png&quot;,
+    &quot;fbBusinessPage&quot;: null,
+    &quot;socialMedias&quot;: {
+        &quot;twitter&quot;: null,
+        &quot;facebook&quot;: null,
+        &quot;linkedin&quot;: null,
+        &quot;instagram&quot;: null
+    },
+    &quot;businessTypes&quot;: [],
+    &quot;activeCampaigns&quot;: 0,
+    &quot;parent&quot;: null,
+    &quot;firstLogin&quot;: false,
+    &quot;findCampaignId&quot;: 1,
+    &quot;tcAccepted&quot;: true,
+    &quot;plan&quot;: {
+        &quot;tag&quot;: &quot;free&quot;,
+        &quot;slug&quot;: &quot;default-free&quot;,
+        &quot;startsAt&quot;: &quot;2020-05-08T10:41:53+0000&quot;,
+        &quot;endsAt&quot;: null
+    },
+    &quot;permissions&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;tag&quot;: &quot;campaign.find.view&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;tag&quot;: &quot;campaign.find.create&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;tag&quot;: &quot;campaign.find.edit&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;tag&quot;: &quot;campaign.find.delete&quot;
+        },
+        {
+            &quot;id&quot;: 21,
+            &quot;tag&quot;: &quot;campaign.leaderboard.view&quot;
+        },
+        {
+            &quot;id&quot;: 22,
+            &quot;tag&quot;: &quot;campaign.leaderboard.create&quot;
+        },
+        {
+            &quot;id&quot;: 23,
+            &quot;tag&quot;: &quot;campaign.leaderboard.edit&quot;
+        },
+        {
+            &quot;id&quot;: 24,
+            &quot;tag&quot;: &quot;campaign.leaderboard.delete&quot;
+        }
+    ]
+} 
+</code></pre></div>
             </div>
         </div>
 

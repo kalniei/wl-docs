@@ -242,13 +242,244 @@
 
 <h6 id="subscriptions-plans">Subscriptions Plans<a class="headerlink" href="#subscriptions-plans" title="Permanent link">#</a></h6>
 <p>Admin View only.
-Here admin's can manage subscription plans.</p>
+Here admin can manage subscription plans.</p>
+<p><strong>Subscription plan</strong> - it is mainly set of permissions and rules, that can be added to specific franchise in order to limit users abilities and/or get specific paid according to this abilities.</p>
+<p>One franchise can have few subscription plans and those plans can be switched.</p>
 <h2 id="add-plan">Add Plan<a class="headerlink" href="#add-plan" title="Permanent link">#</a></h2>
-<p>Lorem</p>
+<p>Request for creating new plan:</p>
+<pre><code>POST /v1/plan
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+  tag: 'free' | 'paid' | 'unlimited',
+  slug: string | undefined,
+  stripeId: string | undefined,
+  period: string | null,
+  trialPeriodDays: number | undefined, &lt;not used for now&gt;
+  period: 'month' | 'year' | null, &lt;not used for now&gt;
+  price: this.planTag === 'paid' ? {
+    amount: number,
+    currency: 'USD',
+    formatted: {
+        decimal: number,
+        money: '$' + number,
+    },
+  } : undefined,
+  permissions: [number, number, number],
+},
+</code></pre>
+<p><strong>SLUG</strong> is an optional parameter - if not provided - will be generated base on plan's NAME. Although, it is an optional parameter, must be unique within all available plans.</p>
+<p><strong>STRIPE ID</strong> is required only if newly created plan is of TAG=paid and it must be a valid Stripe Plan ID received on plan registration for example: via Stripe Panel. Otherwise, it can be set to <code>null</code> or completely omitted from the payload.</p>
+<p><strong>PERIOD</strong> must be one of: <code>month</code>, <code>year</code> or <code>null</code>. It determines how long the plan will remain valid. For example all plans with TAGs <code>free</code> or <code>unlimited</code> will very likely require PERIOD=null while plans with TAG <code>paid</code> will require PERIOD=month for montly subscriptions or <code>year</code> for annual ones.</p>
+<p><strong>PERMISSIONS</strong> should be an array list of assigned permissions. It can be an array of permissions IDs or full permission objects (at least permission ID is mandatory).</p>
+<p>Expected output - object with newly created plan:</p>
+<pre><code>{
+  id: 20
+  name: &quot;Test Plan&quot;
+  period: null
+  price: {
+    amount: &quot;0&quot;,
+    currency: &quot;USD&quot;,
+    formatted: {
+      decimal: &quot;0&quot;,
+      money: &quot;$0.00&quot;
+    }
+  }
+  slug: &quot;test&quot;
+  stripeId: null
+  tag: &quot;free&quot;
+  trialPeriodDays: 0
+}
+</code></pre>
+<p>We get avaliable permissions form here:</p>
+<pre><code>GET /v1/permissions
+</code></pre>
+<p>JSON response with all avaliable permissions:</p>
+<pre><code>[{
+  &quot;id&quot;: 44,
+  &quot;tag&quot;: &quot;account.main.view&quot;
+}, {
+  &quot;id&quot;: 45,
+  &quot;tag&quot;: &quot;account.profile.view&quot;
+}, {
+  &quot;id&quot;: 47,
+  &quot;tag&quot;: &quot;account.shortLinks.view&quot;
+}, {
+  &quot;id&quot;: 46,
+  &quot;tag&quot;: &quot;account.subscription.view&quot;
+}, {
+  &quot;id&quot;: 42,
+  &quot;tag&quot;: &quot;campaign.builder.view&quot;
+}, {
+  &quot;id&quot;: 56,
+  &quot;tag&quot;: &quot;campaign.email.create&quot;
+}, {
+  &quot;id&quot;: 57,
+  &quot;tag&quot;: &quot;campaign.email.delete&quot;
+}, {
+  &quot;id&quot;: 58,
+  &quot;tag&quot;: &quot;campaign.email.edit&quot;
+}, {
+  &quot;id&quot;: 59,
+  &quot;tag&quot;: &quot;campaign.email.view&quot;
+}, {
+  &quot;id&quot;: 60,
+  &quot;tag&quot;: &quot;campaign.find.create&quot;
+}, {
+  &quot;id&quot;: 61,
+  &quot;tag&quot;: &quot;campaign.find.delete&quot;
+}, {
+  &quot;id&quot;: 62,
+  &quot;tag&quot;: &quot;campaign.find.edit&quot;
+}, {
+  &quot;id&quot;: 80,
+  &quot;tag&quot;: &quot;campaign.find.multiple_keywords&quot;
+}, {
+  &quot;id&quot;: 63,
+  &quot;tag&quot;: &quot;campaign.find.view&quot;
+}, {
+  &quot;id&quot;: 64,
+  &quot;tag&quot;: &quot;campaign.leaderboard.create&quot;
+}, {
+  &quot;id&quot;: 65,
+  &quot;tag&quot;: &quot;campaign.leaderboard.delete&quot;
+}, {
+  &quot;id&quot;: 66,
+  &quot;tag&quot;: &quot;campaign.leaderboard.edit&quot;
+}, {
+  &quot;id&quot;: 67,
+  &quot;tag&quot;: &quot;campaign.leaderboard.view&quot;
+}, {
+  &quot;id&quot;: 43,
+  &quot;tag&quot;: &quot;campaign.manager.view&quot;
+}, {
+  &quot;id&quot;: 68,
+  &quot;tag&quot;: &quot;campaign.mixed.create&quot;
+}, {
+  &quot;id&quot;: 69,
+  &quot;tag&quot;: &quot;campaign.mixed.delete&quot;
+}, {
+  &quot;id&quot;: 70,
+  &quot;tag&quot;: &quot;campaign.mixed.edit&quot;
+}, {
+  &quot;id&quot;: 71,
+  &quot;tag&quot;: &quot;campaign.mixed.view&quot;
+}, {
+  &quot;id&quot;: 72,
+  &quot;tag&quot;: &quot;campaign.sister.create&quot;
+}, {
+  &quot;id&quot;: 73,
+  &quot;tag&quot;: &quot;campaign.sister.delete&quot;
+}, {
+  &quot;id&quot;: 74,
+  &quot;tag&quot;: &quot;campaign.sister.edit&quot;
+}, {
+  &quot;id&quot;: 75,
+  &quot;tag&quot;: &quot;campaign.sister.view&quot;
+}, {
+  &quot;id&quot;: 76,
+  &quot;tag&quot;: &quot;campaign.social.create&quot;
+}, {
+  &quot;id&quot;: 77,
+  &quot;tag&quot;: &quot;campaign.social.delete&quot;
+}, {
+  &quot;id&quot;: 78,
+  &quot;tag&quot;: &quot;campaign.social.edit&quot;
+}, {
+  &quot;id&quot;: 79,
+  &quot;tag&quot;: &quot;campaign.social.view&quot;
+}, {
+  &quot;id&quot;: 52,
+  &quot;tag&quot;: &quot;contact.engagements.view&quot;
+}, {
+  &quot;id&quot;: 50,
+  &quot;tag&quot;: &quot;contact.main.create&quot;
+}, {
+  &quot;id&quot;: 51,
+  &quot;tag&quot;: &quot;contact.main.update&quot;
+}, {
+  &quot;id&quot;: 49,
+  &quot;tag&quot;: &quot;contact.main.view&quot;
+}, {
+  &quot;id&quot;: 41,
+  &quot;tag&quot;: &quot;dashboard.main.view&quot;
+}, {
+  &quot;id&quot;: 48,
+  &quot;tag&quot;: &quot;onboarding.billing.view&quot;
+}, {
+  &quot;id&quot;: 54,
+  &quot;tag&quot;: &quot;staffMember.main.create&quot;
+}, {
+  &quot;id&quot;: 53,
+  &quot;tag&quot;: &quot;staffMember.main.view&quot;
+}, {
+  &quot;id&quot;: 55,
+  &quot;tag&quot;: &quot;winner.main.view&quot;
+}]
+</code></pre>
+<hr />
 <h2 id="plans-table">Plans Table<a class="headerlink" href="#plans-table" title="Permanent link">#</a></h2>
-<p>lorem</p>
+<p>Plans table is a simple table without backend pagination and filtration options.</p>
+<p>We refresh Plan table every 20 seconds.</p>
+<p>To get list of all available plans:</p>
+<pre><code>GET /v1/plan
+</code></pre>
+<p><strong>Please note:</strong> This endpoint will manage the results of the response. Users granted SUPER ADMIN role will get a full list of all available plans while users assigned to a Franchise will get a list of all assigned plans to their Franchise only, and other users will get a list of default plans only.</p>
+<p>To get single Plan details:</p>
+<pre><code>GET /v1/plan/{idSlug}
+</code></pre>
+<p><strong>Please note:</strong></p>
+<p>All of the endpoints above will accept extra query parameter (as URL query param):</p>
+<ul>
+<li><code>permissions</code> -&gt; if set to <code>1</code> will add a list of assigned permissions to the plan output;</li>
+</ul>
+<p>Example of Plan Object response: </p>
+<p>(will be array of objects for all plans request)</p>
+<pre><code>{
+    &quot;id&quot;: 1,
+    &quot;tag&quot;: &quot;free&quot;,
+    &quot;slug&quot;: &quot;default-free&quot;,
+    &quot;name&quot;: &quot;Plan FREE&quot;,
+    &quot;stripeId&quot;: null,
+    &quot;period&quot;: null,
+    &quot;trialPeriodDays&quot;: 0,
+    &quot;price&quot;: {
+        &quot;amount&quot;: &quot;0&quot;,
+        &quot;currency&quot;: &quot;USD&quot;,
+        &quot;formatted&quot;: {
+            &quot;decimal&quot;: &quot;0.00&quot;,
+            &quot;money&quot;: &quot;$0.00&quot;
+        }
+    },
+    &quot;permissions&quot;: [
+      {
+          &quot;id&quot;: 1,
+          &quot;tag&quot;: &quot;campaign.find.view&quot;
+      },
+      {
+          &quot;id&quot;: 2,
+          &quot;tag&quot;: &quot;campaign.find.create&quot;
+      },
+      {
+          &quot;id&quot;: 3,
+          &quot;tag&quot;: &quot;campaign.find.edit&quot;
+      },
+    ] &lt;optional&gt;
+}
+</code></pre>
 <h3 id="edit-plan">Edit Plan<a class="headerlink" href="#edit-plan" title="Permanent link">#</a></h3>
-<p>lorem</p></div>
+<p>Click on the "Edit plan" icon triggers open edit modal.</p>
+<p>There is only a plan name and a list of permissions able to be edited.</p>
+<pre><code>PUT /v1/plan
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+    id: 1,
+    name: &quot;My Plan new name&quot;,
+    permissions: [1,2]
+}
+</code></pre>
+<p>Please note: Although the plan name may change, the slug generated at plan creation will always remain the same.</p></div>
             </div>
         </div>
 

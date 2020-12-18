@@ -228,7 +228,22 @@
 
 <h6 id="create-user">Create User<a class="headerlink" href="#create-user" title="Permanent link">#</a></h6>
 <p>Admin View only.
-Here admin's can create new users</p></div>
+Here admin can create new users and assign them roles.</p>
+<p>Endpoint for creation user:</p>
+<pre><code>POST /v1/users
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+  email: string
+  password: string,
+  enabledFbPageAccess: boolean,
+  enabledInstagramAccess: boolean,
+  roles: [ ROLE_USER | ROLE_RESELLER | ROLE_SUPER_ADMIN | ROLE_MULTI_USER ],
+}
+</code></pre>
+<p>Expected output - newly created User object</p>
+<p><strong>NOTE</strong> At this point no matter what role we create - we only can get role ROLE_USER.
+Other roles should either be removed or backend should ba able to create other roles accounts</p></div>
             </div>
         </div>
 

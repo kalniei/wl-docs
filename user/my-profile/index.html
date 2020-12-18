@@ -227,7 +227,16 @@
                     <div class="col-md-9" role="main">
 
 <h6 id="my-profile">My Profile<a class="headerlink" href="#my-profile" title="Permanent link">#</a></h6>
-<p>lorem</p></div>
+<p>On user subscription, it is required to provide plan slug or ID to which Plan user is willin to opt in:</p>
+<pre><code>POST /v1/stripe/subscribe
+
+Request JSON body:
+{
+    &quot;paymentMethodId&quot;: &quot;pm_xxxxxxxxxxxx&quot;,
+    &quot;plan&quot;: &quot;my-plan-slug&quot;
+}
+</code></pre>
+<p>Since now route POST /v1/stripe/subscribe allows to pass "code" parameter to use it, paymentMethodId is not required then.</p></div>
             </div>
         </div>
 

@@ -266,7 +266,7 @@ Here admin can manage accounts.</p>
 <li>Status - dropdown, allowed values: <strong>All</strong>, <strong>Active</strong>, <strong>Inactive</strong></li>
 </ol>
 <p>Button Search will trigger request to Api: </p>
-<pre><code>v1/admin/users
+<pre><code>GET /v1/admin/users
 </code></pre>
 <p>with optional filters params: <code>filters[]=</code></p>
 <pre><code>email: string; - operand &quot;l&quot;
@@ -277,16 +277,17 @@ companyKeyword: string;  - operand &quot;l&quot;
 status: string; - operand &quot;eq&quot;
 </code></pre>
 <p>Example of created link: </p>
-<pre><code>v1/admin/users?filters[]=email,l,test@lim.bz,&amp;filters[]=firstName,l,testFirst,&amp;filters[]=lastName,l,testLast,&amp;filters[]=companyName,l,testInc,&amp;filters[]=companyKeyword,l,banana,&amp;filters[]=status,eq,active
+<pre><code>GET /v1/admin/users?filters[]=email,l,test@lim.bz,&amp;filters[]=firstName,l,testFirst,&amp;filters[]=lastName,l,testLast,&amp;filters[]=companyName,l,testInc,&amp;filters[]=companyKeyword,l,banana,&amp;filters[]=status,eq,active
 </code></pre>
 <hr />
 <h2 id="accounts-table">Accounts Table<a class="headerlink" href="#accounts-table" title="Permanent link">#</a></h2>
 <p>Paginated list of all users, created under current Admin user.</p>
-<p>By default pagination is set to <strong>10</strong> records.
-All columns are sortable.
-No columns has filters inside the table.</p>
+<p>We refresh Accounts table every 20 seconds.</p>
+<p>By default pagination is set to <strong>10</strong> records.</p>
+<p>All columns are sortable.</p>
+<p>No columns has filters inside the table.</p>
 <p>We use this route for getting accounts:</p>
-<pre><code>GET v1/admin/users
+<pre><code>GET /v1/admin/users
 </code></pre>
 <p>Optional parameter for pagination:</p>
 <pre><code>  page: number;
@@ -296,7 +297,7 @@ No columns has filters inside the table.</p>
   sortDesc: boolean;
 </code></pre>
 <p>Example of created link: </p>
-<pre><code>v1/admin/users?page=1&amp;itemsPerPage=10&amp;showAllRecords=0&amp;sortBy=lastName&amp;sortDesc=1
+<pre><code>GET /v1/admin/users?page=1&amp;itemsPerPage=10&amp;showAllRecords=0&amp;sortBy=lastName&amp;sortDesc=1
 </code></pre>
 <p>Expected output:</p>
 <pre><code>{
@@ -333,18 +334,190 @@ No columns has filters inside the table.</p>
 </code></pre>
 <h3 id="impersonate-user">Impersonate User<a class="headerlink" href="#impersonate-user" title="Permanent link">#</a></h3>
 <p>Option to log in into users account.</p>
-<pre><code>GET v1/users/${id}/?permissions=1
+<pre><code>GET /v1/users/${id}/?permissions=1
 </code></pre>
 <p>After successful response we do all actions like login user.</p>
 <p>see: <a href="../../account/login/">user login</a> for more details</p>
-<p>Note - in store we keep <code>parentUserId" ${adminId}</code> and  in Local Storage - <code>impersonate: ${adminEmail}</code>.</p>
-<p>It allowes us to go back to admin.</p>
+<p>Note - in Store we keep <code>parentUserId" ${adminId}</code> and  in Local Storage - <code>impersonate: ${adminEmail}</code>.</p>
+<p>It allowes us to go back to admin (same actions as impersonate - just use id in Store)</p>
 <h3 id="edit-account">Edit Account<a class="headerlink" href="#edit-account" title="Permanent link">#</a></h3>
-<p>lorem</p>
+<p>On Edit Account the modal with accountn profile info is being opened.</p>
+<p>Api for getting full User Object: </p>
+<pre><code>GET /v1/users/${id}
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  activeCampaigns: 0
+  address: &quot;NA&quot;
+  address1: null
+  avatarUrl: null
+  businessTypes: [{
+    id: 8,
+    name: &quot;Retail Stores &amp; Clubs&quot;
+  }]
+  city: &quot;Stamford&quot;
+  companyLogoUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/48/logo/7747763fbdc3f595adb3cfe5fd4d5ffcd093d3b8.png&quot;
+  companyName: &quot;Bab&quot;
+  defaultAdCategory: &quot;regular&quot;
+  domains: [{
+      id: 55,
+      domain: &quot;30.d.lnx.bz&quot;,
+      shorteners: [
+        &quot;https:\/\/30.d.lnx.bz\/rffef&quot;,
+        &quot;https:\/\/30.d.lnx.bz\/defmem-48&quot;,
+        &quot;https:\/\/30.d.lnx.bz\/cd9&quot;
+      ]
+    }],
+  email: &quot;as@lim.bz&quot;
+  enabledFbPageAccess: false
+  enabledInstagramAccess: false
+  fbBusinessPage: null
+  findCampaignId: 3257
+  firstLogin: false
+  firstName: &quot;Half&quot;
+  franchise: null
+  id: 48
+  instagramId: null
+  lastName: &quot;Café&quot;
+  leaderboardCampaignId: null
+  logoAspectRatio: &quot;companyLogo&quot;
+  logoBgColor: &quot;#ffffff&quot;
+  parent: null
+  phone: &quot;(111) 111-1111&quot;
+  plan: {
+    tag: &quot;paid&quot;,
+    slug: &quot;default-paid&quot;,
+    startsAt: &quot;2020-11-04T13:18:43+0000&quot;,
+    endsAt: &quot;2020-12-04T13:18:43+0000&quot;
+  }
+  roles: [&quot;ROLE_USER&quot;]
+  socialMedias: {
+    twitter: null,
+    facebook: null,
+    linkedin: null,
+    instagram: null
+  }
+  state: &quot;CT&quot;
+  tcAccepted: true
+  website: null
+  zip: &quot;06901&quot;
+}
+</code></pre>
+<p>Here we have three Admin ONLY settings:</p>
+<ol>
+<li>
+<p><em>"Use this email address for ad campaign testing"</em></p>
+<p>If switch is set to <strong>true</strong> - the property of User object <code>testingEmail</code> is set to the same valie as field <code>email</code>.</p>
+<p>If switch is set to <strong>false</strong> - the new input becomes visible "Email address for ad testing" and property of User object is <code>testingEmail</code>.</p>
+</li>
+<li>
+<p><em>"Enable Access to Facebook Followers"</em></p>
+<p>Default - <strong>false</strong>.</p>
+<p>If switch is set to <strong>true</strong> - this specific user will have "Facebook Followers" option for targeting contacts in Campaign Builder.</p>
+<p>Property od User Object: <code>enabledFbPageAccess</code>.</p>
+<p>Please note: <strong>Admin is responsible for concios setting this flag ONLY when specific user has <code>fbBusinessPage</code> id set.</strong></p>
+</li>
+<li>
+<p><em>"Enable Access to Instagram Followers"</em></p>
+<p>Default - <strong>false</strong>.</p>
+<p>If switch is set to <strong>true</strong> - this specific user will have "Instagram Followers" option for targeting contacts in Campaign Builder.</p>
+<p>Property od User Object: <code>enabledInstagramAccess</code>.</p>
+<p>Please note: <strong>Admin is responsible for concios setting this flag ONLY when specific user has <code>instagramId</code> set.</strong></p>
+</li>
+</ol>
+<p>Those, and all aditional fields will be send in the object by Api:</p>
+<pre><code>PUT /v1/users/${id}
+</code></pre>
+<p>Expected output: full User object</p>
+<h4 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">#</a></h4>
+<p>Admin can also change password of its users. The current password is not required.</p>
+<p>The route for Admins change of password:</p>
+<pre><code>POST /v1/admin/users/${id}/changePassword
+</code></pre>
+<p>As parameter we send: </p>
+<pre><code>newPassword: &quot;12345678&quot;
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  password_changed: [true]
+}
+</code></pre>
 <h3 id="qr-codes">QR Codes<a class="headerlink" href="#qr-codes" title="Permanent link">#</a></h3>
-<p>lorem</p>
+<p>Click on icon "QR codes" triggers open the modal "QR CODES FOR CAMPAIGNS"</p>
+<p>Here we are asking Api to give us all users campaign with types <strong>find</strong> and <strong>leaderboard</strong>
+(SMS campaign and Push Your Limits)</p>
+<pre><code>GET /v1/admin/users/${id}/campaigns?filters[]=type,in,find,leaderboard&amp;page=1&amp;itemsPerPage=3&amp;showAllRecords=0
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  data: [
+    {
+      adBuilder: []
+      contactListIds: []
+      created_at: &quot;2020-11-03T13:15:09+0000&quot;
+      customLink: null
+      emailTemplate: []
+      endDate: null
+      footerText: null
+      gameUrl: &quot;https://2E.d.lnx.bz/thyhyh&quot;
+      geoCity: null
+      geoLat: null
+      geoLong: null
+      geoRadius: null
+      geoState: null
+      geoZip: null
+      id: 3255
+      isProcessingContacts: false
+      keyword: &quot;thyhyh&quot;
+      logoUrl: null
+      managerAvatar: null
+      maxCostPerDay: 0
+      name: &quot;SMS Campaign&quot;
+      peopleTargetingQty: null
+      prizeTypes: []
+      selectedGames: []
+      startDate: &quot;2020-11-03T13:15:02+0000&quot;
+      status: &quot;active&quot;
+      targetAllContacts: false
+      targetingType: &quot;none&quot;
+      totalContacts: 0
+      type: &quot;find&quot;
+      updated_at: &quot;2020-11-03T13:15:13+0000&quot;
+      useDefaultPrizes: true
+    }
+  ]
+  state: {
+    fields: []
+    filterBy: null
+    filterValue: null
+    filters: [
+      &quot;type,in,find,leaderboard&quot;
+    ]
+    itemsCount: 2
+    itemsPerPage: 3
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: null
+    sortDesc: false
+    totalItems: 2
+    totalPages: 1
+  }
+}
+</code></pre>
+<p>From Campaign Object in this View we only use <strong>name</strong>, <strong>type</strong> and <strong>gameUrl</strong></p>
+<p>We use component "QrCodeGenerator" for creating QR code for campaign <strong>gameUrl</strong></p>
 <h3 id="delete-account">Delete Account<a class="headerlink" href="#delete-account" title="Permanent link">#</a></h3>
-<p>lorem</p></div>
+<p>Click "Delete Account" icon will trigger conformation modal.</p>
+<p>Once you confirm your action the delete request is being sent:</p>
+<pre><code>DELETE /v1/admin/users/${id}
+</code></pre>
+<p>Expected output: </p>
+<pre><code>{
+  data: null
+  messages: [&quot;User Test Test (test@lifeinmobile.com) has been successfully deleted.&quot;]
+}
+</code></pre></div>
             </div>
         </div>
 
