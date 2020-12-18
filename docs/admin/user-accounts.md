@@ -35,15 +35,19 @@ Example of created link:
 ```
 v1/admin/users?filters[]=email,l,test@lim.bz,&filters[]=firstName,l,testFirst,&filters[]=lastName,l,testLast,&filters[]=companyName,l,testInc,&filters[]=companyKeyword,l,banana,&filters[]=status,eq,active
 ```
----
+***
 
 ## Accounts Table
 
 
 Paginated list of all users, created under current Admin user.
 
+We refresh Accounts table every 20 seconds.
+
 By default pagination is set to **10** records.
+
 All columns are sortable.
+
 No columns has filters inside the table.
 
 We use this route for getting accounts:

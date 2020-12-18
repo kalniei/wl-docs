@@ -4,7 +4,17 @@ h6 {
   font-size: 42px;
 }
 
+h2 {
+  color: #033C73;
+  font-weight: 500;
+}
+
+h3 {
+  color: #04519b;
+  font-weight: 500;
+}
+
 hr {
-  border-top: 2px dashed #ccc;
+  border-top: 2px dashed #033C73;
   margin: 40px 0;
 }
