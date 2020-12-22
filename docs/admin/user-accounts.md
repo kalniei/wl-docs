@@ -42,7 +42,7 @@ GET /v1/admin/users?filters[]=email,l,test@lim.bz,&filters[]=firstName,l,testFir
 
 Paginated list of all users, created under current Admin user.
 
-We refresh Accounts table every 20 seconds.
+We refresh Accounts table every **20** seconds.
 
 By default pagination is set to **10** records.
 
