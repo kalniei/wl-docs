@@ -243,13 +243,183 @@
 <h6 id="franchise-manager">Franchise Manager<a class="headerlink" href="#franchise-manager" title="Permanent link">#</a></h6>
 <p>Admin View only.
 Here admin can manage subscription Franchise.</p>
-<p>TBD: https://lifeinmobile.teamwork.com/#/tasks/19003732</p>
+<p><strong>Franchise</strong> - it is a wrapper for users with it's own plans and special functionalities.</p>
+<p>Franchises get a signup link - all clients that register via  that link belong to that franchise. 
+Accounts can be tracked by franchise</p>
+<p>The Franchise Sign Up Link also has a default subscription plan.</p>
 <h2 id="add-franchise">Add Franchise<a class="headerlink" href="#add-franchise" title="Permanent link">#</a></h2>
-<p>Lorem</p>
+<p>When adding a new franchise we should :</p>
+<ul>
+<li>
+<p>get registration/login link for franchise (user registered by that link/form will be assigned to the particular franchise). The page will display fanchase logo instead of WinLocal logo and franchise supporting image at the left of the login/registration form. For example: <em>https://client.winlocal.xyz/?f=franchiseName</em></p>
+</li>
+<li>
+<p>choose a subscriptions plans availible for that franchise.</p>
+</li>
+<li>
+<p>choose a default plan for new registered users.</p>
+</li>
+<li>
+<p>add two letter as shortlink prefix ie. WL for shortlinks for WinLocal franchise (default franchise), SL for Support Local franchise etc.</p>
+</li>
+</ul>
+<p>To create a new franchise:</p>
+<pre><code>POST /v1/franchise
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+    &quot;name&quot;: &quot;My Franchise 3&quot;,
+    &quot;prefix&quot;: &quot;m3&quot;,
+    &quot;defaultPlan&quot;: &quot;free&quot;,
+    &quot;plans&quot;: [1,2,3]
+} 
+</code></pre>
+<p>At the moment of franchise creation you need to provide a list of available Plan IDs or Plan SLUGs.</p>
+<p>To get list of all available plans:</p>
+<pre><code>GET /v1/plan
+</code></pre>
+<p><strong>Franchise name</strong> must be unique for each franchise - based on the franchise name there will be relevant slug generated.</p>
+<p><strong>Prefix</strong> must be exactly of 2 characters length.</p>
+<p><strong>Default plan</strong> should be declared for each franchise, it is as SLUG of Plan which is being automatically applied for newly registered franchise users. Default plan should also be included within the assigned plans array.</p>
+<p>Expected output - newly created Franchise object:</p>
+<pre><code>{
+  &quot;id&quot;: 1,
+  &quot;slug&quot;: &quot;test-123&quot;,
+  &quot;name&quot;: &quot;test-123&quot;,
+  &quot;prefix&quot;: &quot;t3&quot;,
+  &quot;logoUrl&quot;: null,
+  &quot;signUpImageUrl&quot;: null,
+  &quot;defaultPlan&quot;: &quot;free&quot;,
+  &quot;plans&quot;: [1,2,3]
+}
+</code></pre>
+<p>After franchise is created and we get new franchise id we are able to save added images sending origin and cropped images to endpoints:</p>
+<p>uploadUrl: <code>upload/franchise/${franchiseId}/logo</code>;</p>
+<p>signupUploadUrl: <code>upload/franchise/${franchiseId}/signup</code>;</p>
+<p>Request JSON body:</p>
+<pre><code>{
+  image: (binary)
+  original: (binary)
+}
+</code></pre>
+<p>Expected output: </p>
+<pre><code>{
+  imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/${franchiseId}/signup/d8d13f9eab43efb6dfa8749e08d4e4407af39308.png&quot;
+}
+
+and
+
+{
+  imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/${franchiseId}/logo/9d4d79369b548551a2febea0d3e438b3fc01ecbc.png&quot;
+}
+</code></pre>
 <h2 id="franchise-table">Franchise Table<a class="headerlink" href="#franchise-table" title="Permanent link">#</a></h2>
-<p>lorem</p>
+<p>Franchise table is a simple table without backend pagination and filtration options.</p>
+<p>We refresh Plan table every 20 seconds.</p>
+<p>To get a list of all available franchises:</p>
+<pre><code>GET /v1/franchise
+</code></pre>
+<p>Example response without plans:</p>
+<pre><code>[
+    {
+        &quot;id&quot;: 2,
+        &quot;slug&quot;: &quot;my-franchise&quot;,
+        &quot;name&quot;: &quot;My Franchise&quot;,
+        &quot;prefix&quot;: &quot;mf&quot;,
+        &quot;defaultPlan&quot;: &quot;free&quot;,
+        logoUrl: &quot;https://supportlocal-stage.lim.bz/img/support_local.png&quot;,
+        signUpImageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/1/signup/game-screen1.png&quot;
+    }
+]
+</code></pre>
+<pre><code>GET /v1/franchise?plans=1
+</code></pre>
+<p>Example response with plans:</p>
+<pre><code>[
+    {
+        &quot;id&quot;: 2,
+        &quot;slug&quot;: &quot;my-franchise&quot;,
+        &quot;name&quot;: &quot;My Franchise&quot;,
+        &quot;prefix&quot;: &quot;mf&quot;,
+        &quot;defaultPlan&quot;: &quot;free&quot;,
+         logoUrl: &quot;https://supportlocal-stage.lim.bz/img/support_local.png&quot;,
+        signUpImageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/1/signup/game-screen1.png&quot;
+        &quot;plans&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;tag&quot;: &quot;free&quot;,
+                &quot;name&quot;: &quot;Plan FREE&quot;,
+                &quot;stripeId&quot;: null
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;tag&quot;: &quot;standard&quot;,
+                &quot;name&quot;: &quot;Plan STANDARD&quot;,
+                &quot;stripeId&quot;: &quot;membership_monthly&quot;
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;tag&quot;: &quot;unlimited&quot;,
+                &quot;name&quot;: &quot;Plan FREE and UNLIMITED&quot;,
+                &quot;stripeId&quot;: null
+            }
+        ]
+    }
+]
+</code></pre>
+<p>Get single franchise details:</p>
+<pre><code>GET /v1/franchise/{slugId}
+</code></pre>
+<p>Example response:</p>
+<pre><code>{
+    &quot;id&quot;: 2,
+    &quot;slug&quot;: &quot;my-franchise&quot;,
+    &quot;name&quot;: &quot;My Franchise&quot;,
+    &quot;prefix&quot;: &quot;mf&quot;,
+    logoUrl: &quot;https://supportlocal-stage.lim.bz/img/support_local.png&quot;,
+    signUpImageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/1/signup/game-screen1.png&quot;
+    &quot;defaultPlan&quot;: &quot;free&quot;
+}
+</code></pre>
+<p>All endpoints above accepts extra query parameters (note: within URL query path):
+- <code>plans</code> -&gt; if set to 1 will add to franchise output, plan details assigned to franchise;
+- <code>permissions</code> -&gt; requires also <code>plans=1</code> if set to <code>1</code> will add permission list to plans assigned to each franchise.</p>
 <h3 id="edit-franchise">Edit Franchise<a class="headerlink" href="#edit-franchise" title="Permanent link">#</a></h3>
-<p>lorem</p></div>
+<p>To update existing franchise:</p>
+<pre><code>PUT /v1/franchise
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+  &quot;id&quot;: 4,
+  &quot;slug&quot;: &quot;my-franchise-3&quot;,
+  &quot;name&quot;: &quot;My Franchise 3&quot;,
+  &quot;prefix&quot;: &quot;m3&quot;,
+  &quot;logoUrl&quot;: &lt;urlForImage&gt;,
+  &quot;signUpImageUrl&quot;: &lt;urlForImage&gt;,
+  &quot;defaultPlan&quot;: &quot;free&quot;,
+  &quot;plans&quot;: [
+    {
+        &quot;id&quot;: 1,
+        &quot;tag&quot;: &quot;free&quot;,
+        &quot;slug&quot;: &quot;default-free&quot;,
+        &quot;name&quot;: &quot;Plan FREE&quot;,
+        &quot;stripeId&quot;: null,
+        &quot;period&quot;: null
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;tag&quot;: &quot;paid&quot;,
+        &quot;slug&quot;: &quot;default-paid&quot;,
+        &quot;name&quot;: &quot;Plan STANDARD&quot;,
+        &quot;stripeId&quot;: &quot;membership_monthly&quot;,
+        &quot;period&quot;: &quot;month&quot;
+    }
+  ]
+}
+</code></pre>
+<p>You can update franchise details as above. As a plan list you can forward an array of plan IDs or SLUGs (as on creation example) or forward an array of full Plan objects which must include at least Plan ID parameter.</p>
+<p>You can change uploaded images using the same endpoints as for adding new franchise.</p>
+<p><strong>Note: </strong> - if you don't change the image , the image will not be updated.</p></div>
             </div>
         </div>
 

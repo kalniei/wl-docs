@@ -285,7 +285,7 @@ status: string; - operand &quot;eq&quot;
 <p>We refresh Accounts table every 20 seconds.</p>
 <p>By default pagination is set to <strong>10</strong> records.</p>
 <p>All columns are sortable.</p>
-<p>No columns has filters inside the table.</p>
+<p>No columns have filters inside the table.</p>
 <p>We use this route for getting accounts:</p>
 <pre><code>GET /v1/admin/users
 </code></pre>
@@ -339,9 +339,9 @@ status: string; - operand &quot;eq&quot;
 <p>After successful response we do all actions like login user.</p>
 <p>see: <a href="../../account/login/">user login</a> for more details</p>
 <p>Note - in Store we keep <code>parentUserId" ${adminId}</code> and  in Local Storage - <code>impersonate: ${adminEmail}</code>.</p>
-<p>It allowes us to go back to admin (same actions as impersonate - just use id in Store)</p>
+<p>It allows us to go back to admin (same actions as impersonate - just use id in Store)</p>
 <h3 id="edit-account">Edit Account<a class="headerlink" href="#edit-account" title="Permanent link">#</a></h3>
-<p>On Edit Account the modal with accountn profile info is being opened.</p>
+<p>On Edit Account the modal with account profile info is being opened.</p>
 <p>Api for getting full User Object: </p>
 <pre><code>GET /v1/users/${id}
 </code></pre>
@@ -407,25 +407,25 @@ status: string; - operand &quot;eq&quot;
 <ol>
 <li>
 <p><em>"Use this email address for ad campaign testing"</em></p>
-<p>If switch is set to <strong>true</strong> - the property of User object <code>testingEmail</code> is set to the same valie as field <code>email</code>.</p>
+<p>If switch is set to <strong>true</strong> - the property of User object <code>testingEmail</code> is set to the same value as field <code>email</code>.</p>
 <p>If switch is set to <strong>false</strong> - the new input becomes visible "Email address for ad testing" and property of User object is <code>testingEmail</code>.</p>
 </li>
 <li>
 <p><em>"Enable Access to Facebook Followers"</em></p>
 <p>Default - <strong>false</strong>.</p>
-<p>If switch is set to <strong>true</strong> - this specific user will have "Facebook Followers" option for targeting contacts in Campaign Builder.</p>
+<p>If switch is set to <strong>true</strong> - this specific user will have a "Facebook Followers" option for targeting contacts in Campaign Builder.</p>
 <p>Property od User Object: <code>enabledFbPageAccess</code>.</p>
-<p>Please note: <strong>Admin is responsible for concios setting this flag ONLY when specific user has <code>fbBusinessPage</code> id set.</strong></p>
+<p>Please note: <strong>Admin is responsible for consciously setting this flag ONLY when a specific user has <code>fbBusinessPage</code> id set.</strong></p>
 </li>
 <li>
 <p><em>"Enable Access to Instagram Followers"</em></p>
 <p>Default - <strong>false</strong>.</p>
-<p>If switch is set to <strong>true</strong> - this specific user will have "Instagram Followers" option for targeting contacts in Campaign Builder.</p>
+<p>If switch is set to <strong>true</strong> - this specific user will have a "Instagram Followers" option for targeting contacts in Campaign Builder.</p>
 <p>Property od User Object: <code>enabledInstagramAccess</code>.</p>
-<p>Please note: <strong>Admin is responsible for concios setting this flag ONLY when specific user has <code>instagramId</code> set.</strong></p>
+<p>Please note: <strong>Admin is responsible for consciously setting this flag ONLY when specific user has <code>instagramId</code> set.</strong></p>
 </li>
 </ol>
-<p>Those, and all aditional fields will be send in the object by Api:</p>
+<p>Those, and all additional fields will be send in the object by Api:</p>
 <pre><code>PUT /v1/users/${id}
 </code></pre>
 <p>Expected output: full User object</p>

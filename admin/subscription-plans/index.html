@@ -243,7 +243,7 @@
 <h6 id="subscriptions-plans">Subscriptions Plans<a class="headerlink" href="#subscriptions-plans" title="Permanent link">#</a></h6>
 <p>Admin View only.
 Here admin can manage subscription plans.</p>
-<p><strong>Subscription plan</strong> - it is mainly set of permissions and rules, that can be added to specific franchise in order to limit users abilities and/or get specific paid according to this abilities.</p>
+<p><strong>Subscription plan</strong> - it is mainly a set of permissions and rules that can be added to specific franchises in order to limit users abilities and/or get specific pay according to these abilities.</p>
 <p>One franchise can have few subscription plans and those plans can be switched.</p>
 <h2 id="add-plan">Add Plan<a class="headerlink" href="#add-plan" title="Permanent link">#</a></h2>
 <p>Request for creating new plan:</p>
@@ -268,9 +268,9 @@ Here admin can manage subscription plans.</p>
   permissions: [number, number, number],
 },
 </code></pre>
-<p><strong>SLUG</strong> is an optional parameter - if not provided - will be generated base on plan's NAME. Although, it is an optional parameter, must be unique within all available plans.</p>
-<p><strong>STRIPE ID</strong> is required only if newly created plan is of TAG=paid and it must be a valid Stripe Plan ID received on plan registration for example: via Stripe Panel. Otherwise, it can be set to <code>null</code> or completely omitted from the payload.</p>
-<p><strong>PERIOD</strong> must be one of: <code>month</code>, <code>year</code> or <code>null</code>. It determines how long the plan will remain valid. For example all plans with TAGs <code>free</code> or <code>unlimited</code> will very likely require PERIOD=null while plans with TAG <code>paid</code> will require PERIOD=month for montly subscriptions or <code>year</code> for annual ones.</p>
+<p><strong>SLUG</strong> is an optional parameter - if not provided - will be generated based on plan's NAME. Although, it is an optional parameter, it must be unique within all available plans.</p>
+<p><strong>STRIPE ID</strong> is required only if the newly created plan is of TAG=paid and it must be a valid Stripe Plan ID received on plan registration for example: via Stripe Panel. Otherwise, it can be set to <code>null</code> or completely omitted from the payload.</p>
+<p><strong>PERIOD</strong> must be one of: <code>month</code>, <code>year</code> or <code>null</code>. It determines how long the plan will remain valid. For example all plans with TAGs <code>free</code> or <code>unlimited</code> will very likely require PERIOD=null while plans with TAG <code>paid</code> will require PERIOD=month for monthly subscriptions or <code>year</code> for annual ones.</p>
 <p><strong>PERMISSIONS</strong> should be an array list of assigned permissions. It can be an array of permissions IDs or full permission objects (at least permission ID is mandatory).</p>
 <p>Expected output - object with newly created plan:</p>
 <pre><code>{
@@ -291,10 +291,10 @@ Here admin can manage subscription plans.</p>
   trialPeriodDays: 0
 }
 </code></pre>
-<p>We get avaliable permissions form here:</p>
+<p>We get available permissions form here:</p>
 <pre><code>GET /v1/permissions
 </code></pre>
-<p>JSON response with all avaliable permissions:</p>
+<p>JSON response with all available permissions:</p>
 <pre><code>[{
   &quot;id&quot;: 44,
   &quot;tag&quot;: &quot;account.main.view&quot;
