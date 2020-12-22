@@ -221,13 +221,112 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#winners-manager" class="nav-link">Winners Manager</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="winners-manager">Winners Manager<a class="headerlink" href="#winners-manager" title="Permanent link">#</a></h6>
-<p>lorem</p></div>
+<h1 id="winners-manager">Winners Manager<a class="headerlink" href="#winners-manager" title="Permanent link">#</a></h1>
+<p>Winners table shows all winners for all campaigns. We show winners even if they did not redeemed.</p>
+<p>Endpoint for winners table: </p>
+<pre><code>POST /v1/winners
+</code></pre>
+<p>This endpoint accept all pagination, sorting and filtration rules available.</p>
+<p>Expected outcome:</p>
+<pre><code>{
+  data: [
+    {
+      campaignId: 3157
+      campaignLogo: null
+      campaignName: &quot;SMS Campaign&quot;
+      campaignType: &quot;find&quot;
+      contactId: 874283
+      firstName: &quot;tom&quot;
+      lastName: &quot;rol&quot;
+      prizeImage: &quot;https://agency-bucket.s3.us-east-2.amazonaws.com/national-sweepstakes/dev/RH7pzfmtOo5HtxVP7pROwL6o7JeGp1APnNUruFOJ.jpeg&quot;
+      prizeName: &quot;Premium Sound Blue Tooth Speaker&quot;
+      redeemedAt: &quot;2020-12-09T14:02:52+0000&quot;
+      staffMember: null
+      wonAt: &quot;2020-12-09T13:58:03+0000&quot;
+    },
+  ],
+  state: {
+    fields: []
+    filterBy: null
+    filterValue: null
+    filters: []
+    itemsCount: 10
+    itemsPerPage: 10
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: &quot;wonAt&quot;
+    sortDesc: true
+    totalItems: 23
+    totalPages: 3
+  }
+}
+</code></pre>
+<p>Optional query params for data faltering:</p>
+<pre><code>from: YYYY-MM-DD
+to: YYYY-MM-DD
+</code></pre>
+<p>Optional query parameter for pagination:</p>
+<pre><code>  page: number;
+  itemsPerPage: number; - 5 | 10 | 15
+  showAllRecords: boolean;
+  sortBy: string;
+  sortDesc: boolean;
+</code></pre>
+<p>Additionally we can send a few more optional attributes as part of JSON body as shown on example above.</p>
+<p>Request JSON body:</p>
+<pre><code>{
+    &quot;contactId&quot;: 1992,
+    &quot;campaignIds&quot;: [233, 343, 123],
+    &quot;prizeNames&quot;: [&quot;card&quot;, &quot;gift&quot;, &quot;Client super prize&quot;]
+}
+</code></pre>
+<p>Providing <code>contactId</code> will limit results to the prizes wone by selected contact ID.</p>
+<p>Providing single integer or array of integers as <code>campaignId</code> will limit results to the selected campaign or campaings (for multiple selection).</p>
+<p>Providing the prize name or names will limit results to selected prize or prizes (for multiple selection) ... please keep in mind that this attribute applies search as LIKE operator, so all results containing a searchable query will be returned.</p>
+<p>At this point in portal we use three filters:</p>
+<ol>
+<li><strong>Date</strong> - simple date picker. Default - three past month.</li>
+<li>
+<p><strong>Campaign</strong> - we send request to get all users campaigns:</p>
+<p><code>GET /v1/campaigns?page=1&amp;showAllRecords=1</code>
+It will return all campaigns of user. After selection in multiselect we create an array of selected campaign ids.</p>
+</li>
+<li>
+<p><strong>Prize</strong> - we send request to get all won prizes:</p>
+<p><code>GET /v1/winners/prizes</code></p>
+<p>As an outcome we expect an array with prize names. After selection in multiselect we create an array of selected prize names.</p>
+</li>
+</ol>
+<p>We refresh prizes and winners table every <strong>20</strong> seconds.</p>
+<p>By default pagination is set to <strong>10</strong> records.</p>
+<p>By default this table is sorted by <code>wonAt</code> property - date of winning, from the latest.</p>
+<p>Winner Table headers:</p>
+<pre><code>   **First Name**: firstName
+   **Last Name**: lastName
+   **Prize Name**: prizeName
+   **Campaign Name**: campaignName
+   **Campaign Report**: &lt;customIcon&gt;
+   **Win Date**: wonAt
+   **Redeemed Date**: redeemedAt
+   **Redeemed By**: staffMember
+</code></pre>
+<p><strong>Win Date</strong> is clickable, we show Prize Preview in a popup.</p>
+<p><strong>Campaign Report</strong> is clickable - we send request for getting campaigns details of this winner:</p>
+<pre><code>GET /v1/campaigns/${campaignId}?stats=all
+</code></pre>
+<p>Expected outcome - full campaign object with stats.</p>
+<p>And in a popup we show the report modal of the campaign.</p>
+<p>For more see <a href="../../campaigns/campaign-manager/">Campaign Manager</a></p></div>
             </div>
         </div>
 
