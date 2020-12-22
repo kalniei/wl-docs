@@ -37,13 +37,13 @@ By default pagination is set to **10** records.
 
 No columns are sortable.
 
-No columns has filters inside the table.
+No columns have filters inside the table.
 
 ```
 GET /v1/coupons
 ```
 
-Avaliable JSON params:
+Available JSON params:
 
 ```
 {

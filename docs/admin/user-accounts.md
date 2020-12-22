@@ -48,7 +48,7 @@ By default pagination is set to **10** records.
 
 All columns are sortable.
 
-No columns has filters inside the table.
+No columns have filters inside the table.
 
 We use this route for getting accounts:
 
@@ -122,11 +122,11 @@ see: [user login](../account/login.md) for more details
 
 Note - in Store we keep `parentUserId" ${adminId}` and  in Local Storage - `impersonate: ${adminEmail}`.
 
-It allowes us to go back to admin (same actions as impersonate - just use id in Store)
+It allows us to go back to admin (same actions as impersonate - just use id in Store)
 
 ### Edit Account
 
-On Edit Account the modal with accountn profile info is being opened.
+On Edit Account the modal with account profile info is being opened.
 
 Api for getting full User Object: 
 
@@ -199,7 +199,7 @@ Here we have three Admin ONLY settings:
 
 1. *"Use this email address for ad campaign testing"*
 
-    If switch is set to **true** - the property of User object `testingEmail` is set to the same valie as field `email`.
+    If switch is set to **true** - the property of User object `testingEmail` is set to the same value as field `email`.
 
     If switch is set to **false** - the new input becomes visible "Email address for ad testing" and property of User object is `testingEmail`.
 
@@ -207,24 +207,24 @@ Here we have three Admin ONLY settings:
 
     Default - **false**.
 
-    If switch is set to **true** - this specific user will have "Facebook Followers" option for targeting contacts in Campaign Builder.
+    If switch is set to **true** - this specific user will have a "Facebook Followers" option for targeting contacts in Campaign Builder.
 
     Property od User Object: `enabledFbPageAccess`.
 
-    Please note: **Admin is responsible for concios setting this flag ONLY when specific user has `fbBusinessPage` id set.**
+    Please note: **Admin is responsible for consciously setting this flag ONLY when a specific user has `fbBusinessPage` id set.**
 
 3. *"Enable Access to Instagram Followers"*
 
     Default - **false**.
 
-    If switch is set to **true** - this specific user will have "Instagram Followers" option for targeting contacts in Campaign Builder.
+    If switch is set to **true** - this specific user will have a "Instagram Followers" option for targeting contacts in Campaign Builder.
 
     Property od User Object: `enabledInstagramAccess`.
   
-    Please note: **Admin is responsible for concios setting this flag ONLY when specific user has `instagramId` set.**
+    Please note: **Admin is responsible for consciously setting this flag ONLY when specific user has `instagramId` set.**
 
 
-Those, and all aditional fields will be send in the object by Api:
+Those, and all additional fields will be send in the object by Api:
 
 ```
 PUT /v1/users/${id}

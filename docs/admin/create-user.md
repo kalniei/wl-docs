@@ -25,4 +25,4 @@ Expected output - newly created User object
 
 
 **NOTE** At this point no matter what role we create - we only can get role ROLE_USER.
-Other roles should either be removed or backend should ba able to create other roles accounts
+Other roles should either be removed or backend should be able to create other roles accounts

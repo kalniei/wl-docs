@@ -18,9 +18,9 @@ When adding a new franchise we should :
 
  - choose a subscriptions plans availible for that franchise.
 
- - choose a default plan for new registered user.
+ - choose a default plan for new registered users.
 
- - add two letter as shortlink prefix ie. WL for shortlinks for WinLocal franchaise(default franchise), SL for Support Local franchsie etc.
+ - add two letter as shortlink prefix ie. WL for shortlinks for WinLocal franchise (default franchise), SL for Support Local franchise etc.
 
 To create a new franchise:
 ```
@@ -58,7 +58,7 @@ Expected output - newly created Franchise object:
 {
   "id": 1,
   "slug": "test-123",
-  "name": "tett-123",
+  "name": "test-123",
   "prefix": "t3",
   "logoUrl": null,
   "signUpImageUrl": null,
@@ -67,7 +67,7 @@ Expected output - newly created Franchise object:
 }
 ```
 
-After franchise is created and we get new franchise id we are able to save added images sending origin and cropped images to endopoints:
+After franchise is created and we get new franchise id we are able to save added images sending origin and cropped images to endpoints:
 
 uploadUrl: `upload/franchise/${franchiseId}/logo`;
 
@@ -97,6 +97,11 @@ and
 
 
 ## Franchise Table
+
+Franchise table is a simple table without backend pagination and filtration options.
+
+We refresh Plan table every 20 seconds.
+
 
 To get a list of all available franchises:
 ```
@@ -220,6 +225,6 @@ Request JSON body:
 
 You can update franchise details as above. As a plan list you can forward an array of plan IDs or SLUGs (as on creation example) or forward an array of full Plan objects which must include at least Plan ID parameter.
 
-You can change uploaded images useing the same endpoints as for adding new franchise.
+You can change uploaded images using the same endpoints as for adding new franchise.
 
-**Note: ** - if you didn't change image the image will not be updated.
+**Note: ** - if you don't change the image , the image will not be updated.

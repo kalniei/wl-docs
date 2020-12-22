@@ -3,7 +3,7 @@
 Admin View only.
 Here admin can manage subscription plans.
 
-**Subscription plan** - it is mainly set of permissions and rules, that can be added to specific franchise in order to limit users abilities and/or get specific paid according to this abilities.
+**Subscription plan** - it is mainly a set of permissions and rules that can be added to specific franchises in order to limit users abilities and/or get specific pay according to these abilities.
 
 One franchise can have few subscription plans and those plans can be switched.
 
@@ -37,11 +37,11 @@ Request JSON body:
 },
 ```
 
-**SLUG** is an optional parameter - if not provided - will be generated base on plan's NAME. Although, it is an optional parameter, must be unique within all available plans.
+**SLUG** is an optional parameter - if not provided - will be generated based on plan's NAME. Although, it is an optional parameter, it must be unique within all available plans.
 
-**STRIPE ID** is required only if newly created plan is of TAG=paid and it must be a valid Stripe Plan ID received on plan registration for example: via Stripe Panel. Otherwise, it can be set to `null` or completely omitted from the payload.
+**STRIPE ID** is required only if the newly created plan is of TAG=paid and it must be a valid Stripe Plan ID received on plan registration for example: via Stripe Panel. Otherwise, it can be set to `null` or completely omitted from the payload.
 
-**PERIOD** must be one of: `month`, `year` or `null`. It determines how long the plan will remain valid. For example all plans with TAGs `free` or `unlimited` will very likely require PERIOD=null while plans with TAG `paid` will require PERIOD=month for montly subscriptions or `year` for annual ones.
+**PERIOD** must be one of: `month`, `year` or `null`. It determines how long the plan will remain valid. For example all plans with TAGs `free` or `unlimited` will very likely require PERIOD=null while plans with TAG `paid` will require PERIOD=month for monthly subscriptions or `year` for annual ones.
 
 **PERMISSIONS** should be an array list of assigned permissions. It can be an array of permissions IDs or full permission objects (at least permission ID is mandatory).
 
@@ -67,13 +67,13 @@ Expected output - object with newly created plan:
 }
 ```
 
-We get avaliable permissions form here:
+We get available permissions form here:
 
 ```
 GET /v1/permissions
 ```
 
-JSON response with all avaliable permissions:
+JSON response with all available permissions:
 
 ```
 [{
