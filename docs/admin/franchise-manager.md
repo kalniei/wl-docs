@@ -69,9 +69,9 @@ Expected output - newly created Franchise object:
 
 After franchise is created and we get new franchise id we are able to save added images sending origin and cropped images to endpoints:
 
-uploadUrl: `upload/franchise/${franchiseId}/logo`;
+uploadUrl: POST `/v1/upload/franchise/${franchiseId}/logo`;
 
-signupUploadUrl: `upload/franchise/${franchiseId}/signup`;
+signupUploadUrl: POST `/v1/upload/franchise/${franchiseId}/signup`;
 
 Request JSON body:
 
