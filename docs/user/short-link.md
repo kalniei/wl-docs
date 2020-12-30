@@ -131,6 +131,8 @@ Optional parameter for pagination:
 
 We have an optional param for filtering: `filters[]=alias,l,test`
 
+This option is avaliable as a separated filter above the table.
+
 Expected output:
 
 ```
@@ -170,8 +172,28 @@ Expected output:
 }
 ```
 
+Each row reprezents one short link. Each short link has two actions avaliable: delete and edit.
+You can also delete multiple short links - there are checkboxes for all short links.
 
 ### Delete Short Links
 
+There are two ways of deleting short links - on icon under Actions, or checkking the short link and deleting on button click above the table.
+
+On Delete - the confirmation modal with links details will pop up.
+
+If you choose more then one link - we will send separated requests for each link.
+
+[TO CONSIDER] - make it one request with array ids.
+
+```
+DELETE /v1/shorteners/${shortLinkId}`
+```
+Recieved output: `"OK"` - we should consider change it.
 
 ### Edit Short Link
+
+When we click on edit Short Link - the modal will pop up. It is the same form as [add Short Link](#add-short-link), just instead of POST we send PUT request
+
+```
+PUT /v1/shorteners/${shortLinkId.id}
+```
