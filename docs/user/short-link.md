@@ -11,17 +11,17 @@ In this modal we can create short links for campaigns and add an image that will
 
 **ASSIGN A SHORT LINK**
 
-This firld has 2 elements:
+This field has 2 elements:
 
-1) Select with all avaliable **domains** for current user.
+1) Select with all available **domains** for current user.
 
-We get avaliable domains for user form Store - `user.domains` - it is an array. As a default we set first domain form the array.
+We get available domains for user form Store - `user.domains` - it is an array. As a default we set first domain form the array.
 
 If there is no elements in the array - we get default domain form .env: `VUE_APP_SHORTLINK_DOMAIN=wldev.lim.bz`
 
 2) Input for short link **alias**.
 
-Spaces are not allowed. Alias musy be unique. We check if entered alias is avaliable by sending request:
+Spaces are not allowed. Alias must be unique. We check if entered alias is available by sending request:
 
 ```
 POST /v1/shorteners/check
@@ -55,9 +55,9 @@ It will return all campaigns of user. After selections we get `campaignId` as a 
 
 **IMAGE**
 
-Upload image, title an description - will appear on social networks when this short link is shared.
+Upload image, title a description - will appear on social networks when this short link is shared.
 
-Tilte can have max 10 characters.
+Title can have max 10 characters.
 
 Description can have max 40 characters.
 
@@ -82,7 +82,7 @@ imageUrl: "blob:https://client.winlocal.xyz/48979650-c8ab-40aa-aa56-21b47943c9ae
 
 Expected output - the Short Link Object with assigned id.
 
-When we recieve our Short Link Object with assigned id - we send a separate request for saving image:
+When we receive our Short Link Object with assigned id - we send a separate request for saving image:
 
 ```
 POST /v1/upload/shortener/${shortLinkId}/thumbnail
@@ -131,7 +131,7 @@ Optional parameter for pagination:
 
 We have an optional param for filtering: `filters[]=alias,l,test`
 
-This option is avaliable as a separated filter above the table.
+This option is available as a separated filter above the table.
 
 Expected output:
 
@@ -172,12 +172,12 @@ Expected output:
 }
 ```
 
-Each row reprezents one short link. Each short link has two actions avaliable: delete and edit.
+Each row represents one short link. Each short link has two actions available: delete and edit.
 You can also delete multiple short links - there are checkboxes for all short links.
 
 ### Delete Short Links
 
-There are two ways of deleting short links - on icon under Actions, or checkking the short link and deleting on button click above the table.
+There are two ways of deleting short links - on icon under Actions, or checking the short link and deleting on button click above the table.
 
 On Delete - the confirmation modal with links details will pop up.
 
@@ -188,7 +188,7 @@ If you choose more then one link - we will send separated requests for each link
 ```
 DELETE /v1/shorteners/${shortLinkId}`
 ```
-Recieved output: `"OK"` - we should consider change it.
+Received output: `"OK"` - we should consider change it.
 
 ### Edit Short Link
 

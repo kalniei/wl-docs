@@ -1,6 +1,6 @@
 # Notifications
 
-We send Notificacion request on user login.
+We send Notification request on user login.
 
 ```
 GET /v1/notifications
