@@ -221,13 +221,156 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            
+            <li class="nav-item" data-level="2"><a href="#add-short-link" class="nav-link">Add Short Link</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#short-links-table" class="nav-link">Short Links Table</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#delete-short-links" class="nav-link">Delete Short Links</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#edit-short-link" class="nav-link">Edit Short Link</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="short-link">Short Link<a class="headerlink" href="#short-link" title="Permanent link">#</a></h6>
-<p>lorem</p></div>
+<h6 id="short-link">Short Link<a class="headerlink" href="#short-link" title="Permanent link">🔗</a></h6>
+<p>Last known short links mock up - <a href="https://projects.invisionapp.com/share/SVUOPET2KYG#/screens/391817777">invisionapp</a>
+It gets general idea on how it should work, but design is a little bit changed.</p>
+<h2 id="add-short-link">Add Short Link<a class="headerlink" href="#add-short-link" title="Permanent link">🔗</a></h2>
+<p>Pressing the button "Create Short Links" the modal with form will pop.
+In this modal we can create short links for campaigns and add an image that will appear on social networks when this link is shared.</p>
+<p><strong>ASSIGN A SHORT LINK</strong></p>
+<p>This field has 2 elements:</p>
+<p>1) Select with all available <strong>domains</strong> for current user.</p>
+<p>We get available domains for user form Store - <code>user.domains</code> - it is an array. As a default we set first domain form the array.</p>
+<p>If there is no elements in the array - we get default domain form .env: <code>VUE_APP_SHORTLINK_DOMAIN=wldev.lim.bz</code></p>
+<p>2) Input for short link <strong>alias</strong>.</p>
+<p>Spaces are not allowed. Alias must be unique. We check if entered alias is available by sending request:</p>
+<pre><code>POST /v1/shorteners/check
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>domain: string,
+alias: string,
+</code></pre>
+<p>Expected output: </p>
+<pre><code>{
+  alias: [true | false]
+}
+</code></pre>
+<p><strong>Assign a Campaign</strong></p>
+<p>Single select field. Here we choose what campaign our short link will redirect us.</p>
+<p>For the options we send request to get all users campaigns:</p>
+<pre><code>GET /v1/campaigns?page=1&amp;showAllRecords=1
+</code></pre>
+<p>It will return all campaigns of user. After selections we get <code>campaignId</code> as a property of new Short Link.</p>
+<p><strong>IMAGE</strong></p>
+<p>Upload image, title a description - will appear on social networks when this short link is shared.</p>
+<p>Title can have max 10 characters.</p>
+<p>Description can have max 40 characters.</p>
+<p><strong>Savign Short Link</strong></p>
+<pre><code>POST /v1/shorteners
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>alias: &quot;test&quot;
+campaignId: 3052
+description: &quot;test description&quot;
+domain: &quot;205.d.lnx.bz&quot;
+id: null
+imageTitle: &quot;test title&quot;
+imageUrl: &quot;blob:https://client.winlocal.xyz/48979650-c8ab-40aa-aa56-21b47943c9ae&quot;
+</code></pre>
+<p>Expected output - the Short Link Object with assigned id.</p>
+<p>When we receive our Short Link Object with assigned id - we send a separate request for saving image:</p>
+<pre><code>POST /v1/upload/shortener/${shortLinkId}/thumbnail
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+  image: (binary)
+  original: (binary)
+}
+</code></pre>
+<p>Expected output: </p>
+<pre><code>{
+  imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/shortener/thumbnail/d5835c74c6ad36e68c6d35ad9b564a82c917001d.png&quot;
+}
+</code></pre>
+<h2 id="short-links-table">Short Links Table<a class="headerlink" href="#short-links-table" title="Permanent link">🔗</a></h2>
+<p>Paginated list of all short links.</p>
+<p>We refresh Short Links table every <strong>20</strong> seconds.</p>
+<p>By default pagination is set to <strong>10</strong> records.</p>
+<p>All columns ARE NOT sortable at this time. ( though it would be nice to have this opportunity)</p>
+<p>No columns have filters inside the table at this time. ( though it would be nice to have this opportunity)</p>
+<p>We use this route for getting short links:</p>
+<pre><code>GET /v1/shorteners
+</code></pre>
+<p>Optional parameter for pagination:</p>
+<pre><code>  page: number;
+  itemsPerPage: number; - 5 | 10 | 15
+  showAllRecords: boolean;
+</code></pre>
+<p>We have an optional param for filtering: <code>filters[]=alias,l,test</code></p>
+<p>This option is available as a separated filter above the table.</p>
+<p>Expected output:</p>
+<pre><code>{
+  data: [
+    {
+      alias: &quot;zyrafa&quot;
+      campaign: {
+        id: 3052,
+        name: &quot;SMS Campaign&quot;,
+        url: &quot;https://205.d.lnx.bz/zyrafa&quot;
+      }
+      createdAt: &quot;2020-08-24T13:48:37+0000&quot;
+      description: &quot;Autogenerated default campaign shortener&quot;
+      domain: &quot;205.d.lnx.bz&quot;
+      id: 1895
+      imageTitle: &quot;test&quot;
+      imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/shortener/thumbnail/650dbf493f296fdc046cbdbb7c6e8e3adbb15909.png&quot;
+    }
+    ...
+  ],
+  state: {
+  fields: []
+  filterBy: null
+  filterValue: null
+  filters: []
+  itemsCount: 10
+  itemsPerPage: 10
+  joins: []
+  page: 1
+  showAllRecords: false
+  sortBy: null
+  sortDesc: false
+  totalItems: 45
+  totalPages: 5
+  }
+}
+</code></pre>
+<p>Each row represents one short link. Each short link has two actions available: delete and edit.
+You can also delete multiple short links - there are checkboxes for all short links.</p>
+<h3 id="delete-short-links">Delete Short Links<a class="headerlink" href="#delete-short-links" title="Permanent link">🔗</a></h3>
+<p>There are two ways of deleting short links - on icon under Actions, or checking the short link and deleting on button click above the table.</p>
+<p>On Delete - the confirmation modal with links details will pop up.</p>
+<p>If you choose more then one link - we will send separated requests for each link.</p>
+<p>[TO CONSIDER] - make it one request with array ids.</p>
+<pre><code>DELETE /v1/shorteners/${shortLinkId}`
+</code></pre>
+<p>Received output: <code>"OK"</code> - we should consider change it.</p>
+<h3 id="edit-short-link">Edit Short Link<a class="headerlink" href="#edit-short-link" title="Permanent link">🔗</a></h3>
+<p>When we click on edit Short Link - the modal will pop up. It is the same form as <a href="#add-short-link">add Short Link</a>, just instead of POST we send PUT request</p>
+<pre><code>PUT /v1/shorteners/${shortLinkId.id}
+</code></pre></div>
             </div>
         </div>
 

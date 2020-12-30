@@ -251,10 +251,10 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">#</a></h6>
+<h6 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">🔗</a></h6>
 <p>The last known mockup: 
 <a href="https://projects.invisionapp.com/share/9ZUYTXQW7BG#/screens/394746887">invisionapp</a> </p>
-<h2 id="filter-range">Filter Range<a class="headerlink" href="#filter-range" title="Permanent link">#</a></h2>
+<h2 id="filter-range">Filter Range<a class="headerlink" href="#filter-range" title="Permanent link">🔗</a></h2>
 <p>All Dashboard components have the same filter component: DateRangeFilter</p>
 <p>Those are available options for filter: </p>
 <pre><code>  [
@@ -324,7 +324,7 @@
 </li>
 </ul>
 <p>In Api request we use encoded format: <code>encodeURIComponent(moment(date).toISOString())</code></p>
-<h2 id="stats">Stats<a class="headerlink" href="#stats" title="Permanent link">#</a></h2>
+<h2 id="stats">Stats<a class="headerlink" href="#stats" title="Permanent link">🔗</a></h2>
 <p>For all stats we use same params:</p>
 <pre><code>?endDate=${end}&amp;startDate=${start}
 </code></pre>
@@ -340,17 +340,17 @@
 }
 </code></pre>
 <p>Attribute <code>comparablePeriodDiff</code> can provide both negativ or positive values. Should be multiplied by 100 to get proper % for instance: -1 * 100 = -100% or 1.345 * 100 = 123.5%</p>
-<h4 id="new-contacts">New Contacts<a class="headerlink" href="#new-contacts" title="Permanent link">#</a></h4>
+<h4 id="new-contacts">New Contacts<a class="headerlink" href="#new-contacts" title="Permanent link">🔗</a></h4>
 <p><code>dashboard/stats?context=new_contacts</code></p>
 <p>New Contacts - <em>newly added / filled the form on game platform</em> [NEED TO BE VERIFIED]</p>
 <p><strong>NOTE:</strong> We should not see increase of contact if contacts were uploaded through Campaign Builder</p>
-<h4 id="verified-contacts">Verified Contacts<a class="headerlink" href="#verified-contacts" title="Permanent link">#</a></h4>
+<h4 id="verified-contacts">Verified Contacts<a class="headerlink" href="#verified-contacts" title="Permanent link">🔗</a></h4>
 <p>Verified Contacts - <em>contacts whose email or phone was verified. ( like clicking in email, sending sms tp.)</em> [NEED TO BE VERIFIED]</p>
 <p><code>dashboard/stats?context=verified_contacts</code></p>
-<h4 id="offers-redeemed">Offers Redeemed<a class="headerlink" href="#offers-redeemed" title="Permanent link">#</a></h4>
+<h4 id="offers-redeemed">Offers Redeemed<a class="headerlink" href="#offers-redeemed" title="Permanent link">🔗</a></h4>
 <p>Offers Redeemed - <em>contacts that redeemed at least one prize</em> [NEED TO BE VERIFIED]</p>
 <p><code>dashboard/stats?context=offers_redeemed</code></p>
-<h2 id="chart">Chart<a class="headerlink" href="#chart" title="Permanent link">#</a></h2>
+<h2 id="chart">Chart<a class="headerlink" href="#chart" title="Permanent link">🔗</a></h2>
 <p>Endpoint for chart date:</p>
 <pre><code>GET /v1/dashboard/chart?endDate=${end}&amp;startDate=${start}
 </code></pre>
@@ -385,7 +385,7 @@
   interval: &quot;day&quot;
 }
 </code></pre>
-<h2 id="top-staff">Top Staff<a class="headerlink" href="#top-staff" title="Permanent link">#</a></h2>
+<h2 id="top-staff">Top Staff<a class="headerlink" href="#top-staff" title="Permanent link">🔗</a></h2>
 <p>Endpoint for top staff:</p>
 <pre><code>GET /v1/dashboard/top-members?endDate=${end}&amp;startDate=${start}
 </code></pre>
@@ -403,7 +403,7 @@
 </code></pre>
 <p>Returns best staff members based on their shortlink and traffic due to it.</p>
 <p>For now best member is the one with highest sum of clicks, redeems and leads</p>
-<h2 id="recent-contacts">Recent Contacts<a class="headerlink" href="#recent-contacts" title="Permanent link">#</a></h2>
+<h2 id="recent-contacts">Recent Contacts<a class="headerlink" href="#recent-contacts" title="Permanent link">🔗</a></h2>
 <p>At this point Recent contacts are using the same endpoint as in <a href="../contacts-manager/">Contacts Manager</a>.
 For more information look there.</p>
 <pre><code>GET /v1/contacts-read?filters[]=builder,eq,0

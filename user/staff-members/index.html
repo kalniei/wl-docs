@@ -221,13 +221,63 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            
+            <li class="nav-item" data-level="2"><a href="#add-staff-member" class="nav-link">Add staff Member</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#staff-members-table" class="nav-link">Staff Members Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#table-actions" class="nav-link">Table Actions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#assign-destinationcampaign" class="nav-link">Assign destination/campaign</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#edit-staff-member" class="nav-link">Edit Staff Member</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="staff-members">Staff Members<a class="headerlink" href="#staff-members" title="Permanent link">#</a></h6>
-<p>lorem</p></div>
+<h6 id="staff-members">Staff Members<a class="headerlink" href="#staff-members" title="Permanent link">🔗</a></h6>
+<p>Last known staff members mock up - <a href="https://projects.invisionapp.com/share/SVUOPET2KYG#/">invisionapp.</a>
+It gets general idea on how it should work, but design is a little bit changed.</p>
+<h2 id="add-staff-member">Add staff Member<a class="headerlink" href="#add-staff-member" title="Permanent link">🔗</a></h2>
+<p>Here we can create a short link for each employee. It should be used for promoting business via social post and sms messaging. You can choose a pin code for each staff member which will be used when a customer redeems an offer.</p>
+<p>In Staff membere creation form you can also create short link by chosing domain and alias. More about creating short links <a href="../short-link/">here</a></p>
+<p>Pin code must be 4 characters.</p>
+<p>Route for creating staff member:</p>
+<pre><code>POST /v1/staff-members
+</code></pre>
+<p>JSON body:</p>
+<pre><code>{
+  active: true
+  domain: &quot;205.d.lnx.bz&quot;
+  firstName: &quot;test&quot;
+  jobDescription: &quot;test&quot;
+  lastName: &quot;test&quot;
+  pin: &quot;1234&quot;
+  shortLink: &quot;testtesttest&quot;
+  status: &quot;active&quot;
+}
+</code></pre>
+<p>Expected output: newly created Staff Member object</p>
+<h2 id="staff-members-table">Staff Members Table<a class="headerlink" href="#staff-members-table" title="Permanent link">🔗</a></h2>
+<h2 id="table-actions">Table Actions<a class="headerlink" href="#table-actions" title="Permanent link">🔗</a></h2>
+<h2 id="assign-destinationcampaign">Assign destination/campaign<a class="headerlink" href="#assign-destinationcampaign" title="Permanent link">🔗</a></h2>
+<h2 id="edit-staff-member">Edit Staff Member<a class="headerlink" href="#edit-staff-member" title="Permanent link">🔗</a></h2></div>
             </div>
         </div>
 

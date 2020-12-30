@@ -221,13 +221,41 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#notifications" class="nav-link">Notifications</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">#</a></h6>
-<p>lorem</p></div>
+<h1 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">🔗</a></h1>
+<p>We send Notification request on user login.</p>
+<pre><code>GET /v1/notifications
+</code></pre>
+<p>Expected output:</p>
+<pre><code>[
+  {
+    body: &quot;There is an issue with your Win Local Campaign.&quot;
+    createdAt: &quot;2019-07-26T12:48:15+0000&quot;
+    id: 5
+    status: &quot;new&quot;
+  }
+]
+</code></pre>
+<p>If there are any notifications we show notification Icon near User Icon at the top right corner on each page header.</p>
+<p>Click on this icon will get us to Notification page.</p>
+<p>We are able to archive chosen notification by sending:</p>
+<pre><code>PUT /v1/notifications/${notificationId}
+
+</code></pre>
+<p>with JSON body:</p>
+<pre><code>{
+  status: 'archived'
+}
+</code></pre>
+<p>At this moment as far as I know notifications are turned off. Need to bring it back.</p></div>
             </div>
         </div>
 

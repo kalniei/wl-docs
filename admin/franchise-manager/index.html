@@ -240,14 +240,14 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="franchise-manager">Franchise Manager<a class="headerlink" href="#franchise-manager" title="Permanent link">#</a></h6>
+<h6 id="franchise-manager">Franchise Manager<a class="headerlink" href="#franchise-manager" title="Permanent link">🔗</a></h6>
 <p>Admin View only.
 Here admin can manage subscription Franchise.</p>
 <p><strong>Franchise</strong> - it is a wrapper for users with it's own plans and special functionalities.</p>
 <p>Franchises get a signup link - all clients that register via  that link belong to that franchise. 
 Accounts can be tracked by franchise</p>
 <p>The Franchise Sign Up Link also has a default subscription plan.</p>
-<h2 id="add-franchise">Add Franchise<a class="headerlink" href="#add-franchise" title="Permanent link">#</a></h2>
+<h2 id="add-franchise">Add Franchise<a class="headerlink" href="#add-franchise" title="Permanent link">🔗</a></h2>
 <p>When adding a new franchise we should :</p>
 <ul>
 <li>
@@ -294,8 +294,8 @@ Accounts can be tracked by franchise</p>
 }
 </code></pre>
 <p>After franchise is created and we get new franchise id we are able to save added images sending origin and cropped images to endpoints:</p>
-<p>uploadUrl: <code>upload/franchise/${franchiseId}/logo</code>;</p>
-<p>signupUploadUrl: <code>upload/franchise/${franchiseId}/signup</code>;</p>
+<p>uploadUrl: POST <code>/v1/upload/franchise/${franchiseId}/logo</code>;</p>
+<p>signupUploadUrl: POST <code>/v1/upload/franchise/${franchiseId}/signup</code>;</p>
 <p>Request JSON body:</p>
 <pre><code>{
   image: (binary)
@@ -313,7 +313,7 @@ and
   imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/${franchiseId}/logo/9d4d79369b548551a2febea0d3e438b3fc01ecbc.png&quot;
 }
 </code></pre>
-<h2 id="franchise-table">Franchise Table<a class="headerlink" href="#franchise-table" title="Permanent link">#</a></h2>
+<h2 id="franchise-table">Franchise Table<a class="headerlink" href="#franchise-table" title="Permanent link">🔗</a></h2>
 <p>Franchise table is a simple table without backend pagination and filtration options.</p>
 <p>We refresh Plan table every 20 seconds.</p>
 <p>To get a list of all available franchises:</p>
@@ -384,7 +384,7 @@ and
 <p>All endpoints above accepts extra query parameters (note: within URL query path):
 - <code>plans</code> -&gt; if set to 1 will add to franchise output, plan details assigned to franchise;
 - <code>permissions</code> -&gt; requires also <code>plans=1</code> if set to <code>1</code> will add permission list to plans assigned to each franchise.</p>
-<h3 id="edit-franchise">Edit Franchise<a class="headerlink" href="#edit-franchise" title="Permanent link">#</a></h3>
+<h3 id="edit-franchise">Edit Franchise<a class="headerlink" href="#edit-franchise" title="Permanent link">🔗</a></h3>
 <p>To update existing franchise:</p>
 <pre><code>PUT /v1/franchise
 </code></pre>
