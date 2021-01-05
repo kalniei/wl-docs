@@ -7,7 +7,7 @@ It gets general idea on how it should work, but design is a little bit changed.
 
 Here we can create a short link for each employee. It should be used for promoting business via social post and sms messaging. You can choose a pin code for each staff member which will be used when a customer redeems an offer.
 
-In Staff membere creation form you can also create short link by chosing domain and alias. More about creating short links [here](short-link.md)
+In Staff members creation form you can also create short link by choosing domain and alias. More about creating short links [here](short-link.md)
 
 Pin code must be 4 characters.
 
@@ -38,7 +38,7 @@ The **status** switch is responsible for `active` boolean parameter.
 
 At this moment no matter what we always `status: active`.
 
-I guess backend is switching between `status: active | inactive` based on **active** field. We should cocider changing it.
+I guess backend is switching between `status: active | inactive` based on **active** field. We should consider changing it.
 ## Staff Members Table
 
 Paginated list of all staff members.
@@ -272,7 +272,7 @@ By click on each row the Edit modal will pop up.
 
 we have all options as in the (Add Staff member)[#add-staff-member]
 
-The route for editinf staff member:
+The route for editing staff member:
 
 ```
 PUT /v1/staff-members/staffMemberId
