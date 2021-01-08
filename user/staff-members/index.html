@@ -234,6 +234,26 @@
             
             <li class="nav-item" data-level="2"><a href="#table-actions" class="nav-link">Table Actions</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#deactivate" class="nav-link">Deactivate</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#delete" class="nav-link">Delete</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#reactivate" class="nav-link">Reactivate</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#search" class="nav-link">Search</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#filter-by-date" class="nav-link">Filter by date</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -256,28 +276,187 @@
 It gets general idea on how it should work, but design is a little bit changed.</p>
 <h2 id="add-staff-member">Add staff Member<a class="headerlink" href="#add-staff-member" title="Permanent link">🔗</a></h2>
 <p>Here we can create a short link for each employee. It should be used for promoting business via social post and sms messaging. You can choose a pin code for each staff member which will be used when a customer redeems an offer.</p>
-<p>In Staff membere creation form you can also create short link by chosing domain and alias. More about creating short links <a href="../short-link/">here</a></p>
+<p>In Staff members creation form you can also create short link by choosing domain and alias. More about creating short links <a href="../short-link/">here</a></p>
 <p>Pin code must be 4 characters.</p>
 <p>Route for creating staff member:</p>
 <pre><code>POST /v1/staff-members
 </code></pre>
 <p>JSON body:</p>
 <pre><code>{
-  active: true
+  active: true | false
   domain: &quot;205.d.lnx.bz&quot;
   firstName: &quot;test&quot;
   jobDescription: &quot;test&quot;
   lastName: &quot;test&quot;
   pin: &quot;1234&quot;
   shortLink: &quot;testtesttest&quot;
-  status: &quot;active&quot;
+  status: active | inactive
 }
 </code></pre>
 <p>Expected output: newly created Staff Member object</p>
+<p>The <strong>status</strong> switch is responsible for <code>active</code> boolean parameter.</p>
+<p>At this moment no matter what we always <code>status: active</code>.</p>
+<p>I guess backend is switching between <code>status: active | inactive</code> based on <strong>active</strong> field. We should consider changing it.</p>
 <h2 id="staff-members-table">Staff Members Table<a class="headerlink" href="#staff-members-table" title="Permanent link">🔗</a></h2>
+<p>Paginated list of all staff members.</p>
+<p>We refresh staff members table every <strong>20</strong> seconds.</p>
+<p>By default pagination is set to <strong>10</strong> records.</p>
+<p>All columns ARE NOT sortable at this time. ( though it would be nice to have this opportunity)</p>
+<p>ALL columns have filters inside the table BUT only first and last name is actually working at the backend side. We need to fix it.</p>
+<p>We use this route for getting staff members:</p>
+<pre><code>GET /v1/staff-members
+</code></pre>
+<p>Optional parameters:</p>
+<pre><code>  with_deleted: 0 | 1 - by default always 0
+  dateTo: moment(chosenCustomDate).format('YYYY-MM-DD')
+  dateFrom: moment(chosenCustomDate).format('YYYY-MM-DD')
+</code></pre>
+<p><strong>dateTo</strong> and <strong>dateFrom</strong> option is available as a separated filter above the table.</p>
+<p><strong>NOTE</strong> AT THIS MOMENT FILTERING IS WORKING INCORRECT - it filters by creation date of staff member. BUT it should filter statistics of each staff member.</p>
+<p>Optional parameter for pagination:</p>
+<pre><code>  page: number;
+  itemsPerPage: number; - 5 | 10 | 15
+  showAllRecords: boolean;
+</code></pre>
+<p>Optional filter params: <code>filters[]=</code></p>
+<pre><code>  firstName: string;  - operand &quot;l&quot;
+  lastName: string;  - operand &quot;l&quot;
+  instagram: string;  - operand &quot;l&quot;
+  status: string;  - operand &quot;l&quot;
+  url: string;  - operand &quot;l&quot;
+  facebook: string;  - operand &quot;l&quot;
+  leads: string;  - operand &quot;l&quot;
+  rdms: string;  - operand &quot;l&quot;
+  www: string;  - operand &quot;l&quot;
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  data: [
+    {
+      createdAt: &quot;2021-01-04T11:12:57+00:00&quot;
+      firstName: &quot;Test&quot;
+      id: 306
+      isDeleted: false
+      jobDescription: &quot;test&quot;
+      lastName: &quot;test&quot;
+      pin: &quot;8787&quot;
+      redeemedPrizesCount: 0
+      shortener: [
+        {
+          alias: &quot;test2021&quot;
+          campaign: {id: 3355, name: &quot;SMS Campaign&quot;, url: &quot;https://256.d.lnx.bz/2021&quot;}
+          createdAt: &quot;2021-01-04T11:12:57+0000&quot;
+          description: &quot;Default staff member shortlink&quot;
+          domain: &quot;256.d.lnx.bz&quot;
+          id: 2280
+          imageTitle: null
+          imageUrl: null
+          stats: {
+            facebook: 0,
+            instagram: 0,
+            sms: 0,
+            www: 0,
+            leads: 0,
+            rdms: 0
+          }
+        }
+      ]
+      status: &quot;inactive&quot;
+    },
+    ...
+  ],
+  state: {
+    fields: []
+    filterBy: null
+    filterValue: null
+    filters: []
+    itemsCount: 10
+    itemsPerPage: 10
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: null
+    sortDesc: false
+    totalItems: 45
+    totalPages: 5
+  }
+}
+</code></pre>
+<p>Each row represents one staff member. Clicking on each row you will be able to edit staff member.</p>
 <h2 id="table-actions">Table Actions<a class="headerlink" href="#table-actions" title="Permanent link">🔗</a></h2>
+<p>Table actions available above the table.</p>
+<h3 id="deactivate">Deactivate<a class="headerlink" href="#deactivate" title="Permanent link">🔗</a></h3>
+<p>We can choose all staff members or choose individually by checkbox at each row. This action will change the status of staff member to <code>inactive</code>.</p>
+<p><strong>NOTE</strong> if you choose staff member with status already <code>inactive</code> - you will not be able to proceed.</p>
+<pre><code>POST /v1/staff-members/deactivate
+</code></pre>
+<p>JSON body:</p>
+<pre><code>ids: [ 1, 2 ]
+</code></pre>
+<p>Expected output - array with changed short links objects.</p>
+<h3 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link">🔗</a></h3>
+<p>We can choose all staff members or choose individually by checkbox at each row.</p>
+<pre><code>POST /v1/staff-members/delete
+</code></pre>
+<p>JSON body:</p>
+<pre><code>ids: [ 1, 2 ]
+</code></pre>
+<p>Expected output:</p>
+<pre><code>[
+  {
+    deleted: true
+    id: 1
+  },
+  {
+    deleted: true
+    id: 2
+  }
+]
+</code></pre>
+<h3 id="reactivate">Reactivate<a class="headerlink" href="#reactivate" title="Permanent link">🔗</a></h3>
+<p>We can choose all staff members or choose individually by checkbox at each row. This action will change the status of staff member to <code>active</code>.</p>
+<p><strong>NOTE</strong> if you choose staff member with status already <code>active</code> - you will not be able to proceed.</p>
+<pre><code>POST /v1/staff-members/activate
+</code></pre>
+<p>JSON body:</p>
+<pre><code>ids: [ 1, 2 ]
+</code></pre>
+<p>Expected output - array with changed short links objects.</p>
+<h3 id="search">Search<a class="headerlink" href="#search" title="Permanent link">🔗</a></h3>
+<p>At this moment Search input is not doing anything. And we don't know what should it do.</p>
+<h3 id="filter-by-date">Filter by date<a class="headerlink" href="#filter-by-date" title="Permanent link">🔗</a></h3>
+<p>For filters we use optional query parameters:</p>
+<pre><code>  dateTo: moment(chosenCustomDate).format('YYYY-MM-DD')
+  dateFrom: moment(chosenCustomDate).format('YYYY-MM-DD')
+</code></pre>
+<p><strong>dateFrom</strong> - at this moment set to 15 days past.</p>
+<p><strong>NOTE</strong> AT THIS MOMENT FILTERING IS WORKING INCORRECT - it filters by creation date of staff member. BUT it should filter statistics of each staff member.</p>
 <h2 id="assign-destinationcampaign">Assign destination/campaign<a class="headerlink" href="#assign-destinationcampaign" title="Permanent link">🔗</a></h2>
-<h2 id="edit-staff-member">Edit Staff Member<a class="headerlink" href="#edit-staff-member" title="Permanent link">🔗</a></h2></div>
+<p>Here we can assign to each Staff Member specific campaign link for traffic.</p>
+<p><strong>I don't really know what is it about - will be clarified later</strong></p>
+<p>Single select field. Here we choose which campaign will be assigned.</p>
+<p>If no Staff member is chosen - by default we will assign chosen campaign to ALL staff members.</p>
+<p>We can choose all staff members or choose individually by checkbox at each row. </p>
+<p>For the options we send request to get all users campaigns:</p>
+<pre><code>GET /v1/campaigns?page=1&amp;showAllRecords=1
+</code></pre>
+<p>It will return all campaigns of user. After selections we get <code>campaignId</code> as a property of new Short Link.</p>
+<p>For assigning campaign to staff member:</p>
+<pre><code>POST /v1/staff-members/destination
+</code></pre>
+<p>JSON body</p>
+<pre><code>  {
+    campaignId: number
+    ids: [1, 2]
+  }
+</code></pre>
+<p>Expected output: <code>{}</code> - maybe we should change it.</p>
+<h2 id="edit-staff-member">Edit Staff Member<a class="headerlink" href="#edit-staff-member" title="Permanent link">🔗</a></h2>
+<p>By click on each row the Edit modal will pop up.</p>
+<p>we have all options as in the (Add Staff member)[#add-staff-member]</p>
+<p>The route for editing staff member:</p>
+<pre><code>PUT /v1/staff-members/staffMemberId
+</code></pre></div>
             </div>
         </div>
 
