@@ -1,6 +1,6 @@
 ###### User Accounts
 
-Admin View only.
+Admin View && Distributor view only.
 Here admin can manage accounts.
 
 ## Find Account

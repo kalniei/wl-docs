@@ -1,6 +1,6 @@
 # Create User
 
-Admin View only.
+Admin View && Distributor only.
 Here admin can create new users and assign them roles.
 
 Endpoint for creation user:
@@ -17,12 +17,19 @@ Request JSON body:
   password: string,
   enabledFbPageAccess: boolean,
   enabledInstagramAccess: boolean,
-  roles: [ ROLE_USER | ROLE_RESELLER | ROLE_SUPER_ADMIN | ROLE_MULTI_USER ],
+  roles: [ ROLE_USER | ROLE_DISTRIBUTOR | ROLE_SUPER_ADMIN ],
+  franchise?: string,
 }
 ```
 
 Expected output - newly created User object
 
+`franchise` property is optional. It expects slug of the chosen franchise. If chosen - user will be created under that franchise.
 
-**NOTE** At this point no matter what role we create - we only can get role ROLE_USER.
-Other roles should either be removed or backend should be able to create other roles accounts
+We get available list of franchises via:
+
+```
+GET /admin/franchise
+```
+
+Expected output - list of all franchises object, available for user.

@@ -1,6 +1,6 @@
 ###### Franchise Manager
 
-Admin View only.
+Admin View && Distributor view only.
 Here admin can manage subscription Franchise.
 
 **Franchise** - it is a wrapper for users with it's own plans and special functionalities.
