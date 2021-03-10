@@ -159,21 +159,187 @@ Expected output:
 
 
 ## Subscription
+At the real begining we are sending two requests to obtain information about user's subscription.
 
-## Logo
+1) Does user has any saved credit cards
 
-## Social Media
-
-On user subscription, it is required to provide plan slug or ID to which Plan user is willin to opt in:
 ```
-POST /v1/stripe/subscribe
+GET /v1/users/${userID}/cards
+```
 
-Request JSON body:
+Expected output:
+
+```
+[
+  {
+    brand: "visa"
+    country: "US"
+    expMonth: 4
+    expYear: 2024
+    last4: "4242"
+    paymentMethodId: "pm_1HJg1xDTu2PET25E8Z8oOxpE"
+    threeDS: true
+  }
+]
+```
+
+2) Information about current user subscription
+
+```
+GET /v1/stripe/subscription
+```
+
+Expected output:
+
+200:
+
+```
 {
-    "paymentMethodId": "pm_xxxxxxxxxxxx",
-    "plan": "my-plan-slug"
+  canceledAt: null
+  created: "2020-12-01T12:46:21+00:00"
+  currentPeriodEnd: "2021-04-01T12:46:21+00:00"
+  currentPeriodStart: "2021-03-01T12:46:21+00:00"
+  endedAt: null
+  expiresAt: null
+  plan: {
+    id: "membership_monthly"
+    nickname: "Monthly Membership"
+  }
+  status: "active" | "expires"
+  trialEnd: null
+  trialStart: null
 }
 ```
 
+**OR**
 
-Since now route POST /v1/stripe/subscribe allows to pass "code" parameter to use it, paymentMethodId is not required then.
+403: 
+
+```
+{
+  security: ["Action is denied!"]
+}
+
+```
+
+Expected output 200 - subscription objects with property `status: 'expires'`.
+
+Please note - we can use current subscription with status **expires** till the end of the current period.
+
+We can also reactivate subscription.
+
+If subscription ended - we will get 403. We still have an oppoptrunitey to activate subbscription, but we will not be able to use paid functions unless we do it.
+
+#### Cancelation
+
+
+If the status of the subscription is **active** - we can cancel subscription:
+
+```
+DELETE /v1/stripe/subscription/cancel
+```
+
+
+#### Activation
+
+
+If the status of the subscription is **expires** or we get 403 - we can activate subscription.
+
+
+On user subscription, it is required to provide plan slug or ID to which Plan user is willin to opt in:
+
+```
+POST /v1/stripe/subscribe
+
+```
+
+Request JSON body:
+
+```
+{
+    paymentMethodId?: "pm_xxxxxxxxxxxx",
+    plan: "my-plan-slug"
+    code?: "my-promo-code"
+}
+```
+
+If there is `code` param - `paymentMethodId` is not required and the other way around.
+
+Expected output: 
+
+```
+{
+  plan: { <wholePlanObject>}
+  subscription: {
+    status: "active"
+  }
+}
+```
+
+**NOTE**  If there is no credit card saved - we first need to save credit card and get its `paymentMethodId`:
+
+We do so useing stripe plugin inner function:
+
+```
+POST https://api.stripe.com/v1/payment_methods
+```
+
+We do not send request to get available plant for the user - we are getting it form Store. On login we recieve available plans and save them to Store.
+
+## Logo
+
+Logo edition - is a separated modal.
+
+When we upload a new logo image we send binary images to:
+
+```
+POST /v1/upload/users/${userId}/logo
+```
+
+Request JSON body:
+
+```
+{
+    image: (binary)
+    original: (binary)
+}
+```
+
+Expected output: 
+
+```
+{
+  imageUrl: "https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/555/logo/be0d759ed5addaebc8cb4e7fdae73e88c69d2d7a.png"
+}
+```
+
+On click **Confirm** - we send request to update user. [Update user info](#general-info)
+
+In this section we can change such properties:
+
+- Backgroud color: `logoBgColor: '#ffffff' | '#000000'`
+
+- Logo shape: `logoAspectRatio: 'companyLogo' | 'profile'`
+
+- Image logo url: `companyLogoUrl: string`
+
+- Company Name:  `companyName: string`
+
+## Social Media
+
+This is section where we can manage Social media links and ids.
+
+On save we send request to update user. [Update user info](#general-info)
+
+In this section we can change such properties:
+
+- Facebook Business id: `fbBusinessPage: null | string`
+
+- Instagram Business id: `instagramId: null | string`
+
+- Social media links: ```socialMedias: {
+    facebook: null | string,
+    instagram: null | string,
+    twitter: null | string,
+    linkedin: null | string,
+  };```
