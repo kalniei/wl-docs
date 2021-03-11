@@ -1,4 +1,4 @@
-###### Reporting Campaigns
+# Reporting Campaigns
 
 Detailed review of campaign statistics.
 
@@ -43,7 +43,7 @@ Expected outcome:
     joins: []
     page: 1
     showAllRecords: false
-    sortBy: "wonAt"
+    sortBy: null
     sortDesc: true
     totalItems: 23
     totalPages: 3
@@ -93,4 +93,12 @@ Available `source` falues and their icons:
 ```
 
 Each row is clickable, we show Single Campaign Report in a popup.
-For more information see [Campaign Manager](../../campaigns/campaign-manager)
+
+```
+GET /v1/campaigns/${campaignId}?stats=all
+```
+Expected outcome - full campaign object with stats.
+
+And in a popup we show the report modal of the campaign.
+
+For more see [Campaign Manager](../campaigns/campaign-manager.md)
