@@ -17,6 +17,7 @@ nav:
     - 'Main User Functionalities':
       - 'Dashboard': 'user/dashboard.md'
       - 'Contacts Manager': 'user/contacts-manager.md'
+      - 'Reporting Campaigns': 'user/reporting-campaigns.md'
       - 'Winners Manager': 'user/winners-manager.md'
       - 'Staff Members': 'user/staff-members.md'
       - 'My Profile': 'user/my-profile.md'
