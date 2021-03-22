@@ -8,7 +8,7 @@
         <meta name="author" content="Olia Kalniei">
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Register - WinLocal - dokumentation</title>
+        <title>Reporting Campaigns - WinLocal - dokumentation</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -73,35 +73,35 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../user/dashboard/" class="dropdown-item">Dashboard</a>
+    <a href="../dashboard/" class="dropdown-item">Dashboard</a>
 </li>
             
 <li>
-    <a href="../../user/contacts-manager/" class="dropdown-item">Contacts Manager</a>
+    <a href="../contacts-manager/" class="dropdown-item">Contacts Manager</a>
 </li>
             
 <li>
-    <a href="../../user/reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
+    <a href="./" class="dropdown-item active">Reporting Campaigns</a>
 </li>
             
 <li>
-    <a href="../../user/winners-manager/" class="dropdown-item">Winners Manager</a>
+    <a href="../winners-manager/" class="dropdown-item">Winners Manager</a>
 </li>
             
 <li>
-    <a href="../../user/staff-members/" class="dropdown-item">Staff Members</a>
+    <a href="../staff-members/" class="dropdown-item">Staff Members</a>
 </li>
             
 <li>
-    <a href="../../user/my-profile/" class="dropdown-item">My Profile</a>
+    <a href="../my-profile/" class="dropdown-item">My Profile</a>
 </li>
             
 <li>
-    <a href="../../user/short-link/" class="dropdown-item">Short Links</a>
+    <a href="../short-link/" class="dropdown-item">Short Links</a>
 </li>
             
 <li>
-    <a href="../../user/notifications/" class="dropdown-item">Notifications</a>
+    <a href="../notifications/" class="dropdown-item">Notifications</a>
 </li>
     </ul>
   </li>
@@ -151,23 +151,23 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../login/" class="dropdown-item">Login</a>
+    <a href="../../account/login/" class="dropdown-item">Login</a>
 </li>
             
 <li>
-    <a href="../logout/" class="dropdown-item">Logout</a>
+    <a href="../../account/logout/" class="dropdown-item">Logout</a>
 </li>
             
 <li>
-    <a href="../reset-password/" class="dropdown-item">Reset password</a>
+    <a href="../../account/reset-password/" class="dropdown-item">Reset password</a>
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Register</a>
+    <a href="../../account/register/" class="dropdown-item">Register</a>
 </li>
             
 <li>
-    <a href="../confirmation-link/" class="dropdown-item">Confirmation Link</a>
+    <a href="../../account/confirmation-link/" class="dropdown-item">Confirmation Link</a>
 </li>
     </ul>
   </li>
@@ -195,12 +195,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../reset-password/" class="nav-link">
+                                <a rel="prev" href="../contacts-manager/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../confirmation-link/" class="nav-link">
+                                <a rel="next" href="../winners-manager/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -225,7 +225,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#register" class="nav-link">Register</a>
+            <li class="nav-item" data-level="1"><a href="#reporting-campaigns" class="nav-link">Reporting Campaigns</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -234,42 +234,84 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="register">Register<a class="headerlink" href="#register" title="Permanent link">🔗</a></h1>
-<p>We can sign up uder default user, or under franchise user.</p>
-<p>At the entering Register Page we are checking if there is query param <code>f</code>. If there is not - we use defaul winlocal plan and view.</p>
-<p>If we do have the query param, we send request to get franchise useing query param:</p>
-<pre><code>GET /v1/admin/franchise/${queryF}
+<h1 id="reporting-campaigns">Reporting Campaigns<a class="headerlink" href="#reporting-campaigns" title="Permanent link">🔗</a></h1>
+<p>Detailed review of campaign statistics.</p>
+<p>Endpoint for reporting table: </p>
+<pre><code>GET /v1/users/${userId}/campaigns/stats
 </code></pre>
-<p>Expected output:</p>
+<p>This endpoint accept all pagination, sorting and filtration rules available.</p>
+<p>Expected outcome:</p>
 <pre><code>{
-    defaultPlan: &quot;supportlocal-free&quot;
-    id: 1
-    logoUrl: &quot;https://supportlocal-stage.lim.bz/img/support_local.png&quot;
-    name: &quot;SupportLocal&quot;
-    prefix: &quot;sl&quot;
-    signUpImageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/1/signup/game-screen1.png&quot;
-    slug: &quot;supportlocal&quot;
+  data: [
+    {
+      clicks: 12
+      cpc: 1666.6666666666667
+      cpi: 4.9504950495049505
+      cpr: 12.845215157353886
+      desktop: 0
+      id: 836
+      impressions: 4040
+      leadsForm: 0
+      mobile: 12
+      name: &quot;Looking for a job&quot;
+      preview: &quot;https://wl-client-panel.s3.amazonaws.com/campaigns/836/ads/262b795908b4cf7cfc5afc31eb1c96d82c20e412.png&quot;
+      reach: 1557
+      source: &quot;facebook&quot;
+      totalSpent: 20000
+    },
+  ],
+  state: {
+    fields: []
+    filterBy: null
+    filterValue: null
+    filters: []
+    itemsCount: 10
+    itemsPerPage: 10
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: null
+    sortDesc: true
+    totalItems: 23
+    totalPages: 3
+  }
 }
-
 </code></pre>
-<p>In this view we have two fields to fill: <code>email</code> and <code>password</code>.</p>
-<p>On Sign Up click we send:</p>
-<pre><code>POST /v1/auth/register
+<p>Optional query parameter for pagination:</p>
+<pre><code>  page: number;
+  itemsPerPage: number; - 5 | 10 | 15
+  showAllRecords: boolean;
+  sortBy: string;
+  sortDesc: boolean;
 </code></pre>
-<p>Example request JSON body:</p>
-<pre><code>{
-    &quot;franchise&quot;: &quot;my-franchise-slug&quot;,
-    &quot;email&quot;: &quot;johny@lim.bz&quot;,
-    &quot;password&quot;: &quot;mypassword123&quot;
-}
+<p>We refresh campaigns reporting table every <strong>20</strong> seconds.</p>
+<p>By default pagination is set to <strong>10</strong> records.</p>
+<p>By default this table is neither sorted nor filtered.</p>
+<p>Reporting Table headers:</p>
+<pre><code>  **Ad Thumbnail**: '',
+  **Campaign Name**: name
+  **Reach**: reach
+  **Impressions**: impressions
+  **Clicks**: clicks
+  **Lead Form**: leadsForm
+  **Source**: source
+  **CPR**: cpr
+  **CPI**: cpi
+  **CPC**: cpc
+  **Total Spent**: totalSpent
 </code></pre>
-<p>Expected output: </p>
-<pre><code>{
-    emailConfirmation: true
-}
+<p>Available <code>source</code> falues and their icons:</p>
+<pre><code>  'facebook': Facebook,
+  'instagram': Instagram,
+  'facebook,instagram': Facebook,
+  'facebook_audience': Audience,
 </code></pre>
-<p>It will get us to <a href="../confirmation-link/">Email Confirmation Page</a></p>
-<p>On success registration user will recieve email with conformation link.</p></div>
+<p>Each row is clickable, we show Single Campaign Report in a popup.</p>
+<pre><code>GET /v1/campaigns/${campaignId}?stats=all
+</code></pre>
+<p>Expected outcome - full campaign object with stats.</p>
+<p>And in a popup we show the report modal of the campaign.</p>
+<p>For more see <a href="../../campaigns/campaign-manager/">Campaign Manager</a></p></div>
             </div>
         </div>
 

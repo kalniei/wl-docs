@@ -81,6 +81,10 @@
 </li>
             
 <li>
+    <a href="../../user/reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
+</li>
+            
+<li>
     <a href="../../user/winners-manager/" class="dropdown-item">Winners Manager</a>
 </li>
             
@@ -221,13 +225,58 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#confirmation-link" class="nav-link">Confirmation Link</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="confirmation-link">Confirmation Link<a class="headerlink" href="#confirmation-link" title="Permanent link">🔗</a></h6>
-<p>lorem</p></div>
+<h1 id="confirmation-link">Confirmation Link<a class="headerlink" href="#confirmation-link" title="Permanent link">🔗</a></h1>
+<p>On success registration user will recieve email with confirmation link.</p>
+<p>We also get transfered to Conformation Email page, where you can reenter your email in case the link was not send.</p>
+<p>On Entering email and clicking <strong>"Send Link Again"</strong> we send:</p>
+<pre><code>POST /v1/auth/email-confirmation/resend
+</code></pre>
+<p>Json body: </p>
+<pre><code>{
+  email: test@gmail.com
+}
+</code></pre>
+<p>Expected output:</p>
+<p>200, if link is sent:</p>
+<pre><code>{
+  resent: true
+}
+</code></pre>
+<p>400, if such email was never registered:</p>
+<pre><code>{
+  email: &quot;Not found.&quot;
+}
+</code></pre>
+<p>400, when email address has been already confirmed.</p>
+<pre><code>{
+  email: &quot;Email address already confirmed.&quot;
+}
+</code></pre>
+<p>Example of confirmation link: https://client.winlocal.xyz/?u=NmVjMmQ2NDEtZDA1Zi00YTU0LWI5MzItYjIxYjU3MzM2NmFi</p>
+<p>When we enter this link the following has been sending:</p>
+<pre><code>GET /v1/auth/email-confirmation/${uFromQueryParam}
+</code></pre>
+<p>Expected output:</p>
+<p>400, when link is expired</p>
+<pre><code>{
+  token: [&quot;Confirmation not found or has expired.&quot;]
+
+}
+</code></pre>
+<p>200, when email confirmed</p>
+<pre><code>{
+  confirmed: true
+}
+</code></pre></div>
             </div>
         </div>
 

@@ -81,6 +81,10 @@
 </li>
             
 <li>
+    <a href="../../user/reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
+</li>
+            
+<li>
     <a href="../../user/winners-manager/" class="dropdown-item">Winners Manager</a>
 </li>
             
@@ -221,17 +225,129 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#login" class="nav-link">Login</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="login">login<a class="headerlink" href="#login" title="Permanent link">🔗</a></h6>
-<p>Detailed info about User assigned Plan and permissions (by adding extra query param) you can get on standard Get user Details endpoint:</p>
-<pre><code>GET /v1/users/{id}?permissions=1
+<h1 id="login">Login<a class="headerlink" href="#login" title="Permanent link">🔗</a></h1>
+<p>At the entering Login Page we are checking if there is query param <code>f</code>. If there is not - we use defaul winlocal plan and view.</p>
+<p>If we do have the query param, we send request to get franchise useing query param:</p>
+<pre><code>GET /v1/admin/franchise/${queryF}
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+    defaultPlan: &quot;supportlocal-free&quot;
+    id: 1
+    logoUrl: &quot;https://supportlocal-stage.lim.bz/img/support_local.png&quot;
+    name: &quot;SupportLocal&quot;
+    prefix: &quot;sl&quot;
+    signUpImageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/1/signup/game-screen1.png&quot;
+    slug: &quot;supportlocal&quot;
+}
+</code></pre>
+<p>In this view we have two fields to fill: <code>email</code> and <code>password</code>.</p>
+<p>On Login we send:</p>
+<pre><code>POST /v1/auth/login
+</code></pre>
+<p>Json body: </p>
+<pre><code>{
+    email: &quot;test@gmail.com&quot;
+    password: &quot;11111111&quot;
+}
+</code></pre>
+<p>Expected output:</p>
+<p>404, if password or email is not correct</p>
+<pre><code>{
+    message:    &quot;Username could not be found.&quot; |
+                &quot;Invalid credentials.&quot; |
+                &quot;Need to confirm email address.&quot;
+}
+</code></pre>
+<p><strong>NOTE</strong> if we get <em>"Need to confirm email address."</em> - we will redirect user to <a href="../confirmation-link/">Confirm Email</a> page.</p>
+<p>200, if login is successful</p>
+<pre><code>{
+    plan: &quot;default-paid&quot;
+    token: tokenString
+}
+</code></pre>
+<p>If login was successful we send following requests to obtain needed information:</p>
+<p>1) Available plans for user:</p>
+<pre><code>GET /v1/plan
+</code></pre>
+<p>Expected output - array with plans.</p>
+<pre><code>[
+    {
+        id: 13
+        name: &quot;Plan FREE&quot;
+        period: null
+        price: {
+            amount: &quot;0&quot;
+            currency: &quot;USD&quot;
+            formatted: {
+                decimal: &quot;0&quot;
+                money: &quot;$0.00&quot;
+            }
+        }    
+        slug: &quot;default-free&quot;
+        stripeId: null
+        tag: &quot;free&quot;
+        trialPeriodDays: 0
+    },
+]
+</code></pre>
+<p>2) Information about current user subscription</p>
+<pre><code>GET /v1/stripe/subscription
+</code></pre>
+<p>Expected output:</p>
+<p>200:</p>
+<pre><code>{
+  canceledAt: null
+  created: &quot;2020-12-01T12:46:21+00:00&quot;
+  currentPeriodEnd: &quot;2021-04-01T12:46:21+00:00&quot;
+  currentPeriodStart: &quot;2021-03-01T12:46:21+00:00&quot;
+  endedAt: null
+  expiresAt: null
+  plan: {
+    id: &quot;membership_monthly&quot;
+    nickname: &quot;Monthly Membership&quot;
+  }
+  status: &quot;active&quot; | &quot;expires&quot;
+  trialEnd: null
+  trialStart: null
+}
+</code></pre>
+<p><strong>OR</strong></p>
+<p>403: </p>
+<pre><code>{
+  security: [&quot;Action is denied!&quot;]
+}
 
-Example JSON output:
-{
+</code></pre>
+<p>3) Notification request:</p>
+<pre><code>GET /v1/notifications
+</code></pre>
+<p>Expected output:</p>
+<pre><code>[
+  {
+    body: &quot;There is an issue with your Win Local Campaign.&quot;
+    createdAt: &quot;2019-07-26T12:48:15+0000&quot;
+    id: 5
+    status: &quot;new&quot;
+  }
+]
+</code></pre>
+<p>4) Detailed info about User assigned Plan and permissions (by adding extra query param).</p>
+<p>We get <code>userId</code> from token.</p>
+<pre><code>GET /v1/users/{userId}?permissions=1
+
+</code></pre>
+<p>Example JSON output:</p>
+<pre><code>{
     &quot;id&quot;: 3,
     &quot;email&quot;: &quot;rolibezfasoli@lim.bz&quot;,
     &quot;phone&quot;: &quot;(111) 111-1111&quot;,
@@ -303,7 +419,9 @@ Example JSON output:
         }
     ]
 } 
-</code></pre></div>
+</code></pre>
+<p><strong>IF</strong> user property <code>firstLogin</code> is set to <strong>true</strong> AND user is neither Admin not Distributor - we redirect to Onboarding.</p>
+<p><strong>ELSE</strong> - send request about subscription and redirect to Dashbard.</p></div>
             </div>
         </div>
 

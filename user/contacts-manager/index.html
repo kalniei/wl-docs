@@ -81,6 +81,10 @@
 </li>
             
 <li>
+    <a href="../reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
+</li>
+            
+<li>
     <a href="../winners-manager/" class="dropdown-item">Winners Manager</a>
 </li>
             
@@ -196,7 +200,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../winners-manager/" class="nav-link">
+                                <a rel="next" href="../reporting-campaigns/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -221,13 +225,373 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            
+            <li class="nav-item" data-level="2"><a href="#all-contacts-table" class="nav-link">All contacts Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#contacts-list-table" class="nav-link">Contacts List Table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#operations-on-tables" class="nav-link">Operations on Tables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#createadd-to-list" class="nav-link">Create/Add to List</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#export-contacts" class="nav-link">Export Contacts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#import-contacts" class="nav-link">Import Contacts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#remove-contacts-from-the-list" class="nav-link">Remove Contacts from the list</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#viewedit-contact" class="nav-link">View/Edit Contact</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
 <h6 id="contacts-manager">Contacts Manager<a class="headerlink" href="#contacts-manager" title="Permanent link">🔗</a></h6>
-<p>lorem</p></div>
+<p>CONTACT DATABASE
+Create, upload, and download contacts lists.</p>
+<h2 id="all-contacts-table">All contacts Table<a class="headerlink" href="#all-contacts-table" title="Permanent link">🔗</a></h2>
+<p>All Contacts table should NOT all contacts of the user.</p>
+<p>it shows:</p>
+<ul>
+<li>
+<p>imported contacts from Contact Manager</p>
+</li>
+<li>
+<p>collected contacts from SMS or PYL campaign</p>
+</li>
+<li>
+<p>collected contacs form Social or Email campaign</p>
+</li>
+</ul>
+<p>It MUST NOT show contacts, imported while creating the campaign.</p>
+<p>Endpoint for all conatacts table: </p>
+<pre><code>POST /v1/contacts-read
+</code></pre>
+<p>In this view we <strong>always</strong> use builder filter: <code>?filters[]=builder,eq,0</code> - this way we will not get contacts, imported in Campaign Builder</p>
+<p>This endpoint accept all pagination, sorting and filtration rules available.</p>
+<p>Expected outcome:</p>
+<pre><code>{
+  data: [
+    {
+      address: null
+      address1: null
+      badges: null
+      builder: 0
+      city: null
+      dob: null
+      email: &quot;olga.kalniei@gmail.com&quot;
+      engagements: 1
+      firstName: &quot;Olha&quot;
+      firstVisitDate: &quot;2021-01-07T12:43:12+0000&quot;
+      gender: null
+      id: 1408887
+      lastName: &quot;Kalniei&quot;
+      lastVisitDate: &quot;2021-01-07T12:43:12+0000&quot;
+      list_ids: []
+      phone: &quot;14555555455&quot;
+      redemptions: 0
+      source: &quot;Direct&quot;
+      sourceCampaign: &quot;SMS Campaign&quot;
+      state: null
+      zip: null
+    },
+  ],
+  state: {
+    ffields: []
+    filterBy: null
+    filterValue: null
+    filters: [&quot;builder,eq,0&quot;]
+    itemsCount: 10
+    itemsPerPage: 10
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: &quot;lastVisitDate&quot;
+    sortDesc: true
+    totalItems: 50197
+    totalPages: 5020
+  }
+}
+</code></pre>
+<p>Optional query parameter for pagination:</p>
+<pre><code>  page: number;
+  itemsPerPage: number; - 5 | 10 | 15
+  showAllRecords: boolean;
+  sortBy: string;
+  sortDesc: boolean;
+</code></pre>
+<p>Additionally we can send one more filter: <code>filters[]: listIds,fis,${listId}</code></p>
+<p>Providing <code>listIds</code> will limit results to the contacts of this particular list.</p>
+<p>We refresh contacts table every <strong>20</strong> seconds.</p>
+<p>By default pagination is set to <strong>10</strong> records.</p>
+<p>By default this table is sorted by <code>lastVisitDate</code> property - from the latest.</p>
+<p>Contacts Table headers:</p>
+<pre><code>  **Mobile #**: phone
+  **First Name**: firstName
+  **Last Name**: lastName
+  **Email**: email
+  **Source**: source
+  **Source Campaign**: sourceCampaign
+  **Badges**: badges
+  **Visit Date**: lastVisitDate
+  **Visit time**: lastVisitDate
+  **ENGS**: engagements
+  **RDMS**: redemptions
+</code></pre>
+<h2 id="contacts-list-table">Contacts List Table<a class="headerlink" href="#contacts-list-table" title="Permanent link">🔗</a></h2>
+<p>When we enter the Contact Manger view - we send a separated request for contacts lists:</p>
+<pre><code>GET /v1/contactlist
+</code></pre>
+<p>Expected output: </p>
+<pre><code>[
+  {
+    id: 1
+    name: &quot;list test&quot;
+  }
+]
+</code></pre>
+<p>We refresh contacts lists every <strong>20</strong> seconds.</p>
+<p>If we want to see contacts from chosen list - we are adding this filter: <code>filters[]: listIds,fis,226</code> to contact request.</p>
+<p>we can delete contact list:</p>
+<pre><code>DELETE /v1/contactlist/${listId}
+</code></pre>
+<p>Output: <code>{}</code></p>
+<h2 id="operations-on-tables">Operations on Tables<a class="headerlink" href="#operations-on-tables" title="Permanent link">🔗</a></h2>
+<p>Above the table there are four icons - available actions with contacts. </p>
+<p>We also have search above the contact table - at this moment it does nothing.</p>
+<p>In the contacts table each row ( contact ) has checkbox at the left. Useing those checkboxes we can choose contacts, which we want perform actions.</p>
+<p>There is also "Check all" opportunity, though it will only check contacts at this page in the table.</p>
+<h3 id="createadd-to-list">Create/Add to List<a class="headerlink" href="#createadd-to-list" title="Permanent link">🔗</a></h3>
+<p>Here you can either create new list or add contacts to existing one.</p>
+<p><strong>Create New List and Add Contacts:</strong></p>
+<pre><code>POST /v1/contactlist
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>contactIds: [1, 2, 3]
+name: &quot;Test&quot;
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  id: 1
+  name: &quot;Test&quot;
+}
+</code></pre>
+<p><strong>Add Contacts to Existing List:</strong></p>
+<pre><code>POST /v1/contactlist/${listId}/add
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>contactIds: [1, 2, 3]
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  id: 1
+  name: &quot;Test&quot;
+}
+</code></pre>
+<h3 id="export-contacts">Export Contacts<a class="headerlink" href="#export-contacts" title="Permanent link">🔗</a></h3>
+<p>After chosing contacts we can export them into .csv file</p>
+<p>This is strict front end operation - no backend needed.</p>
+<p>In the table we use foloowing headers:</p>
+<ul>
+<li>
+<p>id</p>
+</li>
+<li>
+<p>first_name</p>
+</li>
+<li>
+<p>last_name</p>
+</li>
+<li>
+<p>email</p>
+</li>
+<li>
+<p>phone</p>
+</li>
+<li>
+<p>lastVisitDate</p>
+</li>
+<li>
+<p>engagements</p>
+</li>
+<li>
+<p>redemptions</p>
+</li>
+</ul>
+<h3 id="import-contacts">Import Contacts<a class="headerlink" href="#import-contacts" title="Permanent link">🔗</a></h3>
+<p>On Import click the new window will appear. </p>
+<p><strong>NOTE</strong> we use the same component here and in the Campaign Builder. The difference is - in Campaign Builder we use as a name of the list - file name. Here - we ask user to give us a name of the list. It is required property.</p>
+<p>Imported contacts will be added to the newly created list.</p>
+<p>We can also download example of acceptable .csv - this is front end operation, no backend needed.</p>
+<p>On Upload contacts to the preview - we will se beging of the file.</p>
+<p>We can choose - if we want to use firts row as headers or no. </p>
+<p>Acceptable headers:</p>
+<ul>
+<li>
+<p>first_name</p>
+</li>
+<li>
+<p>last_name</p>
+</li>
+<li>
+<p>email</p>
+</li>
+<li>
+<p>phone</p>
+</li>
+</ul>
+<p>It is not possible to upload .csv file if headers are invilid.</p>
+<p><strong>Please note</strong> there MUST be either email or phone field. If we do not use first row as a header - backend will look for email column.</p>
+<p>Upload contacts:</p>
+<pre><code>POST /v1/contacts/upload/csv
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+  csv: (binary)
+  firstRowHeader: 0 | 1
+  contactListName: string
+}
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  contactListId: 578
+  message: &quot;File is uploaded and will be processed.&quot;
+  possibleNumberOfContacts: 51882
+}
+</code></pre>
+<p>It will start backend process of uploading contacts. Number of contacts might be different form <code>possibleNumberOfContacts</code> because of the errors in .csv file.</p>
+<h3 id="remove-contacts-from-the-list">Remove Contacts from the list<a class="headerlink" href="#remove-contacts-from-the-list" title="Permanent link">🔗</a></h3>
+<p>This option is only available when user is on the List view of the table.</p>
+<p>After chosing contacts we want to remove form the list we send: </p>
+<pre><code>POST /v1/contactlist/${listId}/remove
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>contactIds: [1, 2, 3]
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  id: 1
+  name: &quot;Test&quot;
+}
+</code></pre>
+<h2 id="viewedit-contact">View/Edit Contact<a class="headerlink" href="#viewedit-contact" title="Permanent link">🔗</a></h2>
+<p>Each row is clickable.</p>
+<p>On row click - we will be redirected to a new view - Singel Contact View.</p>
+<p>On click we ask for detailed information about this contact:</p>
+<pre><code>GET /v1/contact/${contactId}
+
+</code></pre>
+<p>Expected output: </p>
+<pre><code>{
+  &quot;id&quot;: 2053,
+  &quot;firstName&quot;: &quot;Olha&quot;,
+  &quot;lastName&quot;: &quot;Kalniei&quot;,
+  &quot;email&quot;: &quot;olga.kalniei@gmail.com&quot;,
+  &quot;phone&quot;: &quot;1212121212&quot;,
+  &quot;source&quot;: &quot;Direct&quot;,
+  &quot;sourceCampaign&quot;: &quot;SMS Campaign&quot;,
+  &quot;badges&quot;: [],
+  &quot;lastVisitDate&quot;: null,
+  &quot;firstVisitDate&quot;: null,
+  &quot;engagements&quot;: 0,
+  &quot;redemptions&quot;: 0,
+  &quot;dob&quot;: {
+    &quot;date&quot;: &quot;2016-05-11 00:00:00.000000&quot;,
+    &quot;timezone_type&quot;: 3,
+    &quot;timezone&quot;: &quot;UTC&quot;
+  },
+  &quot;gender&quot;: &quot;f&quot;,
+  &quot;city&quot;: &quot;test&quot;,
+  &quot;state&quot;: &quot;Single&quot;,
+  &quot;zip&quot;: &quot;5556&quot;,
+  &quot;address&quot;: &quot;test&quot;,
+  &quot;address1&quot;: null,
+  &quot;emails&quot;: [{
+    &quot;email&quot;: &quot;olga.kalniei@gmail.com&quot;,
+    &quot;isUnsubscribed&quot;: false
+  }, {
+    &quot;email&quot;: &quot;olga.kalniei+5555@gmail.com&quot;,
+    &quot;isUnsubscribed&quot;: false
+  }, {
+    &quot;email&quot;: &quot;olga.kalniei+88888@gmail.com&quot;,
+    &quot;isUnsubscribed&quot;: false
+  }, {
+    &quot;email&quot;: &quot;olga.kalniei+8888888@gmail.com&quot;,
+    &quot;isUnsubscribed&quot;: false
+  }, {
+    &quot;email&quot;: &quot;olga.kalniei+lol@gmail.com&quot;,
+    &quot;isUnsubscribed&quot;: false
+  }],
+  &quot;phones&quot;: [11111111111, 11212121212, 12242212121, 15454545454, 15564454545, 17865415515, 18888888888, 18999999999],
+  &quot;firstNames&quot;: [&quot;Olha&quot;, &quot;Olia Kalniei&quot;],
+  &quot;lastNames&quot;: [&quot;Kalniei&quot;],
+  &quot;igJourneys&quot;: 0,
+  &quot;fbJourneys&quot;: 0,
+  &quot;smsJourneys&quot;: 0,
+  &quot;emailJourneys&quot;: 0,
+  &quot;totalJourneys&quot;: 23,
+  &quot;totalInteractions&quot;: 23
+}
+</code></pre>
+<p>Contact info available for changing ( from front end side ):</p>
+<ul>
+<li>
+<p>First name: <code>firstName</code></p>
+</li>
+<li>
+<p>Last name: <code>lastName</code></p>
+</li>
+<li>
+<p>Default email: <code>email</code></p>
+</li>
+<li>
+<p>Default Mobile Number: <code>phone</code></p>
+</li>
+<li>
+<p>Birth Date: <code>dob</code></p>
+</li>
+<li>
+<p>Gender: <code>gender</code></p>
+</li>
+<li>
+<p>Address: <code>address</code></p>
+</li>
+<li>
+<p>City: <code>city</code></p>
+</li>
+<li>
+<p>State: <code>state</code></p>
+</li>
+<li>
+<p>Zip: <code>zip</code></p>
+</li>
+</ul>
+<p>On save we send:</p>
+<pre><code>POST /v1/contact/${contactId}
+</code></pre>
+<p>Request JSON body - whole contacs object with changed data.
+Expected output - whole contacs object with changed data.</p>
+<p>After successful save we are getting redirected back to Contacts Manager </p></div>
             </div>
         </div>
 

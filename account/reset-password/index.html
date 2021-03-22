@@ -81,6 +81,10 @@
 </li>
             
 <li>
+    <a href="../../user/reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
+</li>
+            
+<li>
     <a href="../../user/winners-manager/" class="dropdown-item">Winners Manager</a>
 </li>
             
@@ -221,13 +225,50 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#reset-password" class="nav-link">Reset Password</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="reset-password">Reset Password<a class="headerlink" href="#reset-password" title="Permanent link">🔗</a></h6>
-<p>lorem</p></div>
+<h1 id="reset-password">Reset Password<a class="headerlink" href="#reset-password" title="Permanent link">🔗</a></h1>
+<p>At the entering Reset Password Page we are checking if there is query param <code>f</code>. If there is not - we use defaul winlocal plan and view.</p>
+<p>If we do have the query param, we send request to get franchise useing query param:</p>
+<pre><code>GET /v1/admin/franchise/${queryF}
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+    defaultPlan: &quot;supportlocal-free&quot;
+    id: 1
+    logoUrl: &quot;https://supportlocal-stage.lim.bz/img/support_local.png&quot;
+    name: &quot;SupportLocal&quot;
+    prefix: &quot;sl&quot;
+    signUpImageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/franchise/1/signup/game-screen1.png&quot;
+    slug: &quot;supportlocal&quot;
+}
+</code></pre>
+<p>In this view we have one fiels to fill: <code>email</code>.</p>
+<p>On click "Reset" we send</p>
+<pre><code>POST /v1/auth/reset-password
+</code></pre>
+<p>Json body: </p>
+<pre><code>{
+  email: &quot;test@gmail.com&quot;
+}
+</code></pre>
+<p>Expected output:</p>
+<p>400, when there is no such user:</p>
+<pre><code>{
+  user: [&quot;User not found.&quot;]
+}
+</code></pre>
+<p><strong>OR</strong></p>
+<p>200, when email with new password was sent</p>
+<pre><code>[&quot;OK&quot;]
+</code></pre></div>
             </div>
         </div>
 

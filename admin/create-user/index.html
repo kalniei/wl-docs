@@ -81,6 +81,10 @@
 </li>
             
 <li>
+    <a href="../../user/reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
+</li>
+            
+<li>
     <a href="../../user/winners-manager/" class="dropdown-item">Winners Manager</a>
 </li>
             
@@ -231,7 +235,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="create-user">Create User<a class="headerlink" href="#create-user" title="Permanent link">🔗</a></h1>
-<p>Admin View only.
+<p>Admin View &amp;&amp; Distributor only.
 Here admin can create new users and assign them roles.</p>
 <p>Endpoint for creation user:</p>
 <pre><code>POST /v1/users
@@ -242,12 +246,16 @@ Here admin can create new users and assign them roles.</p>
   password: string,
   enabledFbPageAccess: boolean,
   enabledInstagramAccess: boolean,
-  roles: [ ROLE_USER | ROLE_RESELLER | ROLE_SUPER_ADMIN | ROLE_MULTI_USER ],
+  roles: [ ROLE_USER | ROLE_DISTRIBUTOR | ROLE_SUPER_ADMIN ],
+  franchise?: string,
 }
 </code></pre>
 <p>Expected output - newly created User object</p>
-<p><strong>NOTE</strong> At this point no matter what role we create - we only can get role ROLE_USER.
-Other roles should either be removed or backend should be able to create other roles accounts</p></div>
+<p><code>franchise</code> property is optional. It expects slug of the chosen franchise. If chosen - user will be created under that franchise.</p>
+<p>We get available list of franchises via:</p>
+<pre><code>GET /admin/franchise
+</code></pre>
+<p>Expected output - list of all franchises object, available for user.</p></div>
             </div>
         </div>
 
