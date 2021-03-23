@@ -8,7 +8,7 @@
         <meta name="author" content="Olia Kalniei">
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>User Accounts - WinLocal - dokumentation</title>
+        <title>Staff Members - WinLocal - dokumentation</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -43,27 +43,27 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="./" class="dropdown-item active">User Accounts</a>
+    <a href="../../admin/user-accounts/" class="dropdown-item">User Accounts</a>
 </li>
             
 <li>
-    <a href="../subscription-plans/" class="dropdown-item">Subscription Plans</a>
+    <a href="../../admin/subscription-plans/" class="dropdown-item">Subscription Plans</a>
 </li>
             
 <li>
-    <a href="../promo-code-manager/" class="dropdown-item">Promo Code Manager</a>
+    <a href="../../admin/promo-code-manager/" class="dropdown-item">Promo Code Manager</a>
 </li>
             
 <li>
-    <a href="../franchise-manager/" class="dropdown-item">Franchise Manager</a>
+    <a href="../../admin/franchise-manager/" class="dropdown-item">Franchise Manager</a>
 </li>
             
 <li>
-    <a href="../create-user/" class="dropdown-item">Create User</a>
+    <a href="../../admin/create-user/" class="dropdown-item">Create User</a>
 </li>
             
 <li>
-    <a href="../export-all-contacts/" class="dropdown-item">Export All Contacts</a>
+    <a href="../../admin/export-all-contacts/" class="dropdown-item">Export All Contacts</a>
 </li>
     </ul>
   </li>
@@ -73,43 +73,43 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../main/dashboard/" class="dropdown-item">Dashboard</a>
+    <a href="../dashboard/" class="dropdown-item">Dashboard</a>
 </li>
             
 <li>
-    <a href="../../main/contacts-manager/" class="dropdown-item">Contacts Manager</a>
+    <a href="../contacts-manager/" class="dropdown-item">Contacts Manager</a>
 </li>
             
 <li>
-    <a href="../../main/reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
+    <a href="../reporting-campaigns/" class="dropdown-item">Reporting Campaigns</a>
 </li>
             
 <li>
-    <a href="../../main/winners-manager/" class="dropdown-item">Winners Manager</a>
+    <a href="../winners-manager/" class="dropdown-item">Winners Manager</a>
 </li>
             
 <li>
-    <a href="../../main/staff-members/" class="dropdown-item">Staff Members</a>
+    <a href="./" class="dropdown-item active">Staff Members</a>
 </li>
             
 <li>
-    <a href="../../main/my-profile/" class="dropdown-item">My Profile</a>
+    <a href="../my-profile/" class="dropdown-item">My Profile</a>
 </li>
             
 <li>
-    <a href="../../main/short-link/" class="dropdown-item">Short Links</a>
+    <a href="../short-link/" class="dropdown-item">Short Links</a>
 </li>
             
 <li>
-    <a href="../../main/notifications/" class="dropdown-item">Notifications</a>
+    <a href="../notifications/" class="dropdown-item">Notifications</a>
 </li>
             
 <li>
-    <a href="../../main/campaign-manager/" class="dropdown-item">Campaign Manager</a>
+    <a href="../campaign-manager/" class="dropdown-item">Campaign Manager</a>
 </li>
             
 <li>
-    <a href="../../main/campaign-builder/" class="dropdown-item">Campaign Builder</a>
+    <a href="../campaign-builder/" class="dropdown-item">Campaign Builder</a>
 </li>
     </ul>
   </li>
@@ -211,12 +211,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
+                                <a rel="prev" href="../winners-manager/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../subscription-plans/" class="nav-link">
+                                <a rel="next" href="../my-profile/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -242,29 +242,48 @@
         <ul class="nav flex-column">
             
             
-            <li class="nav-item" data-level="2"><a href="#find-account" class="nav-link">Find Account</a>
+            <li class="nav-item" data-level="2"><a href="#add-staff-member" class="nav-link">Add staff Member</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#accounts-table" class="nav-link">Accounts Table</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#impersonate-user" class="nav-link">Impersonate User</a>
+            <li class="nav-item" data-level="2"><a href="#staff-members-table" class="nav-link">Staff Members Table</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#edit-account" class="nav-link">Edit Account</a>
+            
+            <li class="nav-item" data-level="2"><a href="#table-actions" class="nav-link">Table Actions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#deactivate" class="nav-link">Deactivate</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#qr-codes" class="nav-link">QR Codes</a>
+            <li class="nav-item" data-level="3"><a href="#delete" class="nav-link">Delete</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#delete-account" class="nav-link">Delete Account</a>
+            <li class="nav-item" data-level="3"><a href="#reactivate" class="nav-link">Reactivate</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#search" class="nav-link">Search</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#filter-by-date" class="nav-link">Filter by date</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#assign-destinationcampaign" class="nav-link">Assign destination/campaign</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#edit-staff-member" class="nav-link">Edit Staff Member</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -272,67 +291,98 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="user-accounts">User Accounts<a class="headerlink" href="#user-accounts" title="Permanent link">🔗</a></h6>
-<p>Admin View &amp;&amp; Distributor view only.
-Here admin can manage accounts.</p>
-<h2 id="find-account">Find Account<a class="headerlink" href="#find-account" title="Permanent link">🔗</a></h2>
-<p>The Search filters, that are filtering the Accounts Table</p>
-<ol>
-<li>Email Address</li>
-<li>First Name</li>
-<li>Last Name</li>
-<li>Company Name</li>
-<li>Company Keyword</li>
-<li>Status - dropdown, allowed values: <strong>All</strong>, <strong>Active</strong>, <strong>Inactive</strong></li>
-</ol>
-<p>Button Search will trigger request to Api: </p>
-<pre><code>GET /v1/admin/users
+<h6 id="staff-members">Staff Members<a class="headerlink" href="#staff-members" title="Permanent link">🔗</a></h6>
+<p>Last known staff members mock up - <a href="https://projects.invisionapp.com/share/SVUOPET2KYG#/">invisionapp.</a>
+It gets general idea on how it should work, but design is a little bit changed.</p>
+<h2 id="add-staff-member">Add staff Member<a class="headerlink" href="#add-staff-member" title="Permanent link">🔗</a></h2>
+<p>Here we can create a short link for each employee. It should be used for promoting business via social post and sms messaging. You can choose a pin code for each staff member which will be used when a customer redeems an offer.</p>
+<p>In Staff members creation form you can also create short link by choosing domain and alias. More about creating short links <a href="../short-link/">here</a></p>
+<p>Pin code must be 4 characters.</p>
+<p>Route for creating staff member:</p>
+<pre><code>POST /v1/staff-members
 </code></pre>
-<p>with optional filters params: <code>filters[]=</code></p>
-<pre><code>email: string; - operand &quot;l&quot;
-firstName: string;  - operand &quot;l&quot;
-lastName: string;  - operand &quot;l&quot;
-companyName: string;  - operand &quot;l&quot;
-companyKeyword: string;  - operand &quot;l&quot;
-status: string; - operand &quot;eq&quot;
+<p>JSON body:</p>
+<pre><code>{
+  active: true | false
+  domain: &quot;205.d.lnx.bz&quot;
+  firstName: &quot;test&quot;
+  jobDescription: &quot;test&quot;
+  lastName: &quot;test&quot;
+  pin: &quot;1234&quot;
+  shortLink: &quot;testtesttest&quot;
+  status: active | inactive
+}
 </code></pre>
-<p>Example of created link: </p>
-<pre><code>GET /v1/admin/users?filters[]=email,l,test@lim.bz,&amp;filters[]=firstName,l,testFirst,&amp;filters[]=lastName,l,testLast,&amp;filters[]=companyName,l,testInc,&amp;filters[]=companyKeyword,l,banana,&amp;filters[]=status,eq,active
-</code></pre>
-<hr />
-<h2 id="accounts-table">Accounts Table<a class="headerlink" href="#accounts-table" title="Permanent link">🔗</a></h2>
-<p>Paginated list of all users, created under current Admin user.</p>
-<p>We refresh Accounts table every <strong>20</strong> seconds.</p>
+<p>Expected output: newly created Staff Member object</p>
+<p>The <strong>status</strong> switch is responsible for <code>active</code> boolean parameter.</p>
+<p>At this moment no matter what we always <code>status: active</code>.</p>
+<p>I guess backend is switching between <code>status: active | inactive</code> based on <strong>active</strong> field. We should consider changing it.</p>
+<h2 id="staff-members-table">Staff Members Table<a class="headerlink" href="#staff-members-table" title="Permanent link">🔗</a></h2>
+<p>Paginated list of all staff members.</p>
+<p>We refresh staff members table every <strong>20</strong> seconds.</p>
 <p>By default pagination is set to <strong>10</strong> records.</p>
-<p>All columns are sortable.</p>
-<p>No columns have filters inside the table.</p>
-<p>We use this route for getting accounts:</p>
-<pre><code>GET /v1/admin/users
+<p>All columns ARE NOT sortable at this time. ( though it would be nice to have this opportunity)</p>
+<p>ALL columns have filters inside the table BUT only first and last name is actually working at the backend side. We need to fix it.</p>
+<p>We use this route for getting staff members:</p>
+<pre><code>GET /v1/staff-members
 </code></pre>
+<p>Optional parameters:</p>
+<pre><code>  with_deleted: 0 | 1 - by default always 0
+  dateTo: moment(chosenCustomDate).format('YYYY-MM-DD')
+  dateFrom: moment(chosenCustomDate).format('YYYY-MM-DD')
+</code></pre>
+<p><strong>dateTo</strong> and <strong>dateFrom</strong> option is available as a separated filter above the table.</p>
+<p><strong>NOTE</strong> AT THIS MOMENT FILTERING IS WORKING INCORRECT - it filters by creation date of staff member. BUT it should filter statistics of each staff member.</p>
 <p>Optional parameter for pagination:</p>
 <pre><code>  page: number;
   itemsPerPage: number; - 5 | 10 | 15
   showAllRecords: boolean;
-  sortBy: string;
-  sortDesc: boolean;
 </code></pre>
-<p>Example of created link: </p>
-<pre><code>GET /v1/admin/users?page=1&amp;itemsPerPage=10&amp;showAllRecords=0&amp;sortBy=lastName&amp;sortDesc=1
+<p>Optional filter params: <code>filters[]=</code></p>
+<pre><code>  firstName: string;  - operand &quot;l&quot;
+  lastName: string;  - operand &quot;l&quot;
+  instagram: string;  - operand &quot;l&quot;
+  status: string;  - operand &quot;l&quot;
+  url: string;  - operand &quot;l&quot;
+  facebook: string;  - operand &quot;l&quot;
+  leads: string;  - operand &quot;l&quot;
+  rdms: string;  - operand &quot;l&quot;
+  www: string;  - operand &quot;l&quot;
 </code></pre>
 <p>Expected output:</p>
 <pre><code>{
   data: [
     {
-      companyKeyword: &quot;test&quot;
-      companyName: &quot;Test Inc&quot;
-      email: &quot;test@lim.bz&quot;
-      fbBusinessPage: 1111
-      instagramId: 1111
+      createdAt: &quot;2021-01-04T11:12:57+00:00&quot;
       firstName: &quot;Test&quot;
-      id: 1
-      lastName: &quot;Test&quot;
-      status: &quot;active&quot;
-    }
+      id: 306
+      isDeleted: false
+      jobDescription: &quot;test&quot;
+      lastName: &quot;test&quot;
+      pin: &quot;8787&quot;
+      redeemedPrizesCount: 0
+      shortener: [
+        {
+          alias: &quot;test2021&quot;
+          campaign: {id: 3355, name: &quot;SMS Campaign&quot;, url: &quot;https://256.d.lnx.bz/2021&quot;}
+          createdAt: &quot;2021-01-04T11:12:57+0000&quot;
+          description: &quot;Default staff member shortlink&quot;
+          domain: &quot;256.d.lnx.bz&quot;
+          id: 2280
+          imageTitle: null
+          imageUrl: null
+          stats: {
+            facebook: 0,
+            instagram: 0,
+            sms: 0,
+            www: 0,
+            leads: 0,
+            rdms: 0
+          }
+        }
+      ]
+      status: &quot;inactive&quot;
+    },
     ...
   ],
   state: {
@@ -345,198 +395,87 @@ status: string; - operand &quot;eq&quot;
     joins: []
     page: 1
     showAllRecords: false
-    sortBy: &quot;lastName&quot;
-    sortDesc: true
-    totalItems: 463
-    totalPages: 47
-  }
-}
-</code></pre>
-<h3 id="impersonate-user">Impersonate User<a class="headerlink" href="#impersonate-user" title="Permanent link">🔗</a></h3>
-<p>Option to log in into users account.</p>
-<pre><code>GET /v1/users/${id}/?permissions=1
-</code></pre>
-<p>After successful response we do all actions like login user.</p>
-<p>see: <a href="../../account/login/">user login</a> for more details</p>
-<p>Note - in Store we keep <code>parentUserId" ${adminId}</code> and  in Local Storage - <code>impersonate: ${adminEmail}</code>.</p>
-<p>It allows us to go back to admin (same actions as impersonate - just use id in Store)</p>
-<h3 id="edit-account">Edit Account<a class="headerlink" href="#edit-account" title="Permanent link">🔗</a></h3>
-<p>On Edit Account the modal with account profile info is being opened.</p>
-<p>Api for getting full User Object: </p>
-<pre><code>GET /v1/users/${id}
-</code></pre>
-<p>Expected output:</p>
-<pre><code>{
-  activeCampaigns: 0
-  address: &quot;NA&quot;
-  address1: null
-  avatarUrl: null
-  businessTypes: [{
-    id: 8,
-    name: &quot;Retail Stores &amp; Clubs&quot;
-  }]
-  city: &quot;Stamford&quot;
-  companyLogoUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/48/logo/7747763fbdc3f595adb3cfe5fd4d5ffcd093d3b8.png&quot;
-  companyName: &quot;Bab&quot;
-  defaultAdCategory: &quot;regular&quot;
-  domains: [{
-      id: 55,
-      domain: &quot;30.d.lnx.bz&quot;,
-      shorteners: [
-        &quot;https:\/\/30.d.lnx.bz\/rffef&quot;,
-        &quot;https:\/\/30.d.lnx.bz\/defmem-48&quot;,
-        &quot;https:\/\/30.d.lnx.bz\/cd9&quot;
-      ]
-    }],
-  email: &quot;as@lim.bz&quot;
-  enabledFbPageAccess: false
-  enabledInstagramAccess: false
-  fbBusinessPage: null
-  findCampaignId: 3257
-  firstLogin: false
-  firstName: &quot;Half&quot;
-  franchise: null
-  id: 48
-  instagramId: null
-  lastName: &quot;Café&quot;
-  leaderboardCampaignId: null
-  logoAspectRatio: &quot;companyLogo&quot;
-  logoBgColor: &quot;#ffffff&quot;
-  parent: null
-  phone: &quot;(111) 111-1111&quot;
-  plan: {
-    tag: &quot;paid&quot;,
-    slug: &quot;default-paid&quot;,
-    startsAt: &quot;2020-11-04T13:18:43+0000&quot;,
-    endsAt: &quot;2020-12-04T13:18:43+0000&quot;
-  }
-  roles: [&quot;ROLE_USER&quot;]
-  socialMedias: {
-    twitter: null,
-    facebook: null,
-    linkedin: null,
-    instagram: null
-  }
-  state: &quot;CT&quot;
-  tcAccepted: true
-  website: null
-  zip: &quot;06901&quot;
-}
-</code></pre>
-<p>Here we have three Admin ONLY settings:</p>
-<ol>
-<li>
-<p><em>"Use this email address for ad campaign testing"</em></p>
-<p>If switch is set to <strong>true</strong> - the property of User object <code>testingEmail</code> is set to the same value as field <code>email</code>.</p>
-<p>If switch is set to <strong>false</strong> - the new input becomes visible "Email address for ad testing" and property of User object is <code>testingEmail</code>.</p>
-</li>
-<li>
-<p><em>"Enable Access to Facebook Followers"</em></p>
-<p>Default - <strong>false</strong>.</p>
-<p>If switch is set to <strong>true</strong> - this specific user will have a "Facebook Followers" option for targeting contacts in Campaign Builder.</p>
-<p>Property od User Object: <code>enabledFbPageAccess</code>.</p>
-<p>Please note: <strong>Admin is responsible for consciously setting this flag ONLY when a specific user has <code>fbBusinessPage</code> id set.</strong></p>
-</li>
-<li>
-<p><em>"Enable Access to Instagram Followers"</em></p>
-<p>Default - <strong>false</strong>.</p>
-<p>If switch is set to <strong>true</strong> - this specific user will have a "Instagram Followers" option for targeting contacts in Campaign Builder.</p>
-<p>Property od User Object: <code>enabledInstagramAccess</code>.</p>
-<p>Please note: <strong>Admin is responsible for consciously setting this flag ONLY when specific user has <code>instagramId</code> set.</strong></p>
-</li>
-</ol>
-<p>Those, and all additional fields will be send in the object by Api:</p>
-<pre><code>PUT /v1/users/${id}
-</code></pre>
-<p>Expected output: full User object</p>
-<h4 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">🔗</a></h4>
-<p>Admin can also change password of its users. The current password is not required.</p>
-<p>The route for Admins change of password:</p>
-<pre><code>POST /v1/admin/users/${id}/changePassword
-</code></pre>
-<p>As parameter we send: </p>
-<pre><code>newPassword: &quot;12345678&quot;
-</code></pre>
-<p>Expected output:</p>
-<pre><code>{
-  password_changed: [true]
-}
-</code></pre>
-<h3 id="qr-codes">QR Codes<a class="headerlink" href="#qr-codes" title="Permanent link">🔗</a></h3>
-<p>Click on icon "QR codes" triggers open the modal "QR CODES FOR CAMPAIGNS"</p>
-<p>Here we are asking Api to give us all users campaign with types <strong>find</strong> and <strong>leaderboard</strong>
-(SMS campaign and Push Your Limits)</p>
-<pre><code>GET /v1/admin/users/${id}/campaigns?filters[]=type,in,find,leaderboard&amp;page=1&amp;itemsPerPage=3&amp;showAllRecords=0
-</code></pre>
-<p>Expected output:</p>
-<pre><code>{
-  data: [
-    {
-      adBuilder: []
-      contactListIds: []
-      created_at: &quot;2020-11-03T13:15:09+0000&quot;
-      customLink: null
-      emailTemplate: []
-      endDate: null
-      footerText: null
-      gameUrl: &quot;https://2E.d.lnx.bz/thyhyh&quot;
-      geoCity: null
-      geoLat: null
-      geoLong: null
-      geoRadius: null
-      geoState: null
-      geoZip: null
-      id: 3255
-      isProcessingContacts: false
-      keyword: &quot;thyhyh&quot;
-      logoUrl: null
-      managerAvatar: null
-      maxCostPerDay: 0
-      name: &quot;SMS Campaign&quot;
-      peopleTargetingQty: null
-      prizeTypes: []
-      selectedGames: []
-      startDate: &quot;2020-11-03T13:15:02+0000&quot;
-      status: &quot;active&quot;
-      targetAllContacts: false
-      targetingType: &quot;none&quot;
-      totalContacts: 0
-      type: &quot;find&quot;
-      updated_at: &quot;2020-11-03T13:15:13+0000&quot;
-      useDefaultPrizes: true
-    }
-  ]
-  state: {
-    fields: []
-    filterBy: null
-    filterValue: null
-    filters: [
-      &quot;type,in,find,leaderboard&quot;
-    ]
-    itemsCount: 2
-    itemsPerPage: 3
-    joins: []
-    page: 1
-    showAllRecords: false
     sortBy: null
     sortDesc: false
-    totalItems: 2
-    totalPages: 1
+    totalItems: 45
+    totalPages: 5
   }
 }
 </code></pre>
-<p>From Campaign Object in this View we only use <strong>name</strong>, <strong>type</strong> and <strong>gameUrl</strong></p>
-<p>We use component "QrCodeGenerator" for creating QR code for campaign <strong>gameUrl</strong></p>
-<h3 id="delete-account">Delete Account<a class="headerlink" href="#delete-account" title="Permanent link">🔗</a></h3>
-<p>Click "Delete Account" icon will trigger conformation modal.</p>
-<p>Once you confirm your action the delete request is being sent:</p>
-<pre><code>DELETE /v1/admin/users/${id}
+<p>Each row represents one staff member. Clicking on each row you will be able to edit staff member.</p>
+<h2 id="table-actions">Table Actions<a class="headerlink" href="#table-actions" title="Permanent link">🔗</a></h2>
+<p>Table actions available above the table.</p>
+<h3 id="deactivate">Deactivate<a class="headerlink" href="#deactivate" title="Permanent link">🔗</a></h3>
+<p>We can choose all staff members or choose individually by checkbox at each row. This action will change the status of staff member to <code>inactive</code>.</p>
+<p><strong>NOTE</strong> if you choose staff member with status already <code>inactive</code> - you will not be able to proceed.</p>
+<pre><code>POST /v1/staff-members/deactivate
 </code></pre>
-<p>Expected output: </p>
-<pre><code>{
-  data: null
-  messages: [&quot;User Test Test (test@lifeinmobile.com) has been successfully deleted.&quot;]
-}
+<p>JSON body:</p>
+<pre><code>ids: [ 1, 2 ]
+</code></pre>
+<p>Expected output - array with changed short links objects.</p>
+<h3 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link">🔗</a></h3>
+<p>We can choose all staff members or choose individually by checkbox at each row.</p>
+<pre><code>POST /v1/staff-members/delete
+</code></pre>
+<p>JSON body:</p>
+<pre><code>ids: [ 1, 2 ]
+</code></pre>
+<p>Expected output:</p>
+<pre><code>[
+  {
+    deleted: true
+    id: 1
+  },
+  {
+    deleted: true
+    id: 2
+  }
+]
+</code></pre>
+<h3 id="reactivate">Reactivate<a class="headerlink" href="#reactivate" title="Permanent link">🔗</a></h3>
+<p>We can choose all staff members or choose individually by checkbox at each row. This action will change the status of staff member to <code>active</code>.</p>
+<p><strong>NOTE</strong> if you choose staff member with status already <code>active</code> - you will not be able to proceed.</p>
+<pre><code>POST /v1/staff-members/activate
+</code></pre>
+<p>JSON body:</p>
+<pre><code>ids: [ 1, 2 ]
+</code></pre>
+<p>Expected output - array with changed short links objects.</p>
+<h3 id="search">Search<a class="headerlink" href="#search" title="Permanent link">🔗</a></h3>
+<p>At this moment Search input is not doing anything. And we don't know what should it do.</p>
+<h3 id="filter-by-date">Filter by date<a class="headerlink" href="#filter-by-date" title="Permanent link">🔗</a></h3>
+<p>For filters we use optional query parameters:</p>
+<pre><code>  dateTo: moment(chosenCustomDate).format('YYYY-MM-DD')
+  dateFrom: moment(chosenCustomDate).format('YYYY-MM-DD')
+</code></pre>
+<p><strong>dateFrom</strong> - at this moment set to 15 days past.</p>
+<p><strong>NOTE</strong> AT THIS MOMENT FILTERING IS WORKING INCORRECT - it filters by creation date of staff member. BUT it should filter statistics of each staff member.</p>
+<h2 id="assign-destinationcampaign">Assign destination/campaign<a class="headerlink" href="#assign-destinationcampaign" title="Permanent link">🔗</a></h2>
+<p>Here we can assign to each Staff Member specific campaign link for traffic.</p>
+<p><strong>I don't really know what is it about - will be clarified later</strong></p>
+<p>Single select field. Here we choose which campaign will be assigned.</p>
+<p>If no Staff member is chosen - by default we will assign chosen campaign to ALL staff members.</p>
+<p>We can choose all staff members or choose individually by checkbox at each row. </p>
+<p>For the options we send request to get all users campaigns:</p>
+<pre><code>GET /v1/campaigns?page=1&amp;showAllRecords=1
+</code></pre>
+<p>It will return all campaigns of user. After selections we get <code>campaignId</code> as a property of new Short Link.</p>
+<p>For assigning campaign to staff member:</p>
+<pre><code>POST /v1/staff-members/destination
+</code></pre>
+<p>JSON body</p>
+<pre><code>  {
+    campaignId: number
+    ids: [1, 2]
+  }
+</code></pre>
+<p>Expected output: <code>{}</code> - maybe we should change it.</p>
+<h2 id="edit-staff-member">Edit Staff Member<a class="headerlink" href="#edit-staff-member" title="Permanent link">🔗</a></h2>
+<p>By click on each row the Edit modal will pop up.</p>
+<p>we have all options as in the (Add Staff member)[#add-staff-member]</p>
+<p>The route for editing staff member:</p>
+<pre><code>PUT /v1/staff-members/staffMemberId
 </code></pre></div>
             </div>
         </div>

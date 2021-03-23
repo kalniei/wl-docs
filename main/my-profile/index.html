@@ -8,7 +8,7 @@
         <meta name="author" content="Olia Kalniei">
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Staff Members - WinLocal - dokumentation</title>
+        <title>My Profile - WinLocal - dokumentation</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -69,7 +69,7 @@
   </li>
                                     
   <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Main User Functionalities</a>
+    <a href="#" class="dropdown-item">Main Functionalities</a>
     <ul class="dropdown-menu">
             
 <li>
@@ -89,11 +89,11 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Staff Members</a>
+    <a href="../staff-members/" class="dropdown-item">Staff Members</a>
 </li>
             
 <li>
-    <a href="../my-profile/" class="dropdown-item">My Profile</a>
+    <a href="./" class="dropdown-item active">My Profile</a>
 </li>
             
 <li>
@@ -103,12 +103,24 @@
 <li>
     <a href="../notifications/" class="dropdown-item">Notifications</a>
 </li>
+            
+<li>
+    <a href="../campaign-manager/" class="dropdown-item">Campaign Manager</a>
+</li>
+            
+<li>
+    <a href="../campaign-builder/" class="dropdown-item">Campaign Builder</a>
+</li>
     </ul>
   </li>
                                     
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Onboarding</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../onboarding/main-settings/" class="dropdown-item">Main settings</a>
+</li>
             
 <li>
     <a href="../../onboarding/user-info/" class="dropdown-item">User Info</a>
@@ -119,7 +131,11 @@
 </li>
             
 <li>
-    <a href="../../onboarding/sms-campaign/" class="dropdown-item">SMS Campaign</a>
+    <a href="../../onboarding/campaign/" class="dropdown-item">Campaign</a>
+</li>
+            
+<li>
+    <a href="../../onboarding/social-setup/" class="dropdown-item">Social Setup</a>
 </li>
     </ul>
   </li>
@@ -129,11 +145,11 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../campaigns/campaign-manager/" class="dropdown-item">Campaign Manager</a>
+    <a href="../../campaigns/social-campaign/" class="dropdown-item">Social Campaign</a>
 </li>
             
 <li>
-    <a href="../../campaigns/campaign-builder/" class="dropdown-item">Campaign Builder</a>
+    <a href="../../campaigns/email-campaign/" class="dropdown-item">Email Campaign</a>
 </li>
             
 <li>
@@ -141,7 +157,7 @@
 </li>
             
 <li>
-    <a href="../../campaigns/additional-sms-campaign/" class="dropdown-item">Additional SMS Campaign</a>
+    <a href="../../campaigns/find-campaign/" class="dropdown-item">Find Campaign</a>
 </li>
     </ul>
   </li>
@@ -195,12 +211,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../winners-manager/" class="nav-link">
+                                <a rel="prev" href="../staff-members/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../my-profile/" class="nav-link">
+                                <a rel="next" href="../short-link/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -226,47 +242,22 @@
         <ul class="nav flex-column">
             
             
-            <li class="nav-item" data-level="2"><a href="#add-staff-member" class="nav-link">Add staff Member</a>
+            <li class="nav-item" data-level="2"><a href="#general-info" class="nav-link">General Info</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#staff-members-table" class="nav-link">Staff Members Table</a>
+            <li class="nav-item" data-level="2"><a href="#subscription" class="nav-link">Subscription</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#table-actions" class="nav-link">Table Actions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#deactivate" class="nav-link">Deactivate</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#delete" class="nav-link">Delete</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#reactivate" class="nav-link">Reactivate</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#search" class="nav-link">Search</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#filter-by-date" class="nav-link">Filter by date</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#assign-destinationcampaign" class="nav-link">Assign destination/campaign</a>
+            <li class="nav-item" data-level="2"><a href="#logo" class="nav-link">Logo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#edit-staff-member" class="nav-link">Edit Staff Member</a>
+            <li class="nav-item" data-level="2"><a href="#social-media" class="nav-link">Social Media</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -275,192 +266,284 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="staff-members">Staff Members<a class="headerlink" href="#staff-members" title="Permanent link">🔗</a></h6>
-<p>Last known staff members mock up - <a href="https://projects.invisionapp.com/share/SVUOPET2KYG#/">invisionapp.</a>
-It gets general idea on how it should work, but design is a little bit changed.</p>
-<h2 id="add-staff-member">Add staff Member<a class="headerlink" href="#add-staff-member" title="Permanent link">🔗</a></h2>
-<p>Here we can create a short link for each employee. It should be used for promoting business via social post and sms messaging. You can choose a pin code for each staff member which will be used when a customer redeems an offer.</p>
-<p>In Staff members creation form you can also create short link by choosing domain and alias. More about creating short links <a href="../short-link/">here</a></p>
-<p>Pin code must be 4 characters.</p>
-<p>Route for creating staff member:</p>
-<pre><code>POST /v1/staff-members
-</code></pre>
-<p>JSON body:</p>
+<h6 id="my-profile">My Profile<a class="headerlink" href="#my-profile" title="Permanent link">🔗</a></h6>
+<p>My profile section could be reached from two places in portal: Side nav panel and top right Account Icon.</p>
+<p>My profile Section has four main sections.</p>
+<h2 id="general-info">General Info<a class="headerlink" href="#general-info" title="Permanent link">🔗</a></h2>
+<p><strong>NOTE:</strong> We do not send request to display general info of the user - we are getting it form Store. On login we recieve user's information and save it to Store.</p>
+<p>Example of user object: </p>
 <pre><code>{
-  active: true | false
-  domain: &quot;205.d.lnx.bz&quot;
-  firstName: &quot;test&quot;
-  jobDescription: &quot;test&quot;
-  lastName: &quot;test&quot;
-  pin: &quot;1234&quot;
-  shortLink: &quot;testtesttest&quot;
-  status: active | inactive
+  activeCampaigns: 0
+  address: &quot;NA&quot;
+  address1: null
+  avatarUrl: null
+  businessTypes: [{
+    id: 8,
+    name: &quot;Retail Stores &amp; Clubs&quot;
+  }]
+  city: &quot;Stamford&quot;
+  companyLogoUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/48/logo/7747763fbdc3f595adb3cfe5fd4d5ffcd093d3b8.png&quot;
+  companyName: &quot;Bab&quot;
+  defaultAdCategory: &quot;regular&quot;
+  domains: [{
+      id: 55,
+      domain: &quot;30.d.lnx.bz&quot;,
+      shorteners: [
+        &quot;https:\/\/30.d.lnx.bz\/rffef&quot;,
+        &quot;https:\/\/30.d.lnx.bz\/defmem-48&quot;,
+        &quot;https:\/\/30.d.lnx.bz\/cd9&quot;
+      ]
+    }],
+  email: &quot;as@lim.bz&quot;
+  enabledFbPageAccess: false
+  enabledInstagramAccess: false
+  fbBusinessPage: null
+  findCampaignId: 3257
+  firstLogin: false
+  firstName: &quot;Half&quot;
+  franchise: null
+  id: 48
+  instagramId: null
+  lastName: &quot;Café&quot;
+  leaderboardCampaignId: null
+  logoAspectRatio: &quot;companyLogo&quot;
+  logoBgColor: &quot;#ffffff&quot;
+  parent: null
+  phone: &quot;(111) 111-1111&quot;
+  plan: {
+    tag: &quot;paid&quot;,
+    slug: &quot;default-paid&quot;,
+    startsAt: &quot;2020-11-04T13:18:43+0000&quot;,
+    endsAt: &quot;2020-12-04T13:18:43+0000&quot;
+  }
+  roles: [&quot;ROLE_USER&quot;]
+  socialMedias: {
+    twitter: null,
+    facebook: null,
+    linkedin: null,
+    instagram: null
+  }
+  state: &quot;CT&quot;
+  tcAccepted: true
+  website: null
+  zip: &quot;06901&quot;
 }
 </code></pre>
-<p>Expected output: newly created Staff Member object</p>
-<p>The <strong>status</strong> switch is responsible for <code>active</code> boolean parameter.</p>
-<p>At this moment no matter what we always <code>status: active</code>.</p>
-<p>I guess backend is switching between <code>status: active | inactive</code> based on <strong>active</strong> field. We should consider changing it.</p>
-<h2 id="staff-members-table">Staff Members Table<a class="headerlink" href="#staff-members-table" title="Permanent link">🔗</a></h2>
-<p>Paginated list of all staff members.</p>
-<p>We refresh staff members table every <strong>20</strong> seconds.</p>
-<p>By default pagination is set to <strong>10</strong> records.</p>
-<p>All columns ARE NOT sortable at this time. ( though it would be nice to have this opportunity)</p>
-<p>ALL columns have filters inside the table BUT only first and last name is actually working at the backend side. We need to fix it.</p>
-<p>We use this route for getting staff members:</p>
-<pre><code>GET /v1/staff-members
+<p>Available fields to change in this section:</p>
+<ul>
+<li>
+<p>Email address for ad testing: <code>testingEmail: string</code></p>
+</li>
+<li>
+<p>First Name: <code>firstName: string</code></p>
+</li>
+<li>
+<p>Last Name: <code>lastName: string</code></p>
+</li>
+<li>
+<p>Company Name: <code>companyName: string</code></p>
+</li>
+<li>
+<p>Default Ad Category: <code>defaultAdCategory: number</code>. 
+As value we send id of the category</p>
+</li>
+</ul>
+<pre><code>{ title: 'Regular', id: 0 },
+{ title: 'Housing', id: 1 },
 </code></pre>
-<p>Optional parameters:</p>
-<pre><code>  with_deleted: 0 | 1 - by default always 0
-  dateTo: moment(chosenCustomDate).format('YYYY-MM-DD')
-  dateFrom: moment(chosenCustomDate).format('YYYY-MM-DD')
-</code></pre>
-<p><strong>dateTo</strong> and <strong>dateFrom</strong> option is available as a separated filter above the table.</p>
-<p><strong>NOTE</strong> AT THIS MOMENT FILTERING IS WORKING INCORRECT - it filters by creation date of staff member. BUT it should filter statistics of each staff member.</p>
-<p>Optional parameter for pagination:</p>
-<pre><code>  page: number;
-  itemsPerPage: number; - 5 | 10 | 15
-  showAllRecords: boolean;
-</code></pre>
-<p>Optional filter params: <code>filters[]=</code></p>
-<pre><code>  firstName: string;  - operand &quot;l&quot;
-  lastName: string;  - operand &quot;l&quot;
-  instagram: string;  - operand &quot;l&quot;
-  status: string;  - operand &quot;l&quot;
-  url: string;  - operand &quot;l&quot;
-  facebook: string;  - operand &quot;l&quot;
-  leads: string;  - operand &quot;l&quot;
-  rdms: string;  - operand &quot;l&quot;
-  www: string;  - operand &quot;l&quot;
+<ul>
+<li>Business Type: <code>businessTypes: number[]</code>.
+As element of the array we send id of chosen business type. At this moment it is single select.
+We get list of available business types:</li>
+</ul>
+<pre><code>GET /v1/business-types
 </code></pre>
 <p>Expected output:</p>
-<pre><code>{
-  data: [
+<pre><code>[
     {
-      createdAt: &quot;2021-01-04T11:12:57+00:00&quot;
-      firstName: &quot;Test&quot;
-      id: 306
-      isDeleted: false
-      jobDescription: &quot;test&quot;
-      lastName: &quot;test&quot;
-      pin: &quot;8787&quot;
-      redeemedPrizesCount: 0
-      shortener: [
-        {
-          alias: &quot;test2021&quot;
-          campaign: {id: 3355, name: &quot;SMS Campaign&quot;, url: &quot;https://256.d.lnx.bz/2021&quot;}
-          createdAt: &quot;2021-01-04T11:12:57+0000&quot;
-          description: &quot;Default staff member shortlink&quot;
-          domain: &quot;256.d.lnx.bz&quot;
-          id: 2280
-          imageTitle: null
-          imageUrl: null
-          stats: {
-            facebook: 0,
-            instagram: 0,
-            sms: 0,
-            www: 0,
-            leads: 0,
-            rdms: 0
-          }
-        }
-      ]
-      status: &quot;inactive&quot;
+        id: number
+        name: string
     },
-    ...
-  ],
-  state: {
-    fields: []
-    filterBy: null
-    filterValue: null
-    filters: []
-    itemsCount: 10
-    itemsPerPage: 10
-    joins: []
-    page: 1
-    showAllRecords: false
-    sortBy: null
-    sortDesc: false
-    totalItems: 45
-    totalPages: 5
-  }
+]
+</code></pre>
+<ul>
+<li>
+<p>Phone number: <code>phone: string</code></p>
+</li>
+<li>
+<p>Website: <code>website: string</code></p>
+</li>
+<li>
+<p>Address: <code>address: string</code></p>
+</li>
+<li>
+<p>Address 2: <code>address1: string</code></p>
+</li>
+<li>
+<p>Zip: <code>zip: string | number</code></p>
+</li>
+<li>
+<p>State: <code>state: string</code></p>
+</li>
+<li>
+<p>City: <code>city: string</code></p>
+</li>
+</ul>
+<p>For filling in State, Zip and City on the front end side we use here.maps api for autocomplete input.</p>
+<p>On "Save" we send request to </p>
+<pre><code>PUT /v1/users/${userId}
+</code></pre>
+<p>In params we send whole user object. </p>
+<p>Expected output - updated user object. We save it to Store.</p>
+<h4 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">🔗</a></h4>
+<p>In this section we also can <strong>Change Password</strong>. On click - the new modal with fields will open.</p>
+<p>The current password is required.</p>
+<p>The route for change of password:</p>
+<pre><code>POST /v1/users/${id}/changePassword
+</code></pre>
+<p>As parameter we send: </p>
+<pre><code>oldPassword: &quot;11111111&quot;
+newPassword: &quot;12345678&quot;
+</code></pre>
+<p>New password must be at least 8 characters long.</p>
+<p>Expected output:</p>
+<pre><code>{
+  password_changed: [true]
 }
 </code></pre>
-<p>Each row represents one staff member. Clicking on each row you will be able to edit staff member.</p>
-<h2 id="table-actions">Table Actions<a class="headerlink" href="#table-actions" title="Permanent link">🔗</a></h2>
-<p>Table actions available above the table.</p>
-<h3 id="deactivate">Deactivate<a class="headerlink" href="#deactivate" title="Permanent link">🔗</a></h3>
-<p>We can choose all staff members or choose individually by checkbox at each row. This action will change the status of staff member to <code>inactive</code>.</p>
-<p><strong>NOTE</strong> if you choose staff member with status already <code>inactive</code> - you will not be able to proceed.</p>
-<pre><code>POST /v1/staff-members/deactivate
-</code></pre>
-<p>JSON body:</p>
-<pre><code>ids: [ 1, 2 ]
-</code></pre>
-<p>Expected output - array with changed short links objects.</p>
-<h3 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link">🔗</a></h3>
-<p>We can choose all staff members or choose individually by checkbox at each row.</p>
-<pre><code>POST /v1/staff-members/delete
-</code></pre>
-<p>JSON body:</p>
-<pre><code>ids: [ 1, 2 ]
+<h2 id="subscription">Subscription<a class="headerlink" href="#subscription" title="Permanent link">🔗</a></h2>
+<p>At the real begining we are sending two requests to obtain information about user's subscription.</p>
+<p>1) Does user has any saved credit cards</p>
+<pre><code>GET /v1/users/${userID}/cards
 </code></pre>
 <p>Expected output:</p>
 <pre><code>[
   {
-    deleted: true
-    id: 1
-  },
-  {
-    deleted: true
-    id: 2
+    brand: &quot;visa&quot;
+    country: &quot;US&quot;
+    expMonth: 4
+    expYear: 2024
+    last4: &quot;4242&quot;
+    paymentMethodId: &quot;pm_1HJg1xDTu2PET25E8Z8oOxpE&quot;
+    threeDS: true
   }
 ]
 </code></pre>
-<h3 id="reactivate">Reactivate<a class="headerlink" href="#reactivate" title="Permanent link">🔗</a></h3>
-<p>We can choose all staff members or choose individually by checkbox at each row. This action will change the status of staff member to <code>active</code>.</p>
-<p><strong>NOTE</strong> if you choose staff member with status already <code>active</code> - you will not be able to proceed.</p>
-<pre><code>POST /v1/staff-members/activate
+<p>2) Information about current user subscription</p>
+<pre><code>GET /v1/stripe/subscription
 </code></pre>
-<p>JSON body:</p>
-<pre><code>ids: [ 1, 2 ]
-</code></pre>
-<p>Expected output - array with changed short links objects.</p>
-<h3 id="search">Search<a class="headerlink" href="#search" title="Permanent link">🔗</a></h3>
-<p>At this moment Search input is not doing anything. And we don't know what should it do.</p>
-<h3 id="filter-by-date">Filter by date<a class="headerlink" href="#filter-by-date" title="Permanent link">🔗</a></h3>
-<p>For filters we use optional query parameters:</p>
-<pre><code>  dateTo: moment(chosenCustomDate).format('YYYY-MM-DD')
-  dateFrom: moment(chosenCustomDate).format('YYYY-MM-DD')
-</code></pre>
-<p><strong>dateFrom</strong> - at this moment set to 15 days past.</p>
-<p><strong>NOTE</strong> AT THIS MOMENT FILTERING IS WORKING INCORRECT - it filters by creation date of staff member. BUT it should filter statistics of each staff member.</p>
-<h2 id="assign-destinationcampaign">Assign destination/campaign<a class="headerlink" href="#assign-destinationcampaign" title="Permanent link">🔗</a></h2>
-<p>Here we can assign to each Staff Member specific campaign link for traffic.</p>
-<p><strong>I don't really know what is it about - will be clarified later</strong></p>
-<p>Single select field. Here we choose which campaign will be assigned.</p>
-<p>If no Staff member is chosen - by default we will assign chosen campaign to ALL staff members.</p>
-<p>We can choose all staff members or choose individually by checkbox at each row. </p>
-<p>For the options we send request to get all users campaigns:</p>
-<pre><code>GET /v1/campaigns?page=1&amp;showAllRecords=1
-</code></pre>
-<p>It will return all campaigns of user. After selections we get <code>campaignId</code> as a property of new Short Link.</p>
-<p>For assigning campaign to staff member:</p>
-<pre><code>POST /v1/staff-members/destination
-</code></pre>
-<p>JSON body</p>
-<pre><code>  {
-    campaignId: number
-    ids: [1, 2]
+<p>Expected output:</p>
+<p>200:</p>
+<pre><code>{
+  canceledAt: null
+  created: &quot;2020-12-01T12:46:21+00:00&quot;
+  currentPeriodEnd: &quot;2021-04-01T12:46:21+00:00&quot;
+  currentPeriodStart: &quot;2021-03-01T12:46:21+00:00&quot;
+  endedAt: null
+  expiresAt: null
+  plan: {
+    id: &quot;membership_monthly&quot;
+    nickname: &quot;Monthly Membership&quot;
   }
+  status: &quot;active&quot; | &quot;expires&quot;
+  trialEnd: null
+  trialStart: null
+}
 </code></pre>
-<p>Expected output: <code>{}</code> - maybe we should change it.</p>
-<h2 id="edit-staff-member">Edit Staff Member<a class="headerlink" href="#edit-staff-member" title="Permanent link">🔗</a></h2>
-<p>By click on each row the Edit modal will pop up.</p>
-<p>we have all options as in the (Add Staff member)[#add-staff-member]</p>
-<p>The route for editing staff member:</p>
-<pre><code>PUT /v1/staff-members/staffMemberId
-</code></pre></div>
+<p><strong>OR</strong></p>
+<p>403: </p>
+<pre><code>{
+  security: [&quot;Action is denied!&quot;]
+}
+
+</code></pre>
+<p>Expected output 200 - subscription objects with property <code>status: 'expires'</code>.</p>
+<p>Please note - we can use current subscription with status <strong>expires</strong> till the end of the current period.</p>
+<p>We can also reactivate subscription.</p>
+<p>If subscription ended - we will get 403. We still have an oppoptrunitey to activate subbscription, but we will not be able to use paid functions unless we do it.</p>
+<h4 id="cancelation">Cancelation<a class="headerlink" href="#cancelation" title="Permanent link">🔗</a></h4>
+<p>If the status of the subscription is <strong>active</strong> - we can cancel subscription:</p>
+<pre><code>DELETE /v1/stripe/subscription/cancel
+</code></pre>
+<h4 id="activation">Activation<a class="headerlink" href="#activation" title="Permanent link">🔗</a></h4>
+<p>If the status of the subscription is <strong>expires</strong> or we get 403 - we can activate subscription.</p>
+<p>On user subscription, it is required to provide plan slug or ID to which Plan user is willin to opt in:</p>
+<pre><code>POST /v1/stripe/subscribe
+
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+    paymentMethodId?: &quot;pm_xxxxxxxxxxxx&quot;,
+    plan: &quot;my-plan-slug&quot;
+    code?: &quot;my-promo-code&quot;
+}
+</code></pre>
+<p>If there is <code>code</code> param - <code>paymentMethodId</code> is not required and the other way around.</p>
+<p>Expected output: </p>
+<pre><code>{
+  plan: { &lt;wholePlanObject&gt;}
+  subscription: {
+    status: &quot;active&quot;
+  }
+}
+</code></pre>
+<p><strong>NOTE</strong>  If there is no credit card saved - we first need to save credit card and get its <code>paymentMethodId</code>:</p>
+<p>We do so useing stripe plugin inner function:</p>
+<pre><code>POST https://api.stripe.com/v1/payment_methods
+</code></pre>
+<p>We do not send request to get available plant for the user - we are getting it form Store. On login we recieve available plans and save them to Store.</p>
+<h2 id="logo">Logo<a class="headerlink" href="#logo" title="Permanent link">🔗</a></h2>
+<p>Logo edition - is a separated modal.</p>
+<p>When we upload a new logo image we send binary images to:</p>
+<pre><code>POST /v1/upload/users/${userId}/logo
+</code></pre>
+<p>Request JSON body:</p>
+<pre><code>{
+    image: (binary)
+    original: (binary)
+}
+</code></pre>
+<p>Expected output: </p>
+<pre><code>{
+  imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/555/logo/be0d759ed5addaebc8cb4e7fdae73e88c69d2d7a.png&quot;
+}
+</code></pre>
+<p>On click <strong>Confirm</strong> - we send request to update user. <a href="#general-info">Update user info</a></p>
+<p>In this section we can change such properties:</p>
+<ul>
+<li>
+<p>Backgroud color: <code>logoBgColor: '#ffffff' | '#000000'</code></p>
+</li>
+<li>
+<p>Logo shape: <code>logoAspectRatio: 'companyLogo' | 'profile'</code></p>
+</li>
+<li>
+<p>Image logo url: <code>companyLogoUrl: string</code></p>
+</li>
+<li>
+<p>Company Name:  <code>companyName: string</code></p>
+</li>
+</ul>
+<h2 id="social-media">Social Media<a class="headerlink" href="#social-media" title="Permanent link">🔗</a></h2>
+<p>This is section where we can manage Social media links and ids.</p>
+<p>On save we send request to update user. <a href="#general-info">Update user info</a></p>
+<p>In this section we can change such properties:</p>
+<ul>
+<li>
+<p>Facebook Business id: <code>fbBusinessPage: null | string</code></p>
+</li>
+<li>
+<p>Instagram Business id: <code>instagramId: null | string</code></p>
+</li>
+<li>
+<p>Social media links: <code>socialMedias: {
+    facebook: null | string,
+    instagram: null | string,
+    twitter: null | string,
+    linkedin: null | string,
+  };</code></p>
+</li>
+</ul></div>
             </div>
         </div>
 

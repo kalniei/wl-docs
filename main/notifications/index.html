@@ -8,7 +8,7 @@
         <meta name="author" content="Olia Kalniei">
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>My Profile - WinLocal - dokumentation</title>
+        <title>Notifications - WinLocal - dokumentation</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -69,7 +69,7 @@
   </li>
                                     
   <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Main User Functionalities</a>
+    <a href="#" class="dropdown-item">Main Functionalities</a>
     <ul class="dropdown-menu">
             
 <li>
@@ -93,7 +93,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">My Profile</a>
+    <a href="../my-profile/" class="dropdown-item">My Profile</a>
 </li>
             
 <li>
@@ -101,7 +101,15 @@
 </li>
             
 <li>
-    <a href="../notifications/" class="dropdown-item">Notifications</a>
+    <a href="./" class="dropdown-item active">Notifications</a>
+</li>
+            
+<li>
+    <a href="../campaign-manager/" class="dropdown-item">Campaign Manager</a>
+</li>
+            
+<li>
+    <a href="../campaign-builder/" class="dropdown-item">Campaign Builder</a>
 </li>
     </ul>
   </li>
@@ -109,6 +117,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Onboarding</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../onboarding/main-settings/" class="dropdown-item">Main settings</a>
+</li>
             
 <li>
     <a href="../../onboarding/user-info/" class="dropdown-item">User Info</a>
@@ -119,7 +131,11 @@
 </li>
             
 <li>
-    <a href="../../onboarding/sms-campaign/" class="dropdown-item">SMS Campaign</a>
+    <a href="../../onboarding/campaign/" class="dropdown-item">Campaign</a>
+</li>
+            
+<li>
+    <a href="../../onboarding/social-setup/" class="dropdown-item">Social Setup</a>
 </li>
     </ul>
   </li>
@@ -129,11 +145,11 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../campaigns/campaign-manager/" class="dropdown-item">Campaign Manager</a>
+    <a href="../../campaigns/social-campaign/" class="dropdown-item">Social Campaign</a>
 </li>
             
 <li>
-    <a href="../../campaigns/campaign-builder/" class="dropdown-item">Campaign Builder</a>
+    <a href="../../campaigns/email-campaign/" class="dropdown-item">Email Campaign</a>
 </li>
             
 <li>
@@ -141,7 +157,7 @@
 </li>
             
 <li>
-    <a href="../../campaigns/additional-sms-campaign/" class="dropdown-item">Additional SMS Campaign</a>
+    <a href="../../campaigns/find-campaign/" class="dropdown-item">Find Campaign</a>
 </li>
     </ul>
   </li>
@@ -195,12 +211,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../staff-members/" class="nav-link">
+                                <a rel="prev" href="../short-link/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../short-link/" class="nav-link">
+                                <a rel="next" href="../campaign-manager/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -225,23 +241,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            
-            <li class="nav-item" data-level="2"><a href="#general-info" class="nav-link">General Info</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#subscription" class="nav-link">Subscription</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#logo" class="nav-link">Logo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#social-media" class="nav-link">Social Media</a>
+            <li class="nav-item" data-level="1"><a href="#notifications" class="nav-link">Notifications</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -250,284 +250,32 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="my-profile">My Profile<a class="headerlink" href="#my-profile" title="Permanent link">🔗</a></h6>
-<p>My profile section could be reached from two places in portal: Side nav panel and top right Account Icon.</p>
-<p>My profile Section has four main sections.</p>
-<h2 id="general-info">General Info<a class="headerlink" href="#general-info" title="Permanent link">🔗</a></h2>
-<p><strong>NOTE:</strong> We do not send request to display general info of the user - we are getting it form Store. On login we recieve user's information and save it to Store.</p>
-<p>Example of user object: </p>
-<pre><code>{
-  activeCampaigns: 0
-  address: &quot;NA&quot;
-  address1: null
-  avatarUrl: null
-  businessTypes: [{
-    id: 8,
-    name: &quot;Retail Stores &amp; Clubs&quot;
-  }]
-  city: &quot;Stamford&quot;
-  companyLogoUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/48/logo/7747763fbdc3f595adb3cfe5fd4d5ffcd093d3b8.png&quot;
-  companyName: &quot;Bab&quot;
-  defaultAdCategory: &quot;regular&quot;
-  domains: [{
-      id: 55,
-      domain: &quot;30.d.lnx.bz&quot;,
-      shorteners: [
-        &quot;https:\/\/30.d.lnx.bz\/rffef&quot;,
-        &quot;https:\/\/30.d.lnx.bz\/defmem-48&quot;,
-        &quot;https:\/\/30.d.lnx.bz\/cd9&quot;
-      ]
-    }],
-  email: &quot;as@lim.bz&quot;
-  enabledFbPageAccess: false
-  enabledInstagramAccess: false
-  fbBusinessPage: null
-  findCampaignId: 3257
-  firstLogin: false
-  firstName: &quot;Half&quot;
-  franchise: null
-  id: 48
-  instagramId: null
-  lastName: &quot;Café&quot;
-  leaderboardCampaignId: null
-  logoAspectRatio: &quot;companyLogo&quot;
-  logoBgColor: &quot;#ffffff&quot;
-  parent: null
-  phone: &quot;(111) 111-1111&quot;
-  plan: {
-    tag: &quot;paid&quot;,
-    slug: &quot;default-paid&quot;,
-    startsAt: &quot;2020-11-04T13:18:43+0000&quot;,
-    endsAt: &quot;2020-12-04T13:18:43+0000&quot;
-  }
-  roles: [&quot;ROLE_USER&quot;]
-  socialMedias: {
-    twitter: null,
-    facebook: null,
-    linkedin: null,
-    instagram: null
-  }
-  state: &quot;CT&quot;
-  tcAccepted: true
-  website: null
-  zip: &quot;06901&quot;
-}
-</code></pre>
-<p>Available fields to change in this section:</p>
-<ul>
-<li>
-<p>Email address for ad testing: <code>testingEmail: string</code></p>
-</li>
-<li>
-<p>First Name: <code>firstName: string</code></p>
-</li>
-<li>
-<p>Last Name: <code>lastName: string</code></p>
-</li>
-<li>
-<p>Company Name: <code>companyName: string</code></p>
-</li>
-<li>
-<p>Default Ad Category: <code>defaultAdCategory: number</code>. 
-As value we send id of the category</p>
-</li>
-</ul>
-<pre><code>{ title: 'Regular', id: 0 },
-{ title: 'Housing', id: 1 },
-</code></pre>
-<ul>
-<li>Business Type: <code>businessTypes: number[]</code>.
-As element of the array we send id of chosen business type. At this moment it is single select.
-We get list of available business types:</li>
-</ul>
-<pre><code>GET /v1/business-types
-</code></pre>
-<p>Expected output:</p>
-<pre><code>[
-    {
-        id: number
-        name: string
-    },
-]
-</code></pre>
-<ul>
-<li>
-<p>Phone number: <code>phone: string</code></p>
-</li>
-<li>
-<p>Website: <code>website: string</code></p>
-</li>
-<li>
-<p>Address: <code>address: string</code></p>
-</li>
-<li>
-<p>Address 2: <code>address1: string</code></p>
-</li>
-<li>
-<p>Zip: <code>zip: string | number</code></p>
-</li>
-<li>
-<p>State: <code>state: string</code></p>
-</li>
-<li>
-<p>City: <code>city: string</code></p>
-</li>
-</ul>
-<p>For filling in State, Zip and City on the front end side we use here.maps api for autocomplete input.</p>
-<p>On "Save" we send request to </p>
-<pre><code>PUT /v1/users/${userId}
-</code></pre>
-<p>In params we send whole user object. </p>
-<p>Expected output - updated user object. We save it to Store.</p>
-<h4 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">🔗</a></h4>
-<p>In this section we also can <strong>Change Password</strong>. On click - the new modal with fields will open.</p>
-<p>The current password is required.</p>
-<p>The route for change of password:</p>
-<pre><code>POST /v1/users/${id}/changePassword
-</code></pre>
-<p>As parameter we send: </p>
-<pre><code>oldPassword: &quot;11111111&quot;
-newPassword: &quot;12345678&quot;
-</code></pre>
-<p>New password must be at least 8 characters long.</p>
-<p>Expected output:</p>
-<pre><code>{
-  password_changed: [true]
-}
-</code></pre>
-<h2 id="subscription">Subscription<a class="headerlink" href="#subscription" title="Permanent link">🔗</a></h2>
-<p>At the real begining we are sending two requests to obtain information about user's subscription.</p>
-<p>1) Does user has any saved credit cards</p>
-<pre><code>GET /v1/users/${userID}/cards
+<h1 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">🔗</a></h1>
+<p>We send Notification request on user login.</p>
+<pre><code>GET /v1/notifications
 </code></pre>
 <p>Expected output:</p>
 <pre><code>[
   {
-    brand: &quot;visa&quot;
-    country: &quot;US&quot;
-    expMonth: 4
-    expYear: 2024
-    last4: &quot;4242&quot;
-    paymentMethodId: &quot;pm_1HJg1xDTu2PET25E8Z8oOxpE&quot;
-    threeDS: true
+    body: &quot;There is an issue with your Win Local Campaign.&quot;
+    createdAt: &quot;2019-07-26T12:48:15+0000&quot;
+    id: 5
+    status: &quot;new&quot;
   }
 ]
 </code></pre>
-<p>2) Information about current user subscription</p>
-<pre><code>GET /v1/stripe/subscription
-</code></pre>
-<p>Expected output:</p>
-<p>200:</p>
-<pre><code>{
-  canceledAt: null
-  created: &quot;2020-12-01T12:46:21+00:00&quot;
-  currentPeriodEnd: &quot;2021-04-01T12:46:21+00:00&quot;
-  currentPeriodStart: &quot;2021-03-01T12:46:21+00:00&quot;
-  endedAt: null
-  expiresAt: null
-  plan: {
-    id: &quot;membership_monthly&quot;
-    nickname: &quot;Monthly Membership&quot;
-  }
-  status: &quot;active&quot; | &quot;expires&quot;
-  trialEnd: null
-  trialStart: null
-}
-</code></pre>
-<p><strong>OR</strong></p>
-<p>403: </p>
-<pre><code>{
-  security: [&quot;Action is denied!&quot;]
-}
+<p>If there are any notifications we show notification Icon near User Icon at the top right corner on each page header.</p>
+<p>Click on this icon will get us to Notification page.</p>
+<p>We are able to archive chosen notification by sending:</p>
+<pre><code>PUT /v1/notifications/${notificationId}
 
 </code></pre>
-<p>Expected output 200 - subscription objects with property <code>status: 'expires'</code>.</p>
-<p>Please note - we can use current subscription with status <strong>expires</strong> till the end of the current period.</p>
-<p>We can also reactivate subscription.</p>
-<p>If subscription ended - we will get 403. We still have an oppoptrunitey to activate subbscription, but we will not be able to use paid functions unless we do it.</p>
-<h4 id="cancelation">Cancelation<a class="headerlink" href="#cancelation" title="Permanent link">🔗</a></h4>
-<p>If the status of the subscription is <strong>active</strong> - we can cancel subscription:</p>
-<pre><code>DELETE /v1/stripe/subscription/cancel
-</code></pre>
-<h4 id="activation">Activation<a class="headerlink" href="#activation" title="Permanent link">🔗</a></h4>
-<p>If the status of the subscription is <strong>expires</strong> or we get 403 - we can activate subscription.</p>
-<p>On user subscription, it is required to provide plan slug or ID to which Plan user is willin to opt in:</p>
-<pre><code>POST /v1/stripe/subscribe
-
-</code></pre>
-<p>Request JSON body:</p>
+<p>with JSON body:</p>
 <pre><code>{
-    paymentMethodId?: &quot;pm_xxxxxxxxxxxx&quot;,
-    plan: &quot;my-plan-slug&quot;
-    code?: &quot;my-promo-code&quot;
+  status: 'archived'
 }
 </code></pre>
-<p>If there is <code>code</code> param - <code>paymentMethodId</code> is not required and the other way around.</p>
-<p>Expected output: </p>
-<pre><code>{
-  plan: { &lt;wholePlanObject&gt;}
-  subscription: {
-    status: &quot;active&quot;
-  }
-}
-</code></pre>
-<p><strong>NOTE</strong>  If there is no credit card saved - we first need to save credit card and get its <code>paymentMethodId</code>:</p>
-<p>We do so useing stripe plugin inner function:</p>
-<pre><code>POST https://api.stripe.com/v1/payment_methods
-</code></pre>
-<p>We do not send request to get available plant for the user - we are getting it form Store. On login we recieve available plans and save them to Store.</p>
-<h2 id="logo">Logo<a class="headerlink" href="#logo" title="Permanent link">🔗</a></h2>
-<p>Logo edition - is a separated modal.</p>
-<p>When we upload a new logo image we send binary images to:</p>
-<pre><code>POST /v1/upload/users/${userId}/logo
-</code></pre>
-<p>Request JSON body:</p>
-<pre><code>{
-    image: (binary)
-    original: (binary)
-}
-</code></pre>
-<p>Expected output: </p>
-<pre><code>{
-  imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/555/logo/be0d759ed5addaebc8cb4e7fdae73e88c69d2d7a.png&quot;
-}
-</code></pre>
-<p>On click <strong>Confirm</strong> - we send request to update user. <a href="#general-info">Update user info</a></p>
-<p>In this section we can change such properties:</p>
-<ul>
-<li>
-<p>Backgroud color: <code>logoBgColor: '#ffffff' | '#000000'</code></p>
-</li>
-<li>
-<p>Logo shape: <code>logoAspectRatio: 'companyLogo' | 'profile'</code></p>
-</li>
-<li>
-<p>Image logo url: <code>companyLogoUrl: string</code></p>
-</li>
-<li>
-<p>Company Name:  <code>companyName: string</code></p>
-</li>
-</ul>
-<h2 id="social-media">Social Media<a class="headerlink" href="#social-media" title="Permanent link">🔗</a></h2>
-<p>This is section where we can manage Social media links and ids.</p>
-<p>On save we send request to update user. <a href="#general-info">Update user info</a></p>
-<p>In this section we can change such properties:</p>
-<ul>
-<li>
-<p>Facebook Business id: <code>fbBusinessPage: null | string</code></p>
-</li>
-<li>
-<p>Instagram Business id: <code>instagramId: null | string</code></p>
-</li>
-<li>
-<p>Social media links: <code>socialMedias: {
-    facebook: null | string,
-    instagram: null | string,
-    twitter: null | string,
-    linkedin: null | string,
-  };</code></p>
-</li>
-</ul></div>
+<p>At this moment as far as I know notifications are turned off. Need to bring it back.</p></div>
             </div>
         </div>
 
