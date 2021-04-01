@@ -246,7 +246,7 @@ DELETE /v1/stripe/subscription/cancel
 If the status of the subscription is **expires** or we get 403 - we can activate subscription.
 
 
-On user subscription, it is required to provide plan slug or ID to which Plan user is willin to opt in:
+On user subscription, it is required to provide plan slug or ID to which Plan user is willing to subscribe.
 
 ```
 POST /v1/stripe/subscribe
