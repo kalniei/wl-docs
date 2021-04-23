@@ -131,7 +131,7 @@
 </li>
             
 <li>
-    <a href="../campaign/" class="dropdown-item">Campaign</a>
+    <a href="../campaign.md" class="dropdown-item">Campaign</a>
 </li>
             
 <li>
@@ -241,13 +241,129 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#user-info" class="nav-link">User info</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="user-info">User info<a class="headerlink" href="#user-info" title="Permanent link">🔗</a></h6>
-<p>lorem</p></div>
+<h1 id="user-info">User info<a class="headerlink" href="#user-info" title="Permanent link">🔗</a></h1>
+<p>Here we can fill personal user info.
+We are getting user object form Store and if user has some information - we autofill.</p>
+<p>Example of user object: </p>
+<pre><code>{
+  activeCampaigns: 0
+  address: &quot;NA&quot;
+  address1: null
+  avatarUrl: null
+  businessTypes: [{
+    id: 8,
+    name: &quot;Retail Stores &amp; Clubs&quot;
+  }]
+  city: &quot;Stamford&quot;
+  companyLogoUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/users/48/logo/7747763fbdc3f595adb3cfe5fd4d5ffcd093d3b8.png&quot;
+  companyName: &quot;Bab&quot;
+  defaultAdCategory: &quot;regular&quot;
+  domains: [{
+      id: 55,
+      domain: &quot;30.d.lnx.bz&quot;,
+      shorteners: [
+        &quot;https:\/\/30.d.lnx.bz\/rffef&quot;,
+        &quot;https:\/\/30.d.lnx.bz\/defmem-48&quot;,
+        &quot;https:\/\/30.d.lnx.bz\/cd9&quot;
+      ]
+    }],
+  email: &quot;as@lim.bz&quot;
+  enabledFbPageAccess: false
+  enabledInstagramAccess: false
+  fbBusinessPage: null
+  findCampaignId: 3257
+  firstLogin: false
+  firstName: &quot;Half&quot;
+  franchise: null
+  id: 48
+  instagramId: null
+  lastName: &quot;Café&quot;
+  leaderboardCampaignId: null
+  logoAspectRatio: &quot;companyLogo&quot;
+  logoBgColor: &quot;#ffffff&quot;
+  parent: null
+  phone: &quot;(111) 111-1111&quot;
+  plan: {
+    tag: &quot;paid&quot;,
+    slug: &quot;default-paid&quot;,
+    startsAt: &quot;2020-11-04T13:18:43+0000&quot;,
+    endsAt: &quot;2020-12-04T13:18:43+0000&quot;
+  }
+  roles: [&quot;ROLE_USER&quot;]
+  socialMedias: {
+    twitter: null,
+    facebook: null,
+    linkedin: null,
+    instagram: null
+  }
+  state: &quot;CT&quot;
+  tcAccepted: true
+  website: null
+  zip: &quot;06901&quot;
+}
+</code></pre>
+<p>Available fields to change in this section:</p>
+<ul>
+<li>
+<p>First Name: <code>firstName: string</code></p>
+</li>
+<li>
+<p>Last Name: <code>lastName: string</code></p>
+</li>
+<li>
+<p>Business Name: <code>companyName: string</code></p>
+</li>
+<li>
+<p>Business Type: <code>businessTypes: number[]</code>.
+As element of the array we send id of chosen business type. At this moment it is single select.
+We get list of available business types:</p>
+</li>
+</ul>
+<pre><code>GET /v1/business-types
+</code></pre>
+<p>Expected output:</p>
+<pre><code>[
+    {
+        id: number
+        name: string
+    },
+]
+</code></pre>
+<ul>
+<li>
+<p>Phone number: <code>phone: string</code></p>
+</li>
+<li>
+<p>Acceptance of terms and conditions: <code>acceptTerms: boolean</code></p>
+</li>
+<li>
+<p>Address: <code>address: string</code></p>
+</li>
+<li>
+<p>Zip: <code>zip: string | number</code></p>
+</li>
+<li>
+<p>State: <code>state: string</code></p>
+</li>
+<li>
+<p>City: <code>city: string</code></p>
+</li>
+</ul>
+<p>For filling in State, Zip and City on the front end side we use here.maps api for autocomplete input.</p>
+<p>On "Save" we send request to </p>
+<pre><code>PUT /v1/users/${userId}
+</code></pre>
+<p>In params we send whole user object. </p>
+<p>Expected output - updated user object. We save it to Store.</p></div>
             </div>
         </div>
 

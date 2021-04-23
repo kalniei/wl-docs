@@ -131,7 +131,7 @@
 </li>
             
 <li>
-    <a href="../../onboarding/campaign/" class="dropdown-item">Campaign</a>
+    <a href="../../onboarding/campaign.md" class="dropdown-item">Campaign</a>
 </li>
             
 <li>
@@ -241,13 +241,290 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#campaign-manager" class="nav-link">Campaign Manager</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#campaign-report" class="nav-link">Campaign Report</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#edit-campaign" class="nav-link">Edit Campaign</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h6 id="campaign-manager">Campaign Manager<a class="headerlink" href="#campaign-manager" title="Permanent link">🔗</a></h6>
-<p>lorem</p></div>
+<h1 id="campaign-manager">Campaign Manager<a class="headerlink" href="#campaign-manager" title="Permanent link">🔗</a></h1>
+<p>In this view we can see all campaigns, added by user.</p>
+<p>Endpoint for campaigns table: </p>
+<pre><code>GET /v1/campaigns?stats=basic
+</code></pre>
+<p>This endpoint accept all pagination, sorting and filtration rules available.</p>
+<p>Expected outcome:</p>
+<pre><code>{
+  data: [
+    {
+      adBuilder: []
+      amount: 10000
+      contactListIds: []
+      created_at: &quot;2021-03-22T09:57:53+0000&quot;
+      customLink: null
+      emailTemplate: []
+      endDate: &quot;2021-04-10T21:59:59+0000&quot;
+      footerText: null
+      gameUrl: &quot;https://205.d.lnx.bz/d69&quot;
+      geoCity: null
+      geoLat: null
+      geoLong: null
+      geoRadius: null
+      geoState: null
+      geoZip: null
+      id: 3433
+      isProcessingContacts: false
+      keyword: null
+      logoUrl: null
+      managerAvatar: null
+      maxCostPerDay: 1111
+      name: &quot;test end date&quot;
+      peopleTargetingQty: 0
+      priceType: &quot;fixed&quot;
+      prizeTypes: []
+      selectedGames: []
+      startDate: &quot;2021-03-31T22:00:00+0000&quot;
+      stats: {
+        basic: {
+          clientPrizeRewards: {
+            accepted: &quot;0&quot;
+            redeemed: &quot;0&quot;
+          }
+          newEmails: 0
+          newPhones: 0
+          noOfContacts: 0
+          submits: 0
+          views: 0
+          wlPrizeRewards: {
+            accepted: &quot;0&quot;
+            redeemed: &quot;0&quot;
+          }
+        }
+      }
+      status: &quot;draft&quot;
+      targetAllContacts: true
+      targetingType: &quot;contacts&quot;
+      totalContacts: 0
+      type: &quot;social&quot;
+      updated_at: &quot;2021-03-22T13:07:28+0000&quot;
+      useDefaultPrizes: tr`
+
+  ],
+  state: {
+    fields: []
+    filterBy: null
+    filterValue: null
+    filters: []
+    itemsCount: 10
+    itemsPerPage: 10
+    joins: []
+    page: 1
+    showAllRecords: false
+    sortBy: null
+    sortDesc: false
+    totalItems: 55
+    totalPages: 6
+  }
+}
+</code></pre>
+<p>Optional query parameter for pagination:</p>
+<pre><code>  page: number;
+  itemsPerPage: number; - 5 | 10 | 15
+  showAllRecords: boolean;
+  sortBy: string;
+  sortDesc: boolean;
+</code></pre>
+<p>We refresh campaigns reporting table every <strong>20</strong> seconds.</p>
+<p>By default pagination is set to <strong>10</strong> records.</p>
+<p>By default this table is neither sorted nor filtered.</p>
+<p>Campaign Table headers:</p>
+<pre><code>  **Campaign Name**: 'name'
+  **Campaign Type**: 'type'
+  **Status**: 'status'
+  **Date Created**: 'created_at'
+  **End Date**: 'endDate'
+  **Active PPL**: 'noOfContacts'
+  **New Contacts**: 'newContacts'
+</code></pre>
+<p>We do not have ( at least now ) filters and sorting options in this table on fornt end side. Though we can filter campaigns by name adding this filter: <code>filters[]: name,l,test</code>.</p>
+<p>In each row we have two actions available: edit campaign and show Report.</p>
+<h2 id="campaign-report">Campaign Report<a class="headerlink" href="#campaign-report" title="Permanent link">🔗</a></h2>
+<p>On Report click we show Single Campaign Report in a popup.</p>
+<pre><code>GET /v1/campaigns/${campaignId}?stats=all
+</code></pre>
+<p>Expected outcome - full campaign object with stats.</p>
+<p>There is no point of prezenting campaign object, cause properties might be different, depending on campaign type.</p>
+<p>And in a popup we show the report modal of the campaign.</p>
+<p>Depending on type of the campaign we see different things in the popup.</p>
+<p><strong>SOCIAL Campaign</strong></p>
+<p>On the left part there is a preview of the Facebook ( as default ) ad. We can switch to Instagram preview.</p>
+<p>On the right part we can see statistics such as:</p>
+<ul>
+<li>
+<p>Reach: <code>reach</code></p>
+</li>
+<li>
+<p>Impressions: <code>impressions</code></p>
+</li>
+<li>
+<p>New Leads: <code>new_leads</code></p>
+</li>
+<li>
+<p>Verified Leads: <code>verfied_leads</code></p>
+</li>
+<li>
+<p>Total Clicks: <code>total_clicks</code></p>
+</li>
+<li>
+<p>Unique Clicks: <code>unique_clicks</code></p>
+</li>
+<li>
+<p>Shares: <code>shares</code></p>
+</li>
+<li>
+<p>Comments: <code>comments</code></p>
+</li>
+<li>
+<p>Likes: <code>likes</code></p>
+</li>
+</ul>
+<p>In the Prize tab we show either custom prize, added by user, or notification that this campaign does not have givaways, in case it is redirected to custom link or another campaign.</p>
+<p><strong>EMAIL Campaign</strong></p>
+<p>On the left part there is a preview of the Email Template that is sent to contacts.</p>
+<p>On the right part we can see statistics such as:</p>
+<ul>
+<li>
+<p>Opens: <code>opens</code></p>
+</li>
+<li>
+<p>Total Clicks: <code>total_clicks</code></p>
+</li>
+<li>
+<p>Unique Clicks: <code>unique_clicks</code></p>
+</li>
+<li>
+<p>New Verified Email: <code>new_verfied_email</code></p>
+</li>
+<li>
+<p>Unsubscribed: <code>unsubscribed</code></p>
+</li>
+<li>
+<p>Bounced / Failed: <code>failed</code></p>
+</li>
+</ul>
+<p>In the Prize tab we show either custom prize, added by user, or notification that this campaign does not have givaways, in case it is redirected to custom link or another campaign.</p>
+<p><strong>FIND Campaign</strong></p>
+<p>On the left part there is a preview of Game, that contacts will play by entering promoted short link.</p>
+<p>On the right part we can see statistics such as:</p>
+<ul>
+<li>
+<p>New Leads: <code>new_leads</code></p>
+</li>
+<li>
+<p>Total SMS: <code>total_sms</code></p>
+</li>
+</ul>
+<p>In the Prize tab we show either custom prize, added by user, or defaut prize, if not added any.</p>
+<p>In all types of campaign we have an oppotrunitey to download grafical view of the report modal in .psd file.</p>
+<p>It is front end operation, but we do use <code>${API_URL}/media/proxy?url=</code> link for loading images in the download.</p>
+<h2 id="edit-campaign">Edit Campaign<a class="headerlink" href="#edit-campaign" title="Permanent link">🔗</a></h2>
+<p>There are permissions to Edit campaign.</p>
+<p>We can <strong>ALWAYS</strong> edit Find and PYL campaign.</p>
+<p>At this moment all other campaigns can be edititd <strong>ONLY</strong> when their status is draft.</p>
+<p>Though we have a task to edit Email Campaign (only change step 2 &amp; 3 ) untill the emails are not send. After that - no editing possible, and Social Ad Campaign (only change step 2 &amp; 3 ) all the time.+ hide checkout &amp; buttons
++ think about informing user that the Evocalize will need some time to approve</p>
+<p>When we edit PYL campaugn - we are redirected to PYL campaign subpage. In any other cases - we are redirected to Campaign Builder. </p>
+<p>At the side navigation pannel we can see all the steps that are required for chosen type of the campaign.</p>
+<p>We CAN navigate through them, and also there is an option to go forward and backword inside each step.</p>
+<p><strong>Please NOTE</strong> if we are navigatinf through side panel - changes will not be saved. You need to press "Next" or "Save" ( depending on the step you are in right now ) in order to save your changes.</p>
+<p>On edit campaign we are sending</p>
+<pre><code>GET /v1/campaigns/${idCampaign}
+</code></pre>
+<p>Expected output - whole campaign object.</p>
+<p>There some more requests that we sending:</p>
+<p>1) Destinations of the campaign:</p>
+<pre><code>GET /v1/campaigns/${ id }/destinations
+</code></pre>
+<p>Expected output:</p>
+<pre><code>[
+  {
+    campaign: 3434
+    createdAt: &quot;2021-03-21T23:00:00+0000&quot;
+    destinationCampaignId: null | 123
+    endsAt: &quot;2021-03-21T23:00:00+0000&quot;
+    id: 214
+    startsAt: &quot;2021-03-21T23:00:00+0000&quot;
+    type: &quot;customLink&quot; | &quot;campaignDestination&quot; | &quot;game&quot;
+    updatedAt: &quot;2021-03-21T23:00:00+0000&quot;
+    url: null | &quot;https://test.pl&quot;
+  }
+]
+</code></pre>
+<p>2) Prizes of the campaign:</p>
+<pre><code>GET /v1/campaigns/${ id }/prizetypes
+</code></pre>
+<p>Expected output: <code>[]</code> if destination is not <code>game</code> OR</p>
+<pre><code>[
+  {
+    amount: null
+    endDate: null
+    id: 238
+    imageUrl: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/campaigns/3434/prizetype/a40f546635be209ac9e36bef166385a1b906c540.png&quot;
+    name: &quot;test&quot;
+  }
+]
+</code></pre>
+<p>3) Social Ad if needed:</p>
+<pre><code>GET /v1/adbuilder/${ id }
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  adType: &quot;single image&quot;
+  advertStatus: &quot;inactive&quot;
+  bodyText: &quot;test&quot;
+  campaignId: &quot;3434&quot;
+  headlineText: &quot;test&quot;
+  images: [
+    &quot;https://images.unsplash.com/photo-1524580328839-a67fcb31f12a?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=Mnw2NTU1M3wwfDF8c2VhcmNofDIwfHxhbGx8ZW58MHx8fHwxNjE3MTE2OTgz&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&quot;
+  ]
+  linkDescription: null
+  placement: &quot;0&quot;
+  url: &quot;https://contact.winlocal.xyz/offers/3434&quot;
+  videoId: &quot;&quot;
+}
+</code></pre>
+<p>4) Email Ad if needed:</p>
+<pre><code>GET /v1/emailtemplate/${ id }
+</code></pre>
+<p>Expected output:</p>
+<pre><code>{
+  body: &quot;test&quot;
+  bodySecond: &quot;&quot;
+  campaignId: &quot;3105&quot;
+  headline: &quot;test&quot;
+  headlineSecond: &quot;&quot;
+  imageLogo: null
+  imageMain: &quot;https://winlocal-stage-client-panel.s3.us-east-2.amazonaws.com/campaigns/3105/ads/89dd0deae1f03de2e082123ca3864cdbf9f5c50d.png&quot;
+  imageSecond: null
+  layoutId: &quot;1&quot;
+  linkLabel: &quot;test&quot;
+  previewText: &quot;teet&quot;
+  startDate: &quot;2021-07-08T15:29:00+0000&quot;
+  subject: &quot;Test&quot;
+  url: &quot;https://205.d.lnx.bz/c21&quot;
+}
+</code></pre></div>
             </div>
         </div>
 
